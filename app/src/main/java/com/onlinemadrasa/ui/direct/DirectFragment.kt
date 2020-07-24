@@ -1,6 +1,5 @@
-package com.onlinemadrasa.ui.home
+package com.onlinemadrasa.ui.direct
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +10,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.google.api.client.extensions.android.http.AndroidHttp
 import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.youtube.YouTube
 import com.onlinemadrasa.R
-import com.onlinemadrasa.adapter.MainAdapter
+import com.onlinemadrasa.adapter.RedirectAdapter
 import com.onlinemadrasa.utils.OnAlertShow
 import com.onlinemadrasa.utils.Utils
 
-class HomeFragment : Fragment(),OnAlertShow{
+class DirectFragment : Fragment(), OnAlertShow {
 
     private lateinit var mainRcv: RecyclerView
 
@@ -30,18 +28,18 @@ class HomeFragment : Fragment(),OnAlertShow{
 
     private var onAlertShow: OnAlertShow = this
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var galleryViewModel: GalleryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        galleryViewModel =
+            ViewModelProviders.of(this).get(GalleryViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_gallery, container, false)
+        val textView: TextView = root.findViewById(R.id.text_gallery)
+        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
@@ -54,11 +52,11 @@ class HomeFragment : Fragment(),OnAlertShow{
         mainRcv.layoutManager = GridLayoutManager(context, 2)
 
         var list: ArrayList<String> = ArrayList()
-        val array = resources.getStringArray(R.array.list_array2)
+        val array = resources.getStringArray(R.array.list_array)
         for (value in array) {
             list.add(value)
         }
-        mainRcv.adapter = context?.let { MainAdapter(it, list, onAlertShow) }
+        mainRcv.adapter = context?.let { RedirectAdapter(it, list, onAlertShow) }
 
 
         mYoutubeDataApi = YouTube.Builder(mTransport, mJsonFactory, null)
@@ -67,7 +65,6 @@ class HomeFragment : Fragment(),OnAlertShow{
     }
 
     override fun onAlertShow() {
-        Utils.showToast(context,getString(R.string.no_internet))
+        Utils.showToast(context, getString(R.string.no_internet))
     }
-
 }

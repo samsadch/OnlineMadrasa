@@ -151,7 +151,6 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
             intent.putExtra("videoId", url)
             startActivity(intent)
         }
-
     }
 
     fun isOnline(context: Context): Boolean {

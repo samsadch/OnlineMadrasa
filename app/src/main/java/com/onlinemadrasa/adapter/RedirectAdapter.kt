@@ -11,11 +11,12 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.onlinemadrasa.PdfViewActivity
 import com.onlinemadrasa.R
-import com.onlinemadrasa.VideoListingActivity
 import com.onlinemadrasa.utils.OnAlertShow
+
 
 class RedirectAdapter(var context: Context, private var list: ArrayList<String>, var onAlertShow: OnAlertShow) :
     RecyclerView.Adapter<RedirectAdapter.ViewHolder>() {
@@ -53,9 +54,13 @@ class RedirectAdapter(var context: Context, private var list: ArrayList<String>,
                         isOnline = false
                         onAlertShow.onAlertShow()
                     }else {
-                        isOnline = true
+                        /*isOnline = true
                         val intent = Intent(context, VideoListingActivity::class.java)
                         intent.putExtra("ITEM", item)
+                        context.startActivity(intent)*/
+                        val intent = Intent(Intent.ACTION_VIEW)
+                        intent.data = Uri.parse(item)
+                        intent.setPackage("com.google.android.youtube")
                         context.startActivity(intent)
                     }
                 }catch (e:Exception){

@@ -1,13 +1,13 @@
-package com.onlinemadrasa.ui.slideshow
+package com.onlinemadrasa.ui.share
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class ShareViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is slideshow Fragment"
+        value = "Share the app with your friends and Family"
     }
     val text: LiveData<String> = _text
 }

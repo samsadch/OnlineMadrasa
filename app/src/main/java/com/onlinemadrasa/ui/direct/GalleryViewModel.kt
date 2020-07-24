@@ -1,4 +1,4 @@
-package com.onlinemadrasa.ui.gallery
+package com.onlinemadrasa.ui.direct
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
