@@ -37,7 +37,6 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     lateinit var listRcv: RecyclerView
     lateinit var youtubePlayListItem: String
 
-
     private var mPlaylistTitles: ArrayList<String>? = null
     private var mPlaylistVideos: PlaylistVideos? = null
     private var mPlaylistCardAdapter: PlaylistCardAdapter? = null
@@ -94,12 +93,14 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     ) {
         initCardAdapter(playlistVideos)
         if (fetchPlaylist) {
-            object : GetTask(context, mYouTubeDataApi) {
-                override fun onPostExecute(result: Pair<String, List<Video>>) {
-                    handleGetPlaylistResult(playlistVideos, result)
-                    Utils.hideProgress()
-                }
-            }.execute(playlistVideos.playlistId, playlistVideos.getNextPageToken())
+            mYouTubeDataApi?.let {
+                object : GetTask(context, mYouTubeDataApi) {
+                    override fun onPostExecute(result: Pair<String, List<Video>>) {
+                        handleGetPlaylistResult(playlistVideos, result)
+                        Utils.hideProgress()
+                    }
+                }.execute(playlistVideos.playlistId, playlistVideos.getNextPageToken())
+            }
         }
     }
 
@@ -108,16 +109,18 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
             playlistVideos,
             object : LastItemReachedListener {
                 override fun onLastItem(position: Int, nextPageToken: String?) {
-                    object : GetTask(context, mYouTubeDataApi) {
-                        override fun onPostExecute(result: Pair<String, List<Video>>) {
-                            Utils.hideProgress()
-                            handleGetPlaylistResult(playlistVideos, result)
-                        }
-                    }.execute(playlistVideos.playlistId, playlistVideos.getNextPageToken())
+                    mYouTubeDataApi?.let {
+                        object : GetTask(context, mYouTubeDataApi) {
+                            override fun onPostExecute(result: Pair<String, List<Video>>) {
+                                Utils.hideProgress()
+                                handleGetPlaylistResult(playlistVideos, result)
+                            }
+                        }.execute(playlistVideos.playlistId, playlistVideos.nextPageToken)
+                    }
                 }
             }, onVideoSelect
         )
-        listRcv.setAdapter(mPlaylistCardAdapter)
+        listRcv.adapter = mPlaylistCardAdapter
     }
 
     private fun handleGetPlaylistResult(
@@ -138,7 +141,6 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     var isOnline = false
 
     override fun onVideoSelect(url: String) {
-
         if (!isOnline(context)) {
             isOnline = false
             showSnackBar(getString(R.string.no_internet))

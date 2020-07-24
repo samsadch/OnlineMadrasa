@@ -43,12 +43,11 @@ abstract class GetTask(
 
 
         val playlistId: String = params[0].toString()
-        val nextPageToken: String?
 
-        if (params.size == 2) {
-            nextPageToken = params[1]
+        val nextPageToken: String? = if (params.size == 2) {
+            params[1]
         } else {
-            nextPageToken = null
+            null
         }
 
         val playlistItemListResponse: PlaylistItemListResponse?
