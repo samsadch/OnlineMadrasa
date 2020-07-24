@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Online Madrasa</string>
+    <string name="circular">Circular</string>
+    <string name="submit_attendance">Submit Attendance</string>
+    <string name="attendance_url">http://www.onlineclass.samastha.info/report</string>
+    <string name="youtube_pacakage">com.google.android.youtube</string>
+    <string name="key">AIzaSyCSDkABxtlQT7vsEdMyes4TBuC-JPtYgw8</string>
+
+    <array name="list_array">
+        <item>Submit Attendance</item>
+        <item>https://www.youtube.com/playlist?list=PL42zYQiifYHBVnxyWEf9IEkvUfFM37dMc</item>
+        <item>https://www.youtube.com/playlist?list=PL42zYQiifYHCNPEzImPqPqmSpxrQf2Kdt</item>
+        <item>https://www.youtube.com/playlist?list=PL42zYQiifYHCvyUUGRZwZ0_MBXxG-lhcS</item>
+        <item>https://www.youtube.com/playlist?list=PL42zYQiifYHDeVy6jmIapGD1ElcdAEgll</item>
+        <item>https://www.youtube.com/playlist?list=PL42zYQiifYHCqc0jbrPvpdMuzpFLHGF5_</item>
+        <item>https://www.youtube.com/playlist?list=PL42zYQiifYHBhD7_Pvelpe90GrO243fZ_</item>
+        <item>https://www.youtube.com/playlist?list=PL42zYQiifYHApFb0-vfPjwNGtb7S8tAb8</item>
+        <item>https://www.youtube.com/playlist?list=PL42zYQiifYHDNn2PcZrc4LuLyiTAp7kxF</item>
+        <item>https://www.youtube.com/playlist?list=PL42zYQiifYHBcYtQdIG9ro_I7FqEiLQIg</item>
+        <item>https://www.youtube.com/playlist?list=PL42zYQiifYHCMc8sF6m5dzkkrG9drKAAC</item>
+        <item>https://www.youtube.com/playlist?list=PL42zYQiifYHBu1gdGHrYNdwoSd9SFhTnk</item>
+        <item>https://www.youtube.com/playlist?list=PL42zYQiifYHDy7FLW4-Og6RmLo1qM10q_</item>
+        <item>Circular</item>
+    </array>
+    <array name="list_array2">
+        <item>Submit Attendance</item>
+        <item>PL42zYQiifYHBVnxyWEf9IEkvUfFM37dMc</item>
+        <item>PL42zYQiifYHCNPEzImPqPqmSpxrQf2Kdt</item>
+        <item>PL42zYQiifYHCvyUUGRZwZ0_MBXxG-lhcS</item>
+        <item>PL42zYQiifYHDeVy6jmIapGD1ElcdAEgll</item>
+        <item>PL42zYQiifYHCqc0jbrPvpdMuzpFLHGF5_</item>
+        <item>PL42zYQiifYHBhD7_Pvelpe90GrO243fZ_</item>
+        <item>PL42zYQiifYHApFb0-vfPjwNGtb7S8tAb8</item>
+        <item>PL42zYQiifYHDNn2PcZrc4LuLyiTAp7kxF</item>
+        <item>PL42zYQiifYHBcYtQdIG9ro_I7FqEiLQIg</item>
+        <item>PL42zYQiifYHCMc8sF6m5dzkkrG9drKAAC</item>
+        <item>PL42zYQiifYHBu1gdGHrYNdwoSd9SFhTnk</item>
+        <item>PL42zYQiifYHDy7FLW4-Og6RmLo1qM10q_</item>
+        <item>Circular</item>
+    </array>
+    <string name="api_key">AIzaSyCSDkABxtlQT7vsEdMyes4TBuC-JPtYgw8</string>
+    <string name="sample">This is a sample description of the video item that is long enough to wrap around to the next line.</string>
+    <string name="ok">Ok</string>
+    <string name="alert">Alert</string>
+    <string name="no_internet">No internet available</string>
+
+</resources>

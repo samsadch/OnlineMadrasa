@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--<item android:id="@+id/search_item"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="always"
+        android:title="Search" />-->
+
+    <item android:id="@+id/viewList"
+        android:title="View List"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_view_list"/>
+
+    <item android:id="@+id/viewCard"
+        android:title="View Card"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_view_card"/>
+
+    <item android:id="@+id/viewGrid"
+        android:title="View Grid"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_grid"/>
+</menu>

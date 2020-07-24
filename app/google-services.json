@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "770134256427",
+    "firebase_url": "https://online-madrasa-118e7.firebaseio.com",
+    "project_id": "online-madrasa-118e7",
+    "storage_bucket": "online-madrasa-118e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770134256427:android:11183f406fa941ce60f36e",
+        "android_client_info": {
+          "package_name": "com.onlinemadrasa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770134256427-fa4kl7k5ndlkcvufkebih0gl074vgvu5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.onlinemadrasa",
+            "certificate_hash": "99154618dc4bb2cc5e4b4aeb05a934a914d3cc26"
+          }
+        },
+        {
+          "client_id": "770134256427-1gtg1mhnpbh5j5a2hld310mh6bvi7lfu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQNXVImxDltQTtKpaKPMxL4lld0xJxqDc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770134256427-1gtg1mhnpbh5j5a2hld310mh6bvi7lfu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
