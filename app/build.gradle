@@ -11,8 +11,8 @@ android {
         applicationId "com.onlinemadrasa"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 8
-        versionName "1.07"
+        versionCode 9
+        versionName "1.08"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

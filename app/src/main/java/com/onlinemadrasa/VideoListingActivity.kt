@@ -110,12 +110,14 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
             object : LastItemReachedListener {
                 override fun onLastItem(position: Int, nextPageToken: String?) {
                     mYouTubeDataApi?.let {
-                        object : GetTask(context, mYouTubeDataApi) {
-                            override fun onPostExecute(result: Pair<String, List<Video>>) {
-                                Utils.hideProgress()
-                                handleGetPlaylistResult(playlistVideos, result)
-                            }
-                        }.execute(playlistVideos.playlistId, playlistVideos.nextPageToken)
+                        context?.let {
+                            object : GetTask(context, mYouTubeDataApi) {
+                                override fun onPostExecute(result: Pair<String, List<Video>>) {
+                                    Utils.hideProgress()
+                                    handleGetPlaylistResult(playlistVideos, result)
+                                }
+                            }.execute(playlistVideos.playlistId, playlistVideos.nextPageToken)
+                        }
                     }
                 }
             }, onVideoSelect
