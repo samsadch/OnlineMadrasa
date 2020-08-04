@@ -10,6 +10,7 @@ import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.firebase.database.FirebaseDatabase
 import com.onlinemadrasa.R
 
 
@@ -48,7 +49,6 @@ class ShareFragment : Fragment() {
                     .setText("http://play.google.com/store/apps/details?id=com.onlinemadrasa" + requireActivity().packageName)
                     .startChooser()
             };
-
             /*val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://play.google.com/store/apps/details?id=com.onlinemadrasa")
             startActivity(intent)*/
