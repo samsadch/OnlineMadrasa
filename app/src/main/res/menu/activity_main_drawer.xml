@@ -12,14 +12,15 @@
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_watch"
             android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_share"
-            android:title="@string/menu_slideshow" />
 
         <item
             android:id="@+id/nav_message"
             android:icon="@drawable/ic_feedback"
             android:title="@string/menu_message" />
+
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_share"
+            android:title="@string/menu_slideshow" />
     </group>
 </menu>

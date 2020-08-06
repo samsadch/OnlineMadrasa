@@ -1,9 +1,11 @@
 package com.onlinemadrasa.ui.message
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -56,6 +58,20 @@ class MessageFragment : Fragment() {
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("message")
         myRef.push().setValue(message)
+    }
+
+    override fun onPause() {
+        closeKeyboard()
+        super.onPause()
+    }
+
+    private fun closeKeyboard() {
+        val view = requireActivity().currentFocus
+        if (view != null) {
+            val imm =
+                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
 }

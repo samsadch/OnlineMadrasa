@@ -44,7 +44,7 @@ class HomeActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_message
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_message, R.id.nav_slideshow
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -67,7 +67,8 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_rate -> {
-                launchMarket()
+                shareApp()
+                //launchMarket()
                 true
             }
             else -> {
@@ -75,6 +76,20 @@ class HomeActivity : AppCompatActivity() {
             }
         }
         //return super.onOptionsItemSelected(item)
+    }
+
+    private fun shareApp(){
+        try {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(
+                "https://play.google.com/store/apps/details?id=$packageName"
+            )
+            intent.setPackage("com.android.vending")
+            startActivity(intent)
+        }catch (e:Exception){
+            Toast.makeText(this, "Couldn't launch the Play Store", Toast.LENGTH_LONG).show()
+            e.printStackTrace()
+        }
     }
 
     private fun launchMarket() {
@@ -97,6 +112,5 @@ class HomeActivity : AppCompatActivity() {
                 val token = task.result?.token
             })
     }
-
 
 }
