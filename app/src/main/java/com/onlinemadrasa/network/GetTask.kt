@@ -31,8 +31,6 @@ abstract class GetTask(
         "items(id,snippet(title,description,thumbnails/high),contentDetails/duration,statistics)"
 
 
-
-
     override fun onPreExecute() {
         super.onPreExecute()
         Utils.setLoading(context)

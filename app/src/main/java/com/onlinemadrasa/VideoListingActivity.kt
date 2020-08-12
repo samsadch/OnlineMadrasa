@@ -32,7 +32,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     private var mYouTubeDataApi: YouTube? = null
     private val mJsonFactory = GsonFactory()
     private val mTransport = AndroidHttp.newCompatibleTransport()
-    private lateinit var context: Context
+    private var context: Context?=null
     private lateinit var onVideoSelect: OnVideoSelect
     lateinit var listRcv: RecyclerView
     lateinit var youtubePlayListItem: String
@@ -61,10 +61,10 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         onVideoSelect = this
 
         if (mPlaylistVideos != null) {
-            reloadUi(mPlaylistVideos!!, false)
+            reloadUi(mPlaylistVideos!!, false,context)
         } else {
             mPlaylistVideos = PlaylistVideos(youtubePlayListItem)
-            reloadUi(mPlaylistVideos!!, true)
+            reloadUi(mPlaylistVideos!!, true, context)
         }
 
         backImv.setOnClickListener {
@@ -89,17 +89,23 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
     private fun reloadUi(
         playlistVideos: PlaylistVideos,
-        fetchPlaylist: Boolean
+        fetchPlaylist: Boolean,
+        context: Context?
     ) {
         initCardAdapter(playlistVideos)
         if (fetchPlaylist) {
             mYouTubeDataApi?.let {
-                object : GetTask(context, mYouTubeDataApi) {
-                    override fun onPostExecute(result: Pair<String, List<Video>>) {
-                        handleGetPlaylistResult(playlistVideos, result)
-                        Utils.hideProgress()
+                this.context?.let {
+                    if(playlistVideos.playlistId!=null && playlistVideos.nextPageToken!=null) {
+                        object : GetTask(context!!, mYouTubeDataApi) {
+                            override fun onPostExecute(result: Pair<String, List<Video>>) {
+                                handleGetPlaylistResult(playlistVideos, result)
+                                Utils.hideProgress()
+                            }
+                        }.execute(playlistVideos.playlistId, playlistVideos.nextPageToken)
                     }
-                }.execute(playlistVideos.playlistId, playlistVideos.getNextPageToken())
+                }
+
             }
         }
     }
@@ -111,7 +117,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
                 override fun onLastItem(position: Int, nextPageToken: String?) {
                     mYouTubeDataApi?.let {
                         context?.let {
-                            object : GetTask(context, mYouTubeDataApi) {
+                            object : GetTask(context!!, mYouTubeDataApi) {
                                 override fun onPostExecute(result: Pair<String, List<Video>>) {
                                     Utils.hideProgress()
                                     handleGetPlaylistResult(playlistVideos, result)
@@ -143,7 +149,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     var isOnline = false
 
     override fun onVideoSelect(url: String) {
-        if (!isOnline(context)) {
+        if (!isOnline(context!!)) {
             isOnline = false
             showSnackBar(getString(R.string.no_internet))
         } else {
@@ -170,7 +176,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         )
 
         val snackbarView = sb.view
-        snackbarView.setBackgroundColor(context.resources.getColor(R.color.color_button))
+        context?.resources?.getColor(R.color.color_button)?.let { snackbarView.setBackgroundColor(it) }
         val textView = snackbarView.findViewById(R.id.snackbar_text) as TextView
         textView.setTextColor(Color.WHITE)
         sb.setAction("") {

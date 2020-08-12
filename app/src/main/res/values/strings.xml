@@ -6,6 +6,8 @@
     <string name="youtube_pacakage">com.google.android.youtube</string>
     <string name="key">AIzaSyCSDkABxtlQT7vsEdMyes4TBuC-JPtYgw8</string>
 
+    <string name="default_notification_channel_id">123123</string>
+
     <array name="list_array">
         <item>Submit Attendance</item>
         <item>https://www.youtube.com/playlist?list=PL42zYQiifYHBVnxyWEf9IEkvUfFM37dMc</item>

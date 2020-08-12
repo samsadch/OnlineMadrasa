@@ -1,9 +1,11 @@
 package com.onlinemadrasa
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -20,17 +22,34 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.iid.FirebaseInstanceId
+import com.onlinemadrasa.utils.Utils
+import okhttp3.internal.Util
 
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    var title:String?=null
+    var body:String?=null
+    val context:Context = this@HomeActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        if(intent.extras!=null){
+            title = intent.getStringExtra("TITLE")
+            body = intent.getStringExtra("MESSAGE")
+            body?.let {
+                if(!title.isNullOrEmpty()){
+                    Utils.showIosDialog(context,title,body)
+                }else{
+                    Utils.showIosDialog(context,getString(R.string.app_name),body)
+                }
+            }
+        }
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
@@ -110,6 +129,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 // Get new Instance ID token
                 val token = task.result?.token
+                Log.d("TOKEN",token)
             })
     }
 

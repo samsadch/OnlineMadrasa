@@ -186,7 +186,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_down" />
+                    android:src="@drawable/ic_down"
+                    android:layout_alignParentRight="true" />
             </RelativeLayout>
 
 
