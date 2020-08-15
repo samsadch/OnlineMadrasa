@@ -12,10 +12,11 @@ android {
         applicationId "com.onlinemadrasa"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 12
-        versionName "1.11"
+        versionCode 13
+        versionName "1.12"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {

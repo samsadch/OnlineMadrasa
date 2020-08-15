@@ -21,7 +21,7 @@
             android:layout_centerVertical="true"
             app:civ_border_width="1dp"
             app:civ_border_color="@color/color_grey"
-            android:src="@drawable/ic_person"/>
+            app:srcCompat="@drawable/ic_person"/>
         
         
         <LinearLayout
@@ -31,7 +31,9 @@
             android:layout_toEndOf="@+id/profileImv"
             android:layout_toStartOf="@id/moreButton"
             android:layout_marginStart="6dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/profileImv"
+            android:layout_toLeftOf="@id/moreButton">
 
             <TextView
                 android:id="@+id/nameTxv"
@@ -65,8 +67,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_more"
-            android:background="@null"/>
+            app:srcCompat="@drawable/ic_more"
+            android:background="@null"
+            android:layout_alignParentRight="true" />
 
 
     </RelativeLayout>

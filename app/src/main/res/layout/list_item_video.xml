@@ -22,8 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            tools:src="@drawable/ic_thumb_up" />
+            android:scaleType="fitXY" />
 
 
         <LinearLayout
@@ -67,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_toLeftOf="@+id/video_share">
 
                 <TextView
@@ -74,6 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
                     android:text="View: "
                     android:textColor="@android:color/primary_text_light"
                     android:textSize="14sp" />
@@ -83,6 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/viewTxv"
+                    android:layout_toRightOf="@+id/viewTxv"
                     android:fontFamily="sans-serif-light"
                     android:textColor="@android:color/primary_text_light"
                     android:textSize="14sp"
@@ -96,9 +98,10 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
-                android:src="@drawable/ic_share" />
+                card_view:srcCompat="@drawable/ic_share" />
 
 
             <ImageView
@@ -185,9 +188,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_down"
-                    android:layout_alignParentRight="true" />
+                    card_view:srcCompat="@drawable/ic_down" />
             </RelativeLayout>
 
 

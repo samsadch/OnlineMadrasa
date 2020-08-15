@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,18 +19,21 @@
             android:layout_height="32dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
-            android:src="@drawable/ic_back" />
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/ic_back" />
 
         <ImageView
             android:id="@+id/moreImv"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_more"
+            android:layout_marginRight="10dp"
             android:tint="@color/white"
-            android:visibility="gone" />
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_more" />
 
 
         <ImageView
@@ -38,21 +42,25 @@
             android:layout_height="34dp"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:layout_toStartOf="@+id/listImv"
-            android:src="@drawable/ic_view_card"
-            android:tint="@color/white" />
+            android:layout_toLeftOf="@+id/listImv"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_view_card" />
 
 
         <ImageView
             android:id="@+id/listImv"
             android:layout_width="34dp"
             android:layout_height="34dp"
-            android:visibility="gone"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:layout_toStartOf="@+id/gridImv"
-            android:src="@drawable/ic_view_list"
-            android:tint="@color/white" />
+            android:layout_toLeftOf="@+id/gridImv"
+            android:tint="@color/white"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_view_list" />
 
 
         <ImageView
@@ -60,10 +68,12 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_grid"
-            android:tint="@color/white" />
+            android:layout_marginRight="10dp"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_grid" />
 
     </RelativeLayout>
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.message.MessageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,8 +20,8 @@
             android:gravity="center_horizontal"
             android:text="@string/message_text"
             android:textAlignment="center"
-            android:textSize="24sp"
             android:textColor="@color/black"
+            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@id/comments_edit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,20 +33,21 @@
             android:layout_height="240dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="36dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/square_background"
             android:gravity="start"
+            android:hint="Type here..."
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:hint="Type here..."
-            android:textSize="20sp"
             android:padding="8dp"
-            android:background="@drawable/square_background"
-            android:layout_marginEnd="16dp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/message_text" />
 
 
         <TextView
+            android:id="@+id/submit_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -54,14 +55,13 @@
             android:layout_marginTop="36dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:text="Submit Feedback"
-            android:id="@+id/submit_text"
-            android:textAlignment="center"
+            android:background="@drawable/round_background"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
+            android:text="Submit Feedback"
+            android:textAlignment="center"
             android:textSize="18sp"
-            android:background="@drawable/round_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </FrameLayout>
