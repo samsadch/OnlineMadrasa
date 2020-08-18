@@ -96,7 +96,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         if (fetchPlaylist) {
             mYouTubeDataApi?.let {
                 this.context?.let {
-                    if(playlistVideos.playlistId!=null && playlistVideos.nextPageToken!=null) {
+                    if(playlistVideos.playlistId!=null) {
                         object : GetTask(context!!, mYouTubeDataApi) {
                             override fun onPostExecute(result: Pair<String, List<Video>>) {
                                 handleGetPlaylistResult(playlistVideos, result)

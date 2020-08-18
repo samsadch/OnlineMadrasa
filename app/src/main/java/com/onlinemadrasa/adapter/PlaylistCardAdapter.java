@@ -2,6 +2,7 @@ package com.onlinemadrasa.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,11 @@ import com.onlinemadrasa.R;
 import com.onlinemadrasa.VideoListingActivity;
 import com.onlinemadrasa.model.OnVideoSelect;
 import com.onlinemadrasa.model.PlaylistVideos;
+import com.onlinemadrasa.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
+import java.util.logging.Logger;
 
 public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapter.ViewHolder> {
     private static final DecimalFormat sFormatter = new DecimalFormat("#,###,###");
@@ -82,22 +85,22 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        if (mPlaylistVideos.size() == 0) {
-            return;
-        }
 
-        final Video video = mPlaylistVideos.get(position);
-        final VideoSnippet videoSnippet = video.getSnippet();
-        final VideoContentDetails videoContentDetails = video.getContentDetails();
-        final VideoStatistics videoStatistics = video.getStatistics();
+        try {
+            if (mPlaylistVideos.size() == 0) {
+                return;
+            }
 
-        holder.mTitleText.setText(videoSnippet.getTitle());
-        holder.mDescriptionText.setText(videoSnippet.getDescription());
+            final Video video = mPlaylistVideos.get(position);
+            final VideoSnippet videoSnippet = video.getSnippet();
+            final VideoContentDetails videoContentDetails = video.getContentDetails();
+            final VideoStatistics videoStatistics = video.getStatistics();
+
+            holder.mTitleText.setText(videoSnippet.getTitle());
+            holder.mDescriptionText.setText(videoSnippet.getDescription());
 
 
-        holder.titleRlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            holder.titleRlay.setOnClickListener(v -> {
                 boolean isShown = holder.expandableLayout.isShown();
                 if (isShown) {
                     holder.expandableLayout.setVisibility(View.GONE);
@@ -106,29 +109,24 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
                     holder.moreImv.setImageResource(R.drawable.ic_up);
                     holder.expandableLayout.setVisibility(View.VISIBLE);
                 }
-            }
-        });
+            });
 
-        // load the video thumbnail image
-        Picasso.with(holder.mContext)
-                .load(videoSnippet.getThumbnails().getHigh().getUrl())
-                .placeholder(R.drawable.video_placeholder)
-                .into(holder.mThumbnailImage);
+            // load the video thumbnail image
+            Picasso.with(holder.mContext)
+                    .load(videoSnippet.getThumbnails().getHigh().getUrl())
+                    .placeholder(R.drawable.video_placeholder)
+                    .into(holder.mThumbnailImage);
 
-        // set the click listener to play the video
-        holder.mThumbnailImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+            // set the click listener to play the video
+            holder.mThumbnailImage.setOnClickListener(view -> {
                 //holder.mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=" + video.getId())));
                 String url = "https://www.youtube.com/watch?v=" + video.getId();
                 onVideoSelect.onVideoSelect(video.getId());
-            }
-        });
+            });
 
-        // create and set the click listener for both the share icon and share text
-        View.OnClickListener shareClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            // create and set the click listener for both the share icon and share text
+            View.OnClickListener shareClickListener = view -> {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Watch \"" + videoSnippet.getTitle() + "\" on YouTube");
@@ -137,29 +135,34 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
                 holder.mContext.startActivity(sendIntent);
 
 
-            }
-        };
-        holder.mShareIcon.setOnClickListener(shareClickListener);
-        //holder.mShareText.setOnClickListener(shareClickListener);
+            };
 
-        // set the video duration text
-        holder.mDurationText.setText(parseDuration(videoContentDetails.getDuration()));
-        // set the video statistics
-        holder.mViewCountText.setText(sFormatter.format(videoStatistics.getViewCount()));
-        //holder.mLikeCountText.setText(sFormatter.format(videoStatistics.getLikeCount()));
-        //holder.mDislikeCountText.setText(sFormatter.format(videoStatistics.getDislikeCount()));
+            holder.mShareIcon.setOnClickListener(shareClickListener);
+            //holder.mShareText.setOnClickListener(shareClickListener);
 
-        if (mListener != null) {
-            // get the next playlist page if we're at the end of the current page and we have another page to get
-            final String nextPageToken = mPlaylistVideos.getNextPageToken();
-            if (!isEmpty(nextPageToken) && position == mPlaylistVideos.size() - 1) {
-                holder.itemView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mListener.onLastItem(position, nextPageToken);
-                    }
-                });
+            // set the video duration text
+            holder.mDurationText.setText(parseDuration(videoContentDetails.getDuration()));
+            // set the video statistics
+            holder.mViewCountText.setText(sFormatter.format(videoStatistics.getViewCount()));
+            //holder.mLikeCountText.setText(sFormatter.format(videoStatistics.getLikeCount()));
+            //holder.mDislikeCountText.setText(sFormatter.format(videoStatistics.getDislikeCount()));
+
+            if (mListener != null) {
+                // get the next playlist page if we're at the end of the current page and we have another page to get
+                final String nextPageToken = mPlaylistVideos.getNextPageToken();
+                if (!isEmpty(nextPageToken) && position == mPlaylistVideos.size() - 1) {
+                    holder.itemView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mListener.onLastItem(position, nextPageToken);
+                        }
+                    });
+                }
             }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.d("PLAYLIS",e.getMessage());
         }
     }
 
