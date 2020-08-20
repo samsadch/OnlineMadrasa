@@ -32,7 +32,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     private var mYouTubeDataApi: YouTube? = null
     private val mJsonFactory = GsonFactory()
     private val mTransport = AndroidHttp.newCompatibleTransport()
-    private var context: Context?=null
+    private val context: Context=this@VideoListingActivity
     private lateinit var onVideoSelect: OnVideoSelect
     lateinit var listRcv: RecyclerView
     lateinit var youtubePlayListItem: String
@@ -45,7 +45,6 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_listing)
-        context = this@VideoListingActivity
         listRcv = findViewById(R.id.listRcv)
         youtubePlayListItem = intent.getStringExtra("ITEM")
 
@@ -176,7 +175,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         )
 
         val snackbarView = sb.view
-        context?.resources?.getColor(R.color.color_button)?.let { snackbarView.setBackgroundColor(it) }
+        context.resources.getColor(R.color.color_button)?.let { snackbarView.setBackgroundColor(it) }
         val textView = snackbarView.findViewById(R.id.snackbar_text) as TextView
         textView.setTextColor(Color.WHITE)
         sb.setAction("") {
