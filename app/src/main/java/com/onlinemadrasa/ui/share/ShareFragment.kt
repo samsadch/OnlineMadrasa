@@ -10,6 +10,8 @@ import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.onlinemadrasa.R
 
 
@@ -30,6 +32,15 @@ class ShareFragment : Fragment() {
         shareViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        val mAdView: AdView = root.findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
+
+
+        val mAdView2: AdView = root.findViewById(R.id.adView2)
+        val adRequest2 = AdRequest.Builder().build()
+        mAdView2.loadAd(adRequest2)
 
         return root
     }

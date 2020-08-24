@@ -6,13 +6,18 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
 import android.util.Pair
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.adcolony.sdk.*
 import com.flipkart.youtubeview.activity.YouTubeActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.android.material.snackbar.Snackbar
 import com.google.api.client.extensions.android.http.AndroidHttp
 import com.google.api.client.json.gson.GsonFactory
@@ -41,12 +46,66 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     private var mPlaylistVideos: PlaylistVideos? = null
     private var mPlaylistCardAdapter: PlaylistCardAdapter? = null
     private val mProgressDialog: ProgressDialog? = null
+    private var adRlay: RelativeLayout? = null
+    private var listener: AdColonyAdViewListener? = null
+
+    private var adView: AdColonyAdView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_listing)
+        AdColony.configure(this, "app3cb32b3e892e4f34b2", "vze08bb2c3b37149f1b7");
         listRcv = findViewById(R.id.listRcv)
+        adRlay = findViewById(R.id.adRlay)
         youtubePlayListItem = intent.getStringExtra("ITEM")
+
+        val mAdView: AdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
+
+
+        if(adRlay?.childCount!! > 0)
+        {
+            adRlay?.removeView(adView);
+        }
+
+        listener = object : AdColonyAdViewListener() {
+            override fun onRequestFilled(adColonyAdView: AdColonyAdView) {
+                Log.d("ADS", "onRequestFilled")
+                adRlay?.addView(adColonyAdView)
+                adView = adColonyAdView
+            }
+
+            override fun onRequestNotFilled(zone: AdColonyZone?) {
+                super.onRequestNotFilled(zone)
+                Log.d("ADS", "onRequestNotFilled")
+            }
+
+            override fun onOpened(ad: AdColonyAdView) {
+                super.onOpened(ad)
+                Log.d("ADS", "onOpened")
+            }
+
+            override fun onClosed(ad: AdColonyAdView) {
+                super.onClosed(ad)
+                Log.d("ADS", "onClosed")
+            }
+
+            override fun onClicked(ad: AdColonyAdView) {
+                super.onClicked(ad)
+                Log.d("ADS", "onClicked")
+            }
+
+            override fun onLeftApplication(ad: AdColonyAdView) {
+                super.onLeftApplication(ad)
+                Log.d("ADS", "onLeftApplication")
+            }
+        }
+        //AdColony.requestAdView("vze08bb2c3b37149f1b7", listener!!, AdColonyAdSize.BANNER)
+
+        var adOptions = AdColonyAdOptions()
+        //Request Ad
+        AdColony.requestAdView("vze08bb2c3b37149f1b7", listener!!, AdColonyAdSize.BANNER, adOptions)
 
         //card
         //listRcv.layoutManager = LinearLayoutManager(context)
@@ -63,7 +122,8 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
             reloadUi(mPlaylistVideos!!, false)
         } else {
             mPlaylistVideos = PlaylistVideos(youtubePlayListItem)
-            reloadUi(mPlaylistVideos!!, true
+            reloadUi(
+                mPlaylistVideos!!, true
             )
         }
 

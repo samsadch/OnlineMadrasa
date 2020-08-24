@@ -82,11 +82,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/actionbar"
+        android:layout_above="@+id/adRlay"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         tools:listitem="@layout/youtube_video_card" />
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        android:layout_alignParentBottom="true"
+        ads:adUnitId="ca-app-pub-3884484176623181/9520092830"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/adRlay"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -100,6 +119,5 @@
         android:layout_marginBottom="8dp"
         android:visibility="gone"
         tools:listitem="@layout/youtube_video_card" />
-
 
 </RelativeLayout>

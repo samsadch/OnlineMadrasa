@@ -12,11 +12,15 @@ android {
         applicationId "com.onlinemadrasa"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 17
-        versionName "1.16"
+        versionCode 18
+        versionName "1.17"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+    }
+
+    packagingOptions {
+        exclude 'AndroidManifest.xml'
     }
 
     buildTypes {
@@ -77,4 +81,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation 'com.google.android.gms:play-services-ads:19.3.0'
+
+    implementation 'com.adcolony:sdk:4.1.3'
+
 }
