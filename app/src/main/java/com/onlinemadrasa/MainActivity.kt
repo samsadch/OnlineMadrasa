@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import com.google.api.client.extensions.android.http.AndroidHttp
 import com.google.api.client.json.gson.GsonFactory
@@ -30,6 +31,11 @@ class MainActivity : AppCompatActivity(),OnAlertShow{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mainRcv = findViewById(R.id.mainRcv)
+        MobileAds.initialize(
+            this
+        ) {
+
+        }
         mainRcv.layoutManager = GridLayoutManager(context, 2)
         var list: ArrayList<String> = ArrayList()
         val array = resources.getStringArray(R.array.list_array2)

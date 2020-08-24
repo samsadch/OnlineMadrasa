@@ -10,13 +10,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.*
 import com.google.api.client.extensions.android.http.AndroidHttp
 import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.youtube.YouTube
 import com.onlinemadrasa.R
 import com.onlinemadrasa.adapter.RedirectAdapter
+import com.onlinemadrasa.ui.home.HomeViewModel
 import com.onlinemadrasa.utils.OnAlertShow
 import com.onlinemadrasa.utils.Utils
+import okhttp3.internal.Util
 
 class DirectFragment : Fragment(), OnAlertShow {
 
@@ -30,6 +33,9 @@ class DirectFragment : Fragment(), OnAlertShow {
 
     private lateinit var galleryViewModel: GalleryViewModel
 
+
+    lateinit var mAdView : AdView
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +48,9 @@ class DirectFragment : Fragment(), OnAlertShow {
         galleryViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+        mAdView = root.findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
         return root
     }
 

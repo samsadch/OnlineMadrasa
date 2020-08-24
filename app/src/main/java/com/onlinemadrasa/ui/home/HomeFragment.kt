@@ -11,6 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import com.google.android.material.snackbar.Snackbar
 import com.google.api.client.extensions.android.http.AndroidHttp
 import com.google.api.client.json.gson.GsonFactory
@@ -29,6 +32,7 @@ class HomeFragment : Fragment(),OnAlertShow{
     private val mTransport = AndroidHttp.newCompatibleTransport()
 
     private var onAlertShow: OnAlertShow = this
+    lateinit var mAdView : AdView
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -44,6 +48,9 @@ class HomeFragment : Fragment(),OnAlertShow{
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+        mAdView = root.findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
         return root
     }
 

@@ -32,7 +32,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     private var mYouTubeDataApi: YouTube? = null
     private val mJsonFactory = GsonFactory()
     private val mTransport = AndroidHttp.newCompatibleTransport()
-    private val context: Context=this@VideoListingActivity
+    private val context: Context = this@VideoListingActivity
     private lateinit var onVideoSelect: OnVideoSelect
     lateinit var listRcv: RecyclerView
     lateinit var youtubePlayListItem: String
@@ -60,10 +60,11 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         onVideoSelect = this
 
         if (mPlaylistVideos != null) {
-            reloadUi(mPlaylistVideos!!, false,context)
+            reloadUi(mPlaylistVideos!!, false)
         } else {
             mPlaylistVideos = PlaylistVideos(youtubePlayListItem)
-            reloadUi(mPlaylistVideos!!, true, context)
+            reloadUi(mPlaylistVideos!!, true
+            )
         }
 
         backImv.setOnClickListener {
@@ -88,15 +89,14 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
     private fun reloadUi(
         playlistVideos: PlaylistVideos,
-        fetchPlaylist: Boolean,
-        context: Context?
+        fetchPlaylist: Boolean
     ) {
         initCardAdapter(playlistVideos)
         if (fetchPlaylist) {
             mYouTubeDataApi?.let {
                 this.context?.let {
-                    if(playlistVideos.playlistId!=null) {
-                        object : GetTask(context!!, mYouTubeDataApi) {
+                    if (playlistVideos.playlistId != null) {
+                        object : GetTask(context, mYouTubeDataApi) {
                             override fun onPostExecute(result: Pair<String, List<Video>>) {
                                 handleGetPlaylistResult(playlistVideos, result)
                                 Utils.hideProgress()
@@ -116,7 +116,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
                 override fun onLastItem(position: Int, nextPageToken: String?) {
                     mYouTubeDataApi?.let {
                         context?.let {
-                            object : GetTask(context!!, mYouTubeDataApi) {
+                            object : GetTask(context, mYouTubeDataApi) {
                                 override fun onPostExecute(result: Pair<String, List<Video>>) {
                                     Utils.hideProgress()
                                     handleGetPlaylistResult(playlistVideos, result)
@@ -175,7 +175,8 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         )
 
         val snackbarView = sb.view
-        context.resources.getColor(R.color.color_button)?.let { snackbarView.setBackgroundColor(it) }
+        context.resources.getColor(R.color.color_button)
+            ?.let { snackbarView.setBackgroundColor(it) }
         val textView = snackbarView.findViewById(R.id.snackbar_text) as TextView
         textView.setTextColor(Color.WHITE)
         sb.setAction("") {

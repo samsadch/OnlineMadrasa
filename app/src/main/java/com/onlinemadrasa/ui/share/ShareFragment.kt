@@ -10,7 +10,6 @@ import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.google.firebase.database.FirebaseDatabase
 import com.onlinemadrasa.R
 
 
@@ -31,7 +30,6 @@ class ShareFragment : Fragment() {
         shareViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
-
 
         return root
     }

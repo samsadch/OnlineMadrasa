@@ -5,6 +5,7 @@
     <string name="attendance_url">http://www.onlineclass.samastha.info/report</string>
     <string name="youtube_pacakage">com.google.android.youtube</string>
     <string name="key">AIzaSyCSDkABxtlQT7vsEdMyes4TBuC-JPtYgw8</string>
+    <string name="ad_attribution">Ad</string>
 
     <string name="default_notification_channel_id">123123</string>
 

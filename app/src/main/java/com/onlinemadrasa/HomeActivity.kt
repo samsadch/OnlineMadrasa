@@ -17,36 +17,41 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.iid.FirebaseInstanceId
 import com.onlinemadrasa.utils.Utils
-import okhttp3.internal.Util
 
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    var title:String?=null
-    var body:String?=null
-    val context:Context = this@HomeActivity
+    var title: String? = null
+    var body: String? = null
+    val context: Context = this@HomeActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        MobileAds.initialize(
+            this
+        ) {
+
+        }
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        if(intent.extras!=null){
+        if (intent.extras != null) {
             title = intent.getStringExtra("TITLE")
             body = intent.getStringExtra("MESSAGE")
             body?.let {
-                if(!title.isNullOrEmpty()){
-                    Utils.showIosDialog(context,title,body)
-                }else{
-                    Utils.showIosDialog(context,getString(R.string.app_name),body)
+                if (!title.isNullOrEmpty()) {
+                    Utils.showIosDialog(context, title, body)
+                } else {
+                    Utils.showIosDialog(context, getString(R.string.app_name), body)
                 }
             }
         }
@@ -97,7 +102,7 @@ class HomeActivity : AppCompatActivity() {
         //return super.onOptionsItemSelected(item)
     }
 
-    private fun shareApp(){
+    private fun shareApp() {
         try {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(
@@ -105,7 +110,7 @@ class HomeActivity : AppCompatActivity() {
             )
             intent.setPackage("com.android.vending")
             startActivity(intent)
-        }catch (e:Exception){
+        } catch (e: Exception) {
             Toast.makeText(this, "Couldn't launch the Play Store", Toast.LENGTH_LONG).show()
             e.printStackTrace()
         }
@@ -129,7 +134,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 // Get new Instance ID token
                 val token = task.result?.token
-                Log.d("TOKEN",token)
+                Log.d("TOKEN", token)
             })
     }
 
