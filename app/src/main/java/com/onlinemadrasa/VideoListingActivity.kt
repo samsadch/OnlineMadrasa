@@ -64,8 +64,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         mAdView.loadAd(adRequest)
 
 
-        if(adRlay?.childCount!! > 0)
-        {
+        if (adRlay?.childCount!! > 0) {
             adRlay?.removeView(adView);
         }
 
