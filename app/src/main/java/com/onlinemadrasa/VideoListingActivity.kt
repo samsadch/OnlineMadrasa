@@ -11,6 +11,7 @@ import android.util.Pair
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -18,6 +19,8 @@ import com.adcolony.sdk.*
 import com.flipkart.youtubeview.activity.YouTubeActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import com.google.api.client.extensions.android.http.AndroidHttp
 import com.google.api.client.json.gson.GsonFactory
@@ -51,6 +54,10 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
     private var adView: AdColonyAdView? = null
 
+    private lateinit var mInterstitialAd: InterstitialAd
+
+    private var isFirstTime = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_listing)
@@ -58,6 +65,12 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         listRcv = findViewById(R.id.listRcv)
         adRlay = findViewById(R.id.adRlay)
         youtubePlayListItem = intent.getStringExtra("ITEM")
+
+        MobileAds.initialize(context) {}
+        mInterstitialAd = InterstitialAd(context)
+        mInterstitialAd.adUnitId = "ca-app-pub-3884484176623181/4695991624"
+
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
 
         val mAdView: AdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
@@ -155,12 +168,16 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
             mYouTubeDataApi?.let {
                 this.context?.let {
                     if (playlistVideos.playlistId != null) {
-                        object : GetTask(context, mYouTubeDataApi) {
-                            override fun onPostExecute(result: Pair<String, List<Video>>) {
-                                handleGetPlaylistResult(playlistVideos, result)
-                                Utils.hideProgress()
+                        if(context!=null) {
+                            if(mYouTubeDataApi!=null) {
+                                object : GetTask(context, mYouTubeDataApi) {
+                                    override fun onPostExecute(result: Pair<String, List<Video>>?) {
+                                        handleGetPlaylistResult(playlistVideos, result)
+                                        Utils.hideProgress()
+                                    }
+                                }.execute(playlistVideos.playlistId, playlistVideos.nextPageToken)
                             }
-                        }.execute(playlistVideos.playlistId, playlistVideos.nextPageToken)
+                        }
                     }
                 }
 
@@ -176,7 +193,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
                     mYouTubeDataApi?.let {
                         context?.let {
                             object : GetTask(context, mYouTubeDataApi) {
-                                override fun onPostExecute(result: Pair<String, List<Video>>) {
+                                override fun onPostExecute(result: Pair<String, List<Video>>?) {
                                     Utils.hideProgress()
                                     handleGetPlaylistResult(playlistVideos, result)
                                 }
@@ -198,6 +215,17 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         playlistVideos.nextPageToken = result.first
         playlistVideos.addAll(result.second)
         mPlaylistCardAdapter!!.notifyItemRangeInserted(positionStart, result.second.size)
+
+        if(isFirstTime == 1 || isFirstTime==7){
+            isFirstTime += 1
+            if (mInterstitialAd.isLoaded) {
+                mInterstitialAd.show()
+            } else {
+                Log.d("TAG", "The interstitial wasn't loaded yet.")
+            }
+        }else{
+            isFirstTime += 1
+        }
     }
 
     interface LastItemReachedListener {

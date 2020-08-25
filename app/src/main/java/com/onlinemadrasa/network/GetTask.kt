@@ -98,6 +98,4 @@ abstract class GetTask(
         )
 
     }
-
-
 }
