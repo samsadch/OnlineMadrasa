@@ -7,7 +7,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 android {
     signingConfigs {
         release {
-            storeFile file('E:\\Samsad\\StudioProjects\\GIT\\OnlineMadrasa\\key\\Untitled')
+            storeFile file('/Users/samsadcv/Documents/from git/OnlineMadrasa/key/Untitled')
             storePassword 'samsadandroid'
             keyAlias 'samsadandroid'
             keyPassword 'samsadandroid'
@@ -20,12 +20,25 @@ android {
         applicationId "com.onlinemadrasa"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 19
-        versionName "1.18"
+        versionCode 20
+        versionName "1.19"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         signingConfig signingConfigs.release
+
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
     }
 
     packagingOptions {

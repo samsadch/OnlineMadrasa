@@ -30,6 +30,15 @@ abstract class GetTask(
     private val YOUTUBE_VIDEOS_FIELDS =
         "items(id,snippet(title,description,thumbnails/high),contentDetails/duration,statistics)"
 
+    external fun getAPIKey(): String
+
+    companion object{
+        init {
+            //System.load("keys")
+            System.loadLibrary("native-lib")
+        }
+    }
+
 
     override fun onPreExecute() {
         super.onPreExecute()
@@ -56,7 +65,7 @@ abstract class GetTask(
                 .setPageToken(nextPageToken)
                 .setFields(YOUTUBE_PLAYLIST_FIELDS)
                 .setMaxResults(YOUTUBE_PLAYLIST_MAX_RESULTS)
-                .setKey(context.getString(R.string.api_key))
+                .setKey(getAPIKey())
                 .execute()
         } catch (e: IOException) {
             e.printStackTrace()
@@ -86,7 +95,7 @@ abstract class GetTask(
             videoListResponse = mYouTubeDataApi!!.videos()
                 .list(YOUTUBE_VIDEOS_PART)
                 .setFields(YOUTUBE_VIDEOS_FIELDS)
-                .setKey(context.getString(R.string.api_key))
+                .setKey(getAPIKey())
                 .setId(TextUtils.join(",", videoIds)).execute()
         } catch (e: IOException) {
             e.printStackTrace()

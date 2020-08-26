@@ -40,7 +40,6 @@ class RedirectAdapter(var context: Context, private var list: ArrayList<String>,
         holder.itemTxv.text = "Class ${clas - 1}"
 
         holder.containerRlay.setOnClickListener {
-            val item = list[position]
             if (position==0) {
                 val browserIntent =
                     Intent(
@@ -59,14 +58,14 @@ class RedirectAdapter(var context: Context, private var list: ArrayList<String>,
                         intent.putExtra("ITEM", item)
                         context.startActivity(intent)*/
                         val intent = Intent(Intent.ACTION_VIEW)
-                        intent.data = Uri.parse(item)
+                        intent.data = Uri.parse(context.getString(R.string.youtube_playlist_append) + item)
                         intent.setPackage("com.google.android.youtube")
                         context.startActivity(intent)
                     }
                 }catch (e:Exception){
                     val browserIntent =Intent(
                         Intent.ACTION_VIEW,
-                        Uri.parse(item)
+                        Uri.parse(context.getString(R.string.youtube_playlist_append) + item)
                     )
                     context!!.startActivity(browserIntent)
                     Toast.makeText(context!!,"Please install Youtube for better Viewing",Toast.LENGTH_LONG).show()

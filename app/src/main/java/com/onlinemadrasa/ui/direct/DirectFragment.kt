@@ -36,6 +36,15 @@ class DirectFragment : Fragment(), OnAlertShow {
 
     lateinit var mAdView : AdView
 
+    external fun getArrayIDS(): String
+
+    companion object{
+        init {
+            //System.load("keys")
+            System.loadLibrary("native-lib")
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,8 +70,9 @@ class DirectFragment : Fragment(), OnAlertShow {
         mainRcv.layoutManager = GridLayoutManager(context, 2)
 
         var list: ArrayList<String> = ArrayList()
-        val array = resources.getStringArray(R.array.list_array)
-        for (value in array) {
+        val array = getArrayIDS()
+        val splitValues = array.split(",")
+        for (value in splitValues) {
             list.add(value)
         }
         mainRcv.adapter = context?.let { RedirectAdapter(it, list, onAlertShow) }

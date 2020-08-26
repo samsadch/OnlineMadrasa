@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(),OnAlertShow{
         }
         mainRcv.layoutManager = GridLayoutManager(context, 2)
         var list: ArrayList<String> = ArrayList()
-        val array = resources.getStringArray(R.array.list_array2)
+        val array = arrayListOf("test","test")
         for (value in array) {
             list.add(value)
         }

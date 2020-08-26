@@ -17,6 +17,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -32,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
     var title: String? = null
     var body: String? = null
     val context: Context = this@HomeActivity
+    private lateinit var mInterstitialAd: InterstitialAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +77,11 @@ class HomeActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        MobileAds.initialize(this@HomeActivity) {}
+        mInterstitialAd = InterstitialAd(this@HomeActivity)
+        mInterstitialAd.adUnitId = "ca-app-pub-3884484176623181/4695991624"
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
+
         initFirebase()
     }
 
@@ -104,6 +112,12 @@ class HomeActivity : AppCompatActivity() {
 
     private fun shareApp() {
         try {
+            if (mInterstitialAd.isLoaded) {
+                mInterstitialAd.show()
+            } else {
+                Log.d("TAG", "The interstitial wasn't loaded yet.")
+            }
+
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(
                 "https://play.google.com/store/apps/details?id=$packageName"

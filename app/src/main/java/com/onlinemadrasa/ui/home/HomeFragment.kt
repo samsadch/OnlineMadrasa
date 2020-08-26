@@ -1,6 +1,5 @@
 package com.onlinemadrasa.ui.home
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
-import com.google.android.material.snackbar.Snackbar
 import com.google.api.client.extensions.android.http.AndroidHttp
 import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.youtube.YouTube
@@ -23,7 +20,7 @@ import com.onlinemadrasa.adapter.MainAdapter
 import com.onlinemadrasa.utils.OnAlertShow
 import com.onlinemadrasa.utils.Utils
 
-class HomeFragment : Fragment(),OnAlertShow{
+class HomeFragment : Fragment(), OnAlertShow {
 
     private lateinit var mainRcv: RecyclerView
 
@@ -32,9 +29,18 @@ class HomeFragment : Fragment(),OnAlertShow{
     private val mTransport = AndroidHttp.newCompatibleTransport()
 
     private var onAlertShow: OnAlertShow = this
-    lateinit var mAdView : AdView
+    lateinit var mAdView: AdView
 
     private lateinit var homeViewModel: HomeViewModel
+
+    external fun getArrayIDS(): String
+
+    companion object{
+        init {
+            //System.load("keys")
+            System.loadLibrary("native-lib")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,8 +67,9 @@ class HomeFragment : Fragment(),OnAlertShow{
         mainRcv.layoutManager = GridLayoutManager(context, 2)
 
         var list: ArrayList<String> = ArrayList()
-        val array = resources.getStringArray(R.array.list_array2)
-        for (value in array) {
+        var arrayString = getArrayIDS()
+        var splitValues = arrayString.split(",")
+        for (value in splitValues) {
             list.add(value)
         }
         mainRcv.adapter = context?.let { MainAdapter(it, list, onAlertShow) }
@@ -74,7 +81,7 @@ class HomeFragment : Fragment(),OnAlertShow{
     }
 
     override fun onAlertShow() {
-        Utils.showToast(context,getString(R.string.no_internet))
+        Utils.showToast(context, getString(R.string.no_internet))
     }
 
 }

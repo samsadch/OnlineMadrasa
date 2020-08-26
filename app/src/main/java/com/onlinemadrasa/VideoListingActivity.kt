@@ -58,6 +58,15 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
     private var isFirstTime = 0
 
+    external fun getAPIKey(): String
+
+    companion object{
+        init {
+            //System.load("keys")
+            System.loadLibrary("native-lib")
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_listing)
@@ -241,7 +250,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         } else {
             isOnline = true
             val intent = Intent(context, YouTubeActivity::class.java)
-            intent.putExtra("apiKey", getString(R.string.api_key))
+            intent.putExtra("apiKey", getAPIKey())
             intent.putExtra("videoId", url)
             startActivity(intent)
         }
