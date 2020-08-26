@@ -48,7 +48,7 @@ class MainAdapter(var context: Context, private var list: ArrayList<String>,var 
                             Intent.ACTION_VIEW,
                             Uri.parse(context.getString(R.string.attendance_url))
                         )
-                    context!!.startActivity(browserIntent)
+                    context.startActivity(browserIntent)
                 } else if (position in 1..12) {
                     try {
                         if (!isOnline(context)) {
@@ -65,16 +65,16 @@ class MainAdapter(var context: Context, private var list: ArrayList<String>,var 
                             Intent.ACTION_VIEW,
                             Uri.parse(item)
                         )
-                        context!!.startActivity(browserIntent)
+                        context.startActivity(browserIntent)
                         Toast.makeText(
-                            context!!,
+                            context,
                             "Please install Youtube for better Viewing",
                             Toast.LENGTH_LONG
                         ).show()
                         e.printStackTrace()
                     }
                 } else if (position == 13) {
-                    context!!.startActivity(Intent(context, PdfViewActivity::class.java))
+                    context.startActivity(Intent(context, PdfViewActivity::class.java))
                 }
             }
             when (position) {
@@ -176,7 +176,7 @@ class MainAdapter(var context: Context, private var list: ArrayList<String>,var 
                 }
             }
         }catch (e:Exception){
-            Utils.showIosDialog(context!!,e.message)
+            Utils.showIosDialog(context,e.message)
             e.printStackTrace()
         }
     }

@@ -57,7 +57,7 @@ class ShareFragment : Fragment() {
                     .setChooserTitle("Share Online Madrasa")
                     .setText("http://play.google.com/store/apps/details?id=com.onlinemadrasa" + requireActivity().packageName)
                     .startChooser()
-            };
+            }
             /*val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://play.google.com/store/apps/details?id=com.onlinemadrasa")
             startActivity(intent)*/

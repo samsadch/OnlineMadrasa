@@ -92,7 +92,7 @@ abstract class GetTask(
 
         var videoListResponse: VideoListResponse? = null
         try {
-            videoListResponse = mYouTubeDataApi!!.videos()
+            videoListResponse = mYouTubeDataApi.videos()
                 .list(YOUTUBE_VIDEOS_PART)
                 .setFields(YOUTUBE_VIDEOS_FIELDS)
                 .setKey(getAPIKey())

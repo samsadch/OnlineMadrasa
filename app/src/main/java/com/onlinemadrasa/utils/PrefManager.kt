@@ -18,7 +18,7 @@ class PrefManager(context: Context) {
     init {
         this.context = context
         sharedpreferences = context.getSharedPreferences(LOGIN_PREFERENCES, Context.MODE_PRIVATE)
-        editor = sharedpreferences?.edit()
+        editor = sharedpreferences.edit()
     }
 
 
@@ -28,7 +28,7 @@ class PrefManager(context: Context) {
             if (instance == null) {
                 instance = PrefManager(context)
             }
-            return instance!!;
+            return instance!!
         }
     }
 
@@ -85,7 +85,7 @@ class PrefManager(context: Context) {
                 context.getSharedPreferences(LOGIN_PREFERENCES, Context.MODE_PRIVATE)
         if (!isValid(editor)!!)
             editor = sharedpreferences.edit()
-        return sharedpreferences.getInt(KEY, defValue!!)
+        return sharedpreferences.getInt(KEY, defValue)
     }
 
     private fun putSharedString(KEY: String, value: String) {
@@ -104,7 +104,7 @@ class PrefManager(context: Context) {
                 context.getSharedPreferences(LOGIN_PREFERENCES, Context.MODE_PRIVATE)
         if (!isValid(editor)!!)
             editor = sharedpreferences.edit()
-        editor.putInt(KEY, value!!).commit()
+        editor.putInt(KEY, value).commit()
 
     }
 

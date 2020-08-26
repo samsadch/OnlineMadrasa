@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
     //private var mFirebaseAnalytics: FirebaseAnalytics? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE)
         try {
             setContentView(R.layout.activity_splash)
             MobileAds.initialize(this) {}

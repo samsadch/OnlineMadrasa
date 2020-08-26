@@ -70,7 +70,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_listing)
-        AdColony.configure(this, "app3cb32b3e892e4f34b2", "vze08bb2c3b37149f1b7");
+        AdColony.configure(this, "app3cb32b3e892e4f34b2", "vze08bb2c3b37149f1b7")
         listRcv = findViewById(R.id.listRcv)
         adRlay = findViewById(R.id.adRlay)
         youtubePlayListItem = intent.getStringExtra("ITEM")
@@ -87,7 +87,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
 
         if (adRlay?.childCount!! > 0) {
-            adRlay?.removeView(adView);
+            adRlay?.removeView(adView)
         }
 
         listener = object : AdColonyAdViewListener() {
@@ -131,7 +131,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         //card
         //listRcv.layoutManager = LinearLayoutManager(context)
         //gid
-        listRcv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        listRcv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
         mYouTubeDataApi = YouTube.Builder(mTransport, mJsonFactory, null)
             .setApplicationName(resources.getString(R.string.app_name))
@@ -158,7 +158,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
         gridImv.setOnClickListener {
             listRcv.layoutManager =
-                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         }
 
         listImv.setOnClickListener {
@@ -175,7 +175,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         initCardAdapter(playlistVideos)
         if (fetchPlaylist) {
             mYouTubeDataApi?.let {
-                this.context?.let {
+                this.context.let {
                     if (playlistVideos.playlistId != null) {
                         if(context!=null) {
                             if(mYouTubeDataApi!=null) {
@@ -200,7 +200,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
             object : LastItemReachedListener {
                 override fun onLastItem(position: Int, nextPageToken: String?) {
                     mYouTubeDataApi?.let {
-                        context?.let {
+                        context.let {
                             object : GetTask(context, mYouTubeDataApi) {
                                 override fun onPostExecute(result: Pair<String, List<Video>>?) {
                                     Utils.hideProgress()
@@ -244,7 +244,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     var isOnline = false
 
     override fun onVideoSelect(url: String) {
-        if (!isOnline(context!!)) {
+        if (!isOnline(context)) {
             isOnline = false
             showSnackBar(getString(R.string.no_internet))
         } else {
@@ -272,7 +272,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
         val snackbarView = sb.view
         context.resources.getColor(R.color.color_button)
-            ?.let { snackbarView.setBackgroundColor(it) }
+            .let { snackbarView.setBackgroundColor(it) }
         val textView = snackbarView.findViewById(R.id.snackbar_text) as TextView
         textView.setTextColor(Color.WHITE)
         sb.setAction("") {

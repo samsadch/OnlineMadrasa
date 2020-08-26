@@ -21,11 +21,9 @@ import com.onlinemadrasa.R;
 import com.onlinemadrasa.VideoListingActivity;
 import com.onlinemadrasa.model.OnVideoSelect;
 import com.onlinemadrasa.model.PlaylistVideos;
-import com.onlinemadrasa.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
-import java.util.logging.Logger;
 
 public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapter.ViewHolder> {
     private static final DecimalFormat sFormatter = new DecimalFormat("#,###,###");
@@ -51,16 +49,16 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
         public ViewHolder(View v) {
             super(v);
             mContext = v.getContext();
-            mTitleText = (TextView) v.findViewById(R.id.video_title);
+            mTitleText = v.findViewById(R.id.video_title);
             titleRlay = v.findViewById(R.id.titleRlay);
             moreImv = v.findViewById(R.id.moreImv);
             expandableLayout = v.findViewById(R.id.expandandableLayout);
-            mDescriptionText = (TextView) v.findViewById(R.id.video_description);
-            mThumbnailImage = (ImageView) v.findViewById(R.id.video_thumbnail);
-            mShareIcon = (ImageView) v.findViewById(R.id.video_share);
+            mDescriptionText = v.findViewById(R.id.video_description);
+            mThumbnailImage = v.findViewById(R.id.video_thumbnail);
+            mShareIcon = v.findViewById(R.id.video_share);
             //mShareText = (TextView) v.findViewById(R.id.video_share_text);
-            mDurationText = (TextView) v.findViewById(R.id.video_dutation_text);
-            mViewCountText = (TextView) v.findViewById(R.id.video_view_count);
+            mDurationText = v.findViewById(R.id.video_dutation_text);
+            mViewCountText = v.findViewById(R.id.video_view_count);
             //mLikeCountText = (TextView) v.findViewById(R.id.video_like_count);
             //mDislikeCountText = (TextView) v.findViewById(R.id.video_dislike_count);
         }
@@ -160,9 +158,9 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
                 }
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            Log.d("PLAYLIS",e.getMessage());
+            Log.d("PLAYLIS", e.getMessage());
         }
     }
 
@@ -172,10 +170,7 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
     }
 
     private boolean isEmpty(String s) {
-        if (s == null || s.length() == 0) {
-            return true;
-        }
-        return false;
+        return s == null || s.length() == 0;
     }
 
     private String parseDuration(String in) {
@@ -186,7 +181,7 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
         if (hasSeconds) {
             s = in.substring(2, in.length() - 1);
         } else {
-            s = in.substring(2, in.length());
+            s = in.substring(2);
         }
 
         String minutes = "0";
