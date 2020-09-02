@@ -11,7 +11,6 @@ import android.util.Pair
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -59,7 +58,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
     external fun getAPIKey(): String
 
-    companion object{
+    companion object {
         init {
             //System.load("keys")
             System.loadLibrary("native-lib")
@@ -176,8 +175,8 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
             mYouTubeDataApi?.let {
                 this.context.let {
                     if (playlistVideos.playlistId != null) {
-                        if(context!=null) {
-                            if(mYouTubeDataApi!=null) {
+                        if (context != null) {
+                            if (mYouTubeDataApi != null) {
                                 object : GetTask(context, mYouTubeDataApi) {
                                     override fun onPostExecute(result: Pair<String, List<Video>>?) {
                                         handleGetPlaylistResult(playlistVideos, result)
@@ -224,14 +223,14 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         playlistVideos.addAll(result.second)
         mPlaylistCardAdapter!!.notifyItemRangeInserted(positionStart, result.second.size)
 
-        if(isFirstTime == 1 || isFirstTime==7){
+        if (isFirstTime == 1 || isFirstTime == 7) {
             isFirstTime += 1
             if (mInterstitialAd.isLoaded) {
                 mInterstitialAd.show()
             } else {
                 Log.d("TAG", "The interstitial wasn't loaded yet.")
             }
-        }else{
+        } else {
             isFirstTime += 1
         }
     }
@@ -242,7 +241,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
     var isOnline = false
 
-    override fun onVideoSelect(url: String,title:String,description:String) {
+    override fun onVideoSelect(url: String, title: String, description: String) {
         if (!isOnline(context)) {
             isOnline = false
             showSnackBar(getString(R.string.no_internet))
@@ -252,8 +251,8 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
             val intent = Intent(context, PlayerActivity::class.java)
             intent.putExtra("apiKey", getAPIKey())
             intent.putExtra("VIDEO_ID", url)
-            intent.putExtra("TITLE",title)
-            intent.putExtra("DESC",description)
+            intent.putExtra("TITLE", title)
+            intent.putExtra("DESC", description)
             startActivity(intent)
             /*val intent = Intent(context, YouTubeActivity::class.java)
             intent.putExtra("apiKey", getAPIKey())

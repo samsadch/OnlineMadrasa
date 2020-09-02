@@ -8,29 +8,35 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 
 public abstract class YouTubeFailureRecoveryActivity extends YouTubeBaseActivity implements
-    YouTubePlayer.OnInitializedListener {
+        YouTubePlayer.OnInitializedListener {
 
-  private static final int RECOVERY_DIALOG_REQUEST = 1;
+    private static final int RECOVERY_DIALOG_REQUEST = 1;
 
-  @Override
-  public void onInitializationFailure(YouTubePlayer.Provider provider,
-                                      YouTubeInitializationResult errorReason) {
-    if (errorReason.isUserRecoverableError()) {
-      errorReason.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
-    } else {
-      String errorMessage = String.format(getString(R.string.error_player), errorReason.toString());
-      Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+    public native String getAPIKey();
+
+    static {
+        System.loadLibrary("native-lib");
     }
-  }
 
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    if (requestCode == RECOVERY_DIALOG_REQUEST) {
-      // Retry initialization if user performed a recovery action
-      getYouTubePlayerProvider().initialize(DeveloperKey.DEVELOPER_KEY, this);
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider,
+                                        YouTubeInitializationResult errorReason) {
+        if (errorReason.isUserRecoverableError()) {
+            errorReason.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
+        } else {
+            String errorMessage = String.format(getString(R.string.error_player), errorReason.toString());
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+        }
     }
-  }
 
-  protected abstract YouTubePlayer.Provider getYouTubePlayerProvider();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RECOVERY_DIALOG_REQUEST) {
+            // Retry initialization if user performed a recovery action
+            getYouTubePlayerProvider().initialize(getAPIKey(), this);
+        }
+    }
+
+    protected abstract YouTubePlayer.Provider getYouTubePlayerProvider();
 
 }

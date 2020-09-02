@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_quran_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PlayerActivity"></activity>
+        <activity
+            android:name=".PlayerActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:supportsPictureInPicture="true"></activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

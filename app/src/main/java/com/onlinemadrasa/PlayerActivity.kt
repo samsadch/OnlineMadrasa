@@ -2,6 +2,7 @@ package com.onlinemadrasa
 
 import android.content.res.Configuration
 import android.os.Bundle
+import androidx.core.app.ShareCompat
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.youtube.player.YouTubePlayer
@@ -39,10 +40,17 @@ class PlayerActivity : YouTubeFailureRecoveryActivity(), OnFullscreenListener {
             // In portrait
             title_text.text = title
             desc_text.text = description
+            pip_image.setOnClickListener {
+                ShareCompat.IntentBuilder.from(this)
+                    .setType("text/plain")
+                    .setChooserTitle("Share Online Madrasa")
+                    .setText("http://play.google.com/store/apps/details?" + this.packageName)
+                    .startChooser()
+            }
         }
 
         val youTubeView = findViewById(R.id.youtube_view) as YouTubePlayerView
-        youTubeView.initialize(DeveloperKey.getAPIKey(), this)
+        youTubeView.initialize(apiKey, this)
     }
 
     override fun onInitializationSuccess(

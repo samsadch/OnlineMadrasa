@@ -10,12 +10,13 @@ Java_com_onlinemadrasa_VideoListingActivity_getAPIKey(
 }
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_onlinemadrasa_DeveloperKey_getAPIKey(
+Java_com_onlinemadrasa_YouTubeFailureRecoveryActivity_getAPIKey(
         JNIEnv *env,
-        jclass clazz) {
+        jobject /* this */) {
     std::string hello = "AIzaSyCSDkABxtlQT7vsEdMyes4TBuC-JPtYgw8";
     return env->NewStringUTF(hello.c_str());
 }
+
 
 
 extern "C" JNIEXPORT jstring JNICALL

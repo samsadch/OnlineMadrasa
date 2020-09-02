@@ -55,7 +55,7 @@ class ShareFragment : Fragment() {
                 ShareCompat.IntentBuilder.from(it1)
                     .setType("text/plain")
                     .setChooserTitle("Share Online Madrasa")
-                    .setText("http://play.google.com/store/apps/details?id=com.onlinemadrasa" + requireActivity().packageName)
+                    .setText("http://play.google.com/store/apps/details?id=" + requireActivity().packageName)
                     .startChooser()
             }
             /*val intent = Intent(Intent.ACTION_VIEW)
