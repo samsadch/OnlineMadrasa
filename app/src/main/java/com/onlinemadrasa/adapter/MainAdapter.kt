@@ -12,6 +12,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.onlinemadrasa.PdfViewActivity
 import com.onlinemadrasa.R
 import com.onlinemadrasa.VideoListingActivity
@@ -79,96 +80,111 @@ class MainAdapter(var context: Context, private var list: ArrayList<String>,var 
             }
             when (position) {
                 0 -> {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_attendance)
+                    Glide.with(context).load(R.drawable.image_ten).into(holder.itemImv);
+                    //holder.itemImv.setBackgroundResource(R.drawable.image_ten)
                     holder.itemTxv.text = context.getString(R.string.submit_attendance)
                 }
                 1 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_one)
+                        Glide.with(context).load(R.drawable.image_one).into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_one)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
                 2 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_two)
+
+                        Glide.with(context).load(R.drawable.image_two).into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_two)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
                 3 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_three)
+                        Glide.with(context).load(R.drawable.image_three).centerInside().into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_three)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
                 4 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_four)
+                        Glide.with(context).load(R.drawable.image_four).into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_four)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
                 5 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_five)
+                        Glide.with(context).load(R.drawable.image_five).into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_five)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
                 6 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_six)
+                        Glide.with(context).load(R.drawable.image_six).into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_six)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
                 7 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_seven)
+                        Glide.with(context).load(R.drawable.image_seven).into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_seven)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
                 8 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_eight)
+                        Glide.with(context).load(R.drawable.image_eight).into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_eight)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
                 9 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_nine)
+                        Glide.with(context).load(R.drawable.image_three).into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_three)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
                 10 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_ten)
+                        Glide.with(context).load(R.drawable.image_nine).into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_nine)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
                 11 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_eleven)
+                        Glide.with(context).load(R.drawable.image_ten).into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_ten)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
                 12 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_tweleve)
+                        Glide.with(context).load(R.drawable.image_one).into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_one)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
                 13 -> {
                     try {
-                        holder.itemImv.setBackgroundResource(R.drawable.ic_announcment)
+                        Glide.with(context).load(R.drawable.image_nine).into(holder.itemImv);
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_nine)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }

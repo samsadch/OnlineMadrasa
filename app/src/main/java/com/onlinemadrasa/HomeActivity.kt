@@ -20,12 +20,14 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.iid.FirebaseInstanceId
 import com.onlinemadrasa.utils.Utils
+import java.util.*
 
 
 class HomeActivity : AppCompatActivity() {
@@ -44,6 +46,12 @@ class HomeActivity : AppCompatActivity() {
         ) {
 
         }
+
+        val testDeviceIds = Arrays.asList("37646F557B07826A794A8F1B5552F9A6")
+        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
+        MobileAds.setRequestConfiguration(configuration)
+
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 

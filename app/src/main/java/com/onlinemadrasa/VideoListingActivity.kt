@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.adcolony.sdk.*
-import com.flipkart.youtubeview.activity.YouTubeActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
@@ -243,16 +242,23 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
     var isOnline = false
 
-    override fun onVideoSelect(url: String) {
+    override fun onVideoSelect(url: String,title:String,description:String) {
         if (!isOnline(context)) {
             isOnline = false
             showSnackBar(getString(R.string.no_internet))
         } else {
             isOnline = true
-            val intent = Intent(context, YouTubeActivity::class.java)
+            //VIDEO_ID
+            val intent = Intent(context, PlayerActivity::class.java)
+            intent.putExtra("apiKey", getAPIKey())
+            intent.putExtra("VIDEO_ID", url)
+            intent.putExtra("TITLE",title)
+            intent.putExtra("DESC",description)
+            startActivity(intent)
+            /*val intent = Intent(context, YouTubeActivity::class.java)
             intent.putExtra("apiKey", getAPIKey())
             intent.putExtra("videoId", url)
-            startActivity(intent)
+            startActivity(intent)*/
         }
     }
 

@@ -11,14 +11,18 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.onlinemadrasa.PdfViewActivity
 import com.onlinemadrasa.R
 import com.onlinemadrasa.utils.OnAlertShow
 
 
-class RedirectAdapter(var context: Context, private var list: ArrayList<String>, var onAlertShow: OnAlertShow) :
+class RedirectAdapter(
+    var context: Context,
+    private var list: ArrayList<String>,
+    var onAlertShow: OnAlertShow
+) :
     RecyclerView.Adapter<RedirectAdapter.ViewHolder>() {
 
     private var inflater: LayoutInflater = LayoutInflater.from(context)
@@ -40,7 +44,7 @@ class RedirectAdapter(var context: Context, private var list: ArrayList<String>,
         holder.itemTxv.text = "Class ${clas - 1}"
 
         holder.containerRlay.setOnClickListener {
-            if (position==0) {
+            if (position == 0) {
                 val browserIntent =
                     Intent(
                         Intent.ACTION_VIEW,
@@ -52,122 +56,140 @@ class RedirectAdapter(var context: Context, private var list: ArrayList<String>,
                     if (!isOnline(context)) {
                         isOnline = false
                         onAlertShow.onAlertShow()
-                    }else {
+                    } else {
                         /*isOnline = true
                         val intent = Intent(context, VideoListingActivity::class.java)
                         intent.putExtra("ITEM", item)
                         context.startActivity(intent)*/
                         val intent = Intent(Intent.ACTION_VIEW)
-                        intent.data = Uri.parse(context.getString(R.string.youtube_playlist_append) + item)
+                        intent.data =
+                            Uri.parse(context.getString(R.string.youtube_playlist_append) + item)
                         intent.setPackage("com.google.android.youtube")
                         context.startActivity(intent)
                     }
-                }catch (e:Exception){
-                    val browserIntent =Intent(
+                } catch (e: Exception) {
+                    val browserIntent = Intent(
                         Intent.ACTION_VIEW,
                         Uri.parse(context.getString(R.string.youtube_playlist_append) + item)
                     )
                     context.startActivity(browserIntent)
-                    Toast.makeText(context,"Please install Youtube for better Viewing",Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        context,
+                        "Please install Youtube for better Viewing",
+                        Toast.LENGTH_LONG
+                    ).show()
                     e.printStackTrace()
                 }
-            } else if(position==13){
+            } else if (position == 13) {
                 context.startActivity(Intent(context, PdfViewActivity::class.java))
             }
         }
         when (position) {
             0 -> {
-                holder.itemImv.setBackgroundResource(R.drawable.ic_attendance)
+                Glide.with(context).load(R.drawable.image_ten).centerInside().into(holder.itemImv);
                 holder.itemTxv.text = context.getString(R.string.submit_attendance)
             }
             1 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_one)
+                    Glide.with(context).load(R.drawable.image_one).centerInside()
+                        .into(holder.itemImv);
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             2 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_two)
+                    Glide.with(context).load(R.drawable.image_two).centerInside()
+                        .into(holder.itemImv);
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             3 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_three)
+                    Glide.with(context).load(R.drawable.image_three).centerInside()
+                        .into(holder.itemImv);
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             4 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_four)
+                    Glide.with(context).load(R.drawable.image_four).centerInside()
+                        .into(holder.itemImv);
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             5 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_five)
+                    Glide.with(context).load(R.drawable.image_five).centerInside()
+                        .into(holder.itemImv);
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             6 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_six)
+                    Glide.with(context).load(R.drawable.image_six).centerInside()
+                        .into(holder.itemImv);
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             7 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_seven)
+                    Glide.with(context).load(R.drawable.image_seven).centerInside()
+                        .into(holder.itemImv);
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             8 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_eight)
+                    Glide.with(context).load(R.drawable.image_eight).centerInside()
+                        .into(holder.itemImv);
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             9 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_nine)
+                    Glide.with(context).load(R.drawable.image_nine).centerInside()
+                        .into(holder.itemImv);
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             10 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_ten)
+                    Glide.with(context).load(R.drawable.image_ten).centerInside()
+                        .into(holder.itemImv);
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             11 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_eleven)
+                    Glide.with(context).load(R.drawable.image_one).centerInside()
+                        .into(holder.itemImv);
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             12 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_tweleve)
+                    Glide.with(context).load(R.drawable.image_two).centerInside()
+                        .into(holder.itemImv);
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
             13 -> {
                 try {
-                    holder.itemImv.setBackgroundResource(R.drawable.ic_announcment)
-                }catch (e:Exception){
+                    Glide.with(context).load(R.drawable.image_three).centerInside()
+                        .into(holder.itemImv);
+                } catch (e: Exception) {
                     e.printStackTrace()
                 }
                 holder.itemTxv.text = "Circular"

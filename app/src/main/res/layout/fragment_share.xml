@@ -23,10 +23,9 @@
         android:layout_height="wrap_content"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-3884484176623181/9520092830"
-        ads:layout_constraintTop_toTopOf="parent"
         ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintStart_toStartOf="parent" />
-
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -36,16 +35,16 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:gravity="center_horizontal"
         android:textAlignment="center"
         android:textColor="@color/black"
-        app:layout_goneMarginStart="16dp"
-        app:layout_goneMarginEnd="16dp"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_horizontal" />
+        app:layout_goneMarginEnd="16dp"
+        app:layout_goneMarginStart="16dp" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -60,17 +59,15 @@
 
     <Button
         android:id="@+id/shareButton"
+        style="@style/AppTheme.BoldFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
         android:background="@drawable/round_background"
         android:text="@string/share"
-        android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_slideshow" />
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

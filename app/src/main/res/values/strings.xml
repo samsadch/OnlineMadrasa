@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Online Madrasa</string>
     <string name="circular">Circular</string>
-    <string name="submit_attendance">Submit Attendance</string>
+    <string name="submit_attendance">Attendance</string>
     <string name="attendance_url">http://www.onlineclass.samastha.info/report</string>
     <string name="youtube_pacakage">com.google.android.youtube</string>
     <string name="ad_attribution">Ad</string>
@@ -28,5 +28,5 @@
     <string name="message_text">ആപ്പിനെ കുറിച്ച് നിങ്ങളുടെ വിലയേറിയ അഭിപ്രായങ്ങളും നിർദേശങ്ങളും ഞങ്ങളെ അറിയിക്കുക</string>
     <string name="share">Share</string>
     <string name="thanks_for_your_feedback">Thanks for your feedback</string>
-
+    <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 </resources>

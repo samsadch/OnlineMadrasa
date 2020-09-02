@@ -8,7 +8,6 @@ import com.google.api.services.youtube.YouTube
 import com.google.api.services.youtube.model.PlaylistItemListResponse
 import com.google.api.services.youtube.model.Video
 import com.google.api.services.youtube.model.VideoListResponse
-import com.onlinemadrasa.R
 import com.onlinemadrasa.utils.Utils
 import java.io.IOException
 
@@ -32,7 +31,7 @@ abstract class GetTask(
 
     external fun getAPIKey(): String
 
-    companion object{
+    companion object {
         init {
             //System.load("keys")
             System.loadLibrary("native-lib")
@@ -103,7 +102,7 @@ abstract class GetTask(
 
         return Pair<String, List<Video>>(
             playlistItemListResponse.nextPageToken,
-            videoListResponse!!.items
+            videoListResponse?.items
         )
 
     }

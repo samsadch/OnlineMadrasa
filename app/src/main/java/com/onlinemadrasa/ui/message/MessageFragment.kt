@@ -34,6 +34,8 @@ class MessageFragment : Fragment() {
 
     private lateinit var mInterstitialAd: InterstitialAd
 
+    private var clicked = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,6 +57,7 @@ class MessageFragment : Fragment() {
         mInterstitialAd.loadAd(AdRequest.Builder().build())
 
         submitText?.setOnClickListener {
+            clicked = true
             messageText = comments_edit?.text.toString()
             nameText = name_edit?.text.toString()
             messageText?.let {
@@ -72,13 +75,15 @@ class MessageFragment : Fragment() {
 
         }
 
-        mInterstitialAd.adListener = object: AdListener() {
+        mInterstitialAd.adListener = object : AdListener() {
             override fun onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
             }
 
             override fun onAdFailedToLoad(adError: LoadAdError) {
-                findNavController().popBackStack()
+                if (clicked) {
+                    findNavController().popBackStack()
+                }
             }
 
             override fun onAdOpened() {
@@ -97,8 +102,6 @@ class MessageFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
-
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

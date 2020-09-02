@@ -120,7 +120,7 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
             holder.mThumbnailImage.setOnClickListener(view -> {
                 //holder.mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=" + video.getId())));
                 String url = "https://www.youtube.com/watch?v=" + video.getId();
-                onVideoSelect.onVideoSelect(video.getId());
+                onVideoSelect.onVideoSelect(video.getId(),videoSnippet.getTitle(),videoSnippet.getDescription());
             });
 
             // create and set the click listener for both the share icon and share text
