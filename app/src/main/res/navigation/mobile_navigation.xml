@@ -34,5 +34,25 @@
         android:name="com.onlinemadrasa.ui.message.MessageFragment"
         android:label="@string/menu_message"
         tools:layout="@layout/message_fragment" />
+    <fragment
+        android:id="@+id/nav_quran"
+        android:name="com.onlinemadrasa.ui.exam.QuranFragment"
+        android:label="Quran" />
+    <fragment
+        android:id="@+id/nav_syl"
+        android:name="com.onlinemadrasa.ui.sylabus.SylabusFragment"
+        android:label="@string/syllabus"
+        tools:layout="@layout/sylabus_fragment">
+        <action
+            android:id="@+id/action_sylabusFragment_to_sylabusItemFragment"
+            app:destination="@id/sylabusItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sylabusItemFragment"
+        android:name="com.onlinemadrasa.ui.sylabus.SylabusItemActivity"
+        android:label="sylabus_item_fragment"
+        tools:layout="@layout/sylabus_item_fragment" >
+        <argument android:name="image_id" />
+    </fragment>
 
 </navigation>

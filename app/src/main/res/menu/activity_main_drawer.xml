@@ -14,6 +14,16 @@
             android:title="@string/menu_gallery" />
 
         <item
+            android:id="@+id/nav_quran"
+            android:icon="@drawable/ic_quran"
+            android:title="@string/menu_quran" />
+
+        <item
+            android:id="@+id/nav_syl"
+            android:icon="@drawable/ic_syllabus"
+            android:title="@string/syllabus" />
+
+        <item
             android:id="@+id/nav_message"
             android:icon="@drawable/ic_feedback"
             android:title="@string/menu_message" />

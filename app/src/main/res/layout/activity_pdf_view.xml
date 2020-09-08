@@ -4,26 +4,48 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
+    <RelativeLayout
+        android:id="@+id/first_rlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3884484176623181/4400833375"/>
+        android:layout_margin="4dp"
+        android:background="@drawable/square_background">
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_unit_id" />
+
+    </RelativeLayout>
+
 
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfview"
-        android:layout_below="@id/adView"
         android:layout_width="match_parent"
-        android:layout_above="@id/adView2"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/second_rlay"
+        android:layout_below="@id/first_rlay" />
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView2"
+    <RelativeLayout
+        android:id="@+id/second_rlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ads:adSize="BANNER"
         android:layout_alignParentBottom="true"
-        ads:adUnitId="ca-app-pub-3884484176623181/4400833375"/>
+        android:layout_margin="4dp"
+        android:background="@drawable/square_background">
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_unit_id" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

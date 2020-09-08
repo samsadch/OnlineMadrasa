@@ -45,6 +45,7 @@
         <activity android:name=".PdfViewActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name="com.flipkart.youtubeview.activity.YouTubeActivity" />
+        <activity android:name=".ui.sylabus.SylabusItemActivity" />
 
         <service
             android:name=".utils.MyFirebaseMessagingService"

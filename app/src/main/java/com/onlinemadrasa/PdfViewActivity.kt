@@ -18,7 +18,7 @@ class PdfViewActivity : AppCompatActivity() {
         try {
             setContentView(R.layout.activity_pdf_view)
             val stringBuilder = StringBuilder()
-            stringBuilder.append("pdf/circular.pdf")
+            stringBuilder.append("pdf/quran_ar_full.pdf")
             this.pdfView = findViewById(R.id.pdfview)
             this.pdfView.fromAsset(stringBuilder.toString()).defaultPage(0).load()
 

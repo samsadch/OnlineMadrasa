@@ -20,10 +20,6 @@ import com.onlinemadrasa.utils.Utils
 
 class MessageFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MessageFragment()
-    }
-
     var submitText: TextView? = null
     var comments_edit: EditText? = null
     var name_edit: EditText? = null
@@ -52,7 +48,7 @@ class MessageFragment : Fragment() {
 
         MobileAds.initialize(requireContext()) {}
         mInterstitialAd = InterstitialAd(requireContext())
-        mInterstitialAd.adUnitId = "ca-app-pub-3884484176623181/4695991624"
+        mInterstitialAd.adUnitId = getString(R.string.inters_ad_id)
 
         mInterstitialAd.loadAd(AdRequest.Builder().build())
 
@@ -66,13 +62,6 @@ class MessageFragment : Fragment() {
                 }
             }
             //findNavController().popBackStack()
-
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
-            } else {
-                Log.d("TAG", "The interstitial wasn't loaded yet.")
-            }
-
         }
 
         mInterstitialAd.adListener = object : AdListener() {

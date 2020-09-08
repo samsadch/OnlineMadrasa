@@ -75,7 +75,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
         MobileAds.initialize(context) {}
         mInterstitialAd = InterstitialAd(context)
-        mInterstitialAd.adUnitId = "ca-app-pub-3884484176623181/4695991624"
+        mInterstitialAd.adUnitId = getString(R.string.inters_ad_id)
 
         mInterstitialAd.loadAd(AdRequest.Builder().build())
 
@@ -220,7 +220,11 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         if (result == null) return
         val positionStart: Int = playlistVideos.size
         playlistVideos.nextPageToken = result.first
-        playlistVideos.addAll(result.second)
+        result?.let {
+            playlistVideos?.let { it2 ->
+                it2.addAll(it.second)
+            }
+        }
         mPlaylistCardAdapter!!.notifyItemRangeInserted(positionStart, result.second.size)
 
         if (isFirstTime == 1 || isFirstTime == 7) {

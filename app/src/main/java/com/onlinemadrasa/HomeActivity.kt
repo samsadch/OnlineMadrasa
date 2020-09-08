@@ -1,5 +1,6 @@
 package com.onlinemadrasa
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -12,11 +13,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
@@ -32,6 +33,8 @@ import java.util.*
 
 class HomeActivity : AppCompatActivity() {
 
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     var title: String? = null
     var body: String? = null
@@ -41,16 +44,10 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        MobileAds.initialize(
-            this
-        ) {
-
-        }
-
+        MobileAds.initialize(this) {}
         val testDeviceIds = Arrays.asList("37646F557B07826A794A8F1B5552F9A6")
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
         MobileAds.setRequestConfiguration(configuration)
-
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -72,32 +69,79 @@ class HomeActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        drawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
-        val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_message, R.id.nav_slideshow
+                R.id.nav_home,
+                R.id.nav_gallery,
+                R.id.nav_quran,
+                R.id.nav_syl, R.id.nav_message,
+                R.id.nav_slideshow
             ), drawerLayout
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        //setupActionBarWithNavController(navController, appBarConfiguration)
+        //navView.setupWithNavController(navController)
+
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+        NavigationUI.setupWithNavController(navView, navController)
 
         MobileAds.initialize(this@HomeActivity) {}
         mInterstitialAd = InterstitialAd(this@HomeActivity)
-        mInterstitialAd.adUnitId = "ca-app-pub-3884484176623181/4695991624"
+        mInterstitialAd.adUnitId = getString(R.string.inters_ad_id)
         mInterstitialAd.loadAd(AdRequest.Builder().build())
 
         initFirebase()
     }
 
+    override fun onNavigateUpFromChild(child: Activity?): Boolean {
+        //return super.onNavigateUpFromChild(child)
+        NavigationUI.navigateUp(navController, drawerLayout)
+        return NavigationUI.navigateUp(navController, drawerLayout)
+    }
+
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.home, menu)
+        if (null == getShareIntent().resolveActivity(this!!.packageManager)) {
+            //hide menu item if not resolves
+            menu?.findItem(R.id.action_rate)?.isVisible = false
+
+        }
         return true
     }
+
+    fun getShareIntent(): Intent {
+        try {
+            /* return ShareCompat.IntentBuilder.from(this)
+                 .setText("https://play.google.com/store/apps/details?id=$packageName")
+                 .setType("text/plain")
+                 .intent*/
+            val uri: Uri = Uri.parse("market://details?id=$packageName")
+            val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+            goToMarket.addFlags(
+                Intent.FLAG_ACTIVITY_NO_HISTORY or
+                        Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
+                        Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+            )
+
+            return goToMarket
+        } catch (e: ActivityNotFoundException) {
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("http://play.google.com/store/apps/details?id=$packageName")
+            )
+            return intent
+        }
+
+
+    }
+
+    fun share() {
+        startActivity(getShareIntent())
+    }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
@@ -107,7 +151,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_rate -> {
-                shareApp()
+                share()
                 //launchMarket()
                 true
             }
@@ -118,23 +162,11 @@ class HomeActivity : AppCompatActivity() {
         //return super.onOptionsItemSelected(item)
     }
 
-    private fun shareApp() {
-        try {
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
-            } else {
-                Log.d("TAG", "The interstitial wasn't loaded yet.")
-            }
-
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(
-                "https://play.google.com/store/apps/details?id=$packageName"
-            )
-            intent.setPackage("com.android.vending")
-            startActivity(intent)
-        } catch (e: Exception) {
-            Toast.makeText(this, "Couldn't launch the Play Store", Toast.LENGTH_LONG).show()
-            e.printStackTrace()
+    private fun showIntAd() {
+        if (mInterstitialAd.isLoaded) {
+            mInterstitialAd.show()
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.")
         }
     }
 

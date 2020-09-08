@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 
 val USER_NAME = "USER_NAME.Type"
 val USER_MAIL = "USER_MAIL"
+val QURAN_PAGE = "QURAN_PAGE"
 
 
 val LOGIN_PREFERENCES = "Login"
@@ -39,6 +40,14 @@ class PrefManager(context: Context) {
 
     fun saveUserName(userName: String) {
         putSharedString(USER_NAME, userName)
+    }
+
+    fun getPage(): Int {
+        return getSharedInteger(QURAN_PAGE, 0)
+    }
+
+    fun savePage(pageNumber: Int) {
+        putSharedInteger(QURAN_PAGE, pageNumber)
     }
 
     fun getUserMail(): String? {

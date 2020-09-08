@@ -1,5 +1,6 @@
 package com.onlinemadrasa.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -13,13 +14,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.onlinemadrasa.PdfViewActivity
 import com.onlinemadrasa.R
 import com.onlinemadrasa.VideoListingActivity
 import com.onlinemadrasa.utils.OnAlertShow
 import com.onlinemadrasa.utils.Utils
 
-class MainAdapter(var context: Context, private var list: ArrayList<String>,var onAlertShow: OnAlertShow) :
+class MainAdapter(
+    var context: Context,
+    private var list: ArrayList<String>,
+    var onAlertShow: OnAlertShow
+) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     private var inflater: LayoutInflater = LayoutInflater.from(context)
@@ -35,22 +39,27 @@ class MainAdapter(var context: Context, private var list: ArrayList<String>,var 
 
     var isOnline = false
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         try {
             val item = list[position]
             val clas = position + 1
-            holder.itemTxv.text = "Class ${clas - 1}"
+            holder.itemTxv.text = "Class ${clas - 2}"
 
             holder.containerRlay.setOnClickListener {
                 val item = list[position]
                 if (position == 0) {
-                    val browserIntent =
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse(context.getString(R.string.attendance_url))
-                        )
-                    context.startActivity(browserIntent)
-                } else if (position in 1..12) {
+                    try {
+                        val browserIntent =
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse(context.getString(R.string.attendance_url))
+                            )
+                        context.startActivity(browserIntent)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                } /*else if (position in 1..13)*/ else {
                     try {
                         if (!isOnline(context)) {
                             isOnline = false
@@ -74,9 +83,9 @@ class MainAdapter(var context: Context, private var list: ArrayList<String>,var 
                         ).show()
                         e.printStackTrace()
                     }
-                } else if (position == 13) {
+                } /*else if (position == 13) {
                     context.startActivity(Intent(context, PdfViewActivity::class.java))
-                }
+                }*/
             }
             when (position) {
                 0 -> {
@@ -86,6 +95,7 @@ class MainAdapter(var context: Context, private var list: ArrayList<String>,var 
                 }
                 1 -> {
                     try {
+                        holder.itemTxv.text = context.getString(R.string.diffrently_abled)
                         Glide.with(context).load(R.drawable.image_one).into(holder.itemImv);
                         //holder.itemImv.setBackgroundResource(R.drawable.image_one)
                     } catch (e: Exception) {
@@ -103,7 +113,8 @@ class MainAdapter(var context: Context, private var list: ArrayList<String>,var 
                 }
                 3 -> {
                     try {
-                        Glide.with(context).load(R.drawable.image_three).centerInside().into(holder.itemImv);
+                        Glide.with(context).load(R.drawable.image_three).centerInside()
+                            .into(holder.itemImv);
                         //holder.itemImv.setBackgroundResource(R.drawable.image_three)
                     } catch (e: Exception) {
                         e.printStackTrace()
@@ -183,16 +194,24 @@ class MainAdapter(var context: Context, private var list: ArrayList<String>,var 
                 }
                 13 -> {
                     try {
-                        Glide.with(context).load(R.drawable.image_nine).into(holder.itemImv);
+                        Glide.with(context).load(R.drawable.image_two).into(holder.itemImv)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+                14 -> {
+                    try {
+                        Glide.with(context).load(R.drawable.image_nine).into(holder.itemImv)
+                        holder.itemTxv.text = context.getString(R.string.announcement)
                         //holder.itemImv.setBackgroundResource(R.drawable.image_nine)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
-                    holder.itemTxv.text = "Circular"
+
                 }
             }
-        }catch (e:Exception){
-            Utils.showIosDialog(context,e.message)
+        } catch (e: Exception) {
+            Utils.showIosDialog(context, e.message)
             e.printStackTrace()
         }
     }

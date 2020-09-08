@@ -13,7 +13,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.onlinemadrasa.PdfViewActivity
 import com.onlinemadrasa.R
 import com.onlinemadrasa.utils.OnAlertShow
 
@@ -41,7 +40,7 @@ class RedirectAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
         val clas = position + 1
-        holder.itemTxv.text = "Class ${clas - 1}"
+        holder.itemTxv.text = "Class ${clas - 2}"
 
         holder.containerRlay.setOnClickListener {
             if (position == 0) {
@@ -51,7 +50,7 @@ class RedirectAdapter(
                         Uri.parse(context.getString(R.string.attendance_url))
                     )
                 context.startActivity(browserIntent)
-            } else if (position in 1..12) {
+            } else /*if (position in 1..12)*/ {
                 try {
                     if (!isOnline(context)) {
                         isOnline = false
@@ -80,9 +79,9 @@ class RedirectAdapter(
                     ).show()
                     e.printStackTrace()
                 }
-            } else if (position == 13) {
+            } /*else if (position == 13) {
                 context.startActivity(Intent(context, PdfViewActivity::class.java))
-            }
+            }*/
         }
         when (position) {
             0 -> {
@@ -91,6 +90,7 @@ class RedirectAdapter(
             }
             1 -> {
                 try {
+                    holder.itemTxv.text = context.getString(R.string.diffrently_abled)
                     Glide.with(context).load(R.drawable.image_one).centerInside()
                         .into(holder.itemImv);
                 } catch (e: Exception) {
@@ -192,8 +192,19 @@ class RedirectAdapter(
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
-                holder.itemTxv.text = "Circular"
+
             }
+            14 -> {
+                try {
+                    holder.itemTxv.text = context.getString(R.string.announcement)
+                    Glide.with(context).load(R.drawable.image_four).centerInside()
+                        .into(holder.itemImv);
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
+            }
+
         }
     }
 

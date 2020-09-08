@@ -4,22 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.api.client.extensions.android.http.AndroidHttp
 import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.youtube.YouTube
 import com.onlinemadrasa.R
 import com.onlinemadrasa.adapter.RedirectAdapter
-import com.onlinemadrasa.ui.home.HomeViewModel
 import com.onlinemadrasa.utils.OnAlertShow
 import com.onlinemadrasa.utils.Utils
-import okhttp3.internal.Util
 
 class DirectFragment : Fragment(), OnAlertShow {
 
@@ -31,16 +27,12 @@ class DirectFragment : Fragment(), OnAlertShow {
 
     private var onAlertShow: OnAlertShow = this
 
-    private lateinit var galleryViewModel: GalleryViewModel
-
-
-    lateinit var mAdView : AdView
+    lateinit var mAdView: AdView
 
     external fun getArrayIDS(): String
 
-    companion object{
+    companion object {
         init {
-            //System.load("keys")
             System.loadLibrary("native-lib")
         }
     }
@@ -50,13 +42,7 @@ class DirectFragment : Fragment(), OnAlertShow {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        galleryViewModel =
-            ViewModelProviders.of(this).get(GalleryViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_gallery, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         mAdView = root.findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
@@ -76,7 +62,6 @@ class DirectFragment : Fragment(), OnAlertShow {
             list.add(value)
         }
         mainRcv.adapter = context?.let { RedirectAdapter(it, list, onAlertShow) }
-
 
         mYoutubeDataApi = YouTube.Builder(mTransport, mJsonFactory, null)
             .setApplicationName(resources.getString(R.string.app_name))

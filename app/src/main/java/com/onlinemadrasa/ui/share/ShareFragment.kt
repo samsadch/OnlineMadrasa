@@ -5,11 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.onlinemadrasa.R
@@ -17,7 +14,6 @@ import com.onlinemadrasa.R
 
 class ShareFragment : Fragment() {
 
-    private lateinit var shareViewModel: ShareViewModel
     private var shareButton: Button? = null
 
     override fun onCreateView(
@@ -25,18 +21,10 @@ class ShareFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        shareViewModel =
-            ViewModelProviders.of(this).get(ShareViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_share, container, false)
-        val textView: TextView = root.findViewById(R.id.text_slideshow)
-        shareViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-
         val mAdView: AdView = root.findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
-
 
         val mAdView2: AdView = root.findViewById(R.id.adView2)
         val adRequest2 = AdRequest.Builder().build()
