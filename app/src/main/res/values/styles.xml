@@ -7,6 +7,16 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="fontFamily">@font/chilanka</item>
         <item name="android:windowDisablePreview">true</item>
+
+    </style>
+
+    <style name="AppThemeGreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryDark">@color/green</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">@font/chilanka</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
 
     <style name="AppTheme.BoldFont">

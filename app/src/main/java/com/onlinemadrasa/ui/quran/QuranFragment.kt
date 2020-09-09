@@ -49,9 +49,12 @@ class QuranFragment : Fragment() {
             pagenm = prefM.getPage()
             this.pdfView = view.findViewById(R.id.pdfview)
             this.pdfView.fromAsset(stringBuilder.toString()).defaultPage(pagenm).load()
+
+
             val mAdView: AdView = view.findViewById(R.id.adView)
             val adRequest = AdRequest.Builder().build()
             mAdView.loadAd(adRequest)
+
 
         } catch (e: Exception) {
             e.printStackTrace()

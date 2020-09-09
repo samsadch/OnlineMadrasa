@@ -37,6 +37,7 @@
     <fragment
         android:id="@+id/nav_quran"
         android:name="com.onlinemadrasa.ui.exam.QuranFragment"
+        tools:layout="@layout/exam_updates_fragment"
         android:label="Quran" />
     <fragment
         android:id="@+id/nav_syl"
@@ -51,8 +52,18 @@
         android:id="@+id/sylabusItemFragment"
         android:name="com.onlinemadrasa.ui.sylabus.SylabusItemActivity"
         android:label="sylabus_item_fragment"
-        tools:layout="@layout/sylabus_item_fragment" >
+        tools:layout="@layout/sylabus_item_fragment">
         <argument android:name="image_id" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_pub"
+        android:name="com.onlinemadrasa.ui.exam.PublicExamFragment"
+        android:label="@string/public_exam"
+        tools:layout="@layout/fragment_public_exam" />
+    <fragment
+        android:id="@+id/nav_notes"
+        android:name="com.onlinemadrasa.ui.notes.NotesFragment"
+        android:label="@string/notes"
+        tools:layout="@layout/notes_fragment" />
 
 </navigation>

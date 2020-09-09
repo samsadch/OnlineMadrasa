@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#035544</color>
-    <color name="colorPrimaryDark">#035544</color>
-    <color name="colorAccent">#035544</color>
+    <color name="colorPrimary">#032330</color>
+    <color name="colorPrimaryDark">#032330</color>
+    <color name="colorAccent">#2ce07f</color>
+    <!-- <color name="colorAccent">#035544</color>-->
     <color name="black">#000000</color>
+
+    <color name="green">#035544</color>
+    <color name="blink_dark">#032330</color>
+    <color name="blink_light">#2ce07f</color>
 
     <color name="color_grey">#e4e4e4</color>
     <color name="text2">#200000</color>

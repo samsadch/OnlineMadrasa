@@ -44,8 +44,6 @@ class DirectFragment : Fragment(), OnAlertShow {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_gallery, container, false)
         mAdView = root.findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
         return root
     }
 
@@ -54,6 +52,9 @@ class DirectFragment : Fragment(), OnAlertShow {
 
         mainRcv = view.findViewById(R.id.mainRcv)
         mainRcv.layoutManager = GridLayoutManager(context, 2)
+
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
         var list: ArrayList<String> = ArrayList()
         val array = getArrayIDS()

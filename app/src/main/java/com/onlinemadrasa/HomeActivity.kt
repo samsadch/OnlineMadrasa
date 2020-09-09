@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -28,7 +29,6 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.iid.FirebaseInstanceId
 import com.onlinemadrasa.utils.Utils
-import java.util.*
 
 
 class HomeActivity : AppCompatActivity() {
@@ -41,11 +41,21 @@ class HomeActivity : AppCompatActivity() {
     val context: Context = this@HomeActivity
     private lateinit var mInterstitialAd: InterstitialAd
 
+    /*override fun getTheme(): Resources.Theme {
+        val theme = super.getTheme()
+        if (true) {
+            theme.applyStyle(R.style.AppThemeGreen, true)
+        }
+        // you could also use a switch if you have many themes that could apply
+        // you could also use a switch if you have many themes that could apply
+        return theme
+    }*/
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         MobileAds.initialize(this) {}
-        val testDeviceIds = Arrays.asList("37646F557B07826A794A8F1B5552F9A6")
+        val testDeviceIds = listOf("37646F557B07826A794A8F1B5552F9A6")
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
         MobileAds.setRequestConfiguration(configuration)
 
@@ -77,6 +87,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_home,
                 R.id.nav_gallery,
                 R.id.nav_quran,
+                R.id.nav_notes, R.id.nav_pub,
                 R.id.nav_syl, R.id.nav_message,
                 R.id.nav_slideshow
             ), drawerLayout
@@ -114,10 +125,6 @@ class HomeActivity : AppCompatActivity() {
 
     fun getShareIntent(): Intent {
         try {
-            /* return ShareCompat.IntentBuilder.from(this)
-                 .setText("https://play.google.com/store/apps/details?id=$packageName")
-                 .setType("text/plain")
-                 .intent*/
             val uri: Uri = Uri.parse("market://details?id=$packageName")
             val goToMarket = Intent(Intent.ACTION_VIEW, uri)
             goToMarket.addFlags(
@@ -159,7 +166,6 @@ class HomeActivity : AppCompatActivity() {
                 super.onOptionsItemSelected(item)
             }
         }
-        //return super.onOptionsItemSelected(item)
     }
 
     private fun showIntAd() {
