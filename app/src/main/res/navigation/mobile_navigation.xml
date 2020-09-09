@@ -36,7 +36,7 @@
         tools:layout="@layout/message_fragment" />
     <fragment
         android:id="@+id/nav_quran"
-        android:name="com.onlinemadrasa.ui.exam.QuranFragment"
+        android:name="com.onlinemadrasa.ui.quran.QuranFragment"
         tools:layout="@layout/exam_updates_fragment"
         android:label="Quran" />
     <fragment
