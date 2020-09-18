@@ -9,6 +9,14 @@
         android:layout_height="wrap_content"
         android:background="@drawable/square_background_primary">
 
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_unit_id" />
+
         <ImageView
             android:id="@+id/backImv"
             android:layout_width="32dp"
@@ -18,15 +26,6 @@
             android:layout_marginLeft="4dp"
             android:elevation="4dp"
             app:srcCompat="@drawable/ic_back" />
-
-        <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_unit_id" />
 
     </RelativeLayout>
 

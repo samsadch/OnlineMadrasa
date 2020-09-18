@@ -22,7 +22,6 @@ class PlayerActivity : YouTubeFailureRecoveryActivity(), OnFullscreenListener,
     private var description: String? = null
     private var player: YouTubePlayer? = null
     lateinit var mAdView: AdView
-
     private lateinit var mInterstitialAd: InterstitialAd
 
     var stopCount = 0
@@ -60,7 +59,6 @@ class PlayerActivity : YouTubeFailureRecoveryActivity(), OnFullscreenListener,
             }
         }
 
-
         val youTubeView = findViewById(R.id.youtube_view) as YouTubePlayerView
         youTubeView.initialize(apiKey, this)
 
@@ -69,7 +67,6 @@ class PlayerActivity : YouTubeFailureRecoveryActivity(), OnFullscreenListener,
         mInterstitialAd.adUnitId = getString(R.string.inters_ad_id)
         mInterstitialAd.loadAd(AdRequest.Builder().build())
     }
-
 
     override fun onInitializationSuccess(
         provider: YouTubePlayer.Provider?, player: YouTubePlayer,
@@ -132,16 +129,11 @@ class PlayerActivity : YouTubeFailureRecoveryActivity(), OnFullscreenListener,
         pauseCount += 1
     }
 
-
     private fun showIntesAd() {
         if (mInterstitialAd.isLoaded) {
             mInterstitialAd.show()
         } else {
             Log.d("TAG", "The interstitial wasn't loaded yet.")
         }
-    }
-
-    fun isDevidedBy2(value: Int): Boolean {
-        return value % 2 == 0 && value != 0
     }
 }

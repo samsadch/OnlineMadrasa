@@ -6,19 +6,25 @@ import android.os.Handler
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.MobileAds
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_splash.*
 
-
 class SplashActivity : AppCompatActivity() {
-    //private var mFirebaseAnalytics: FirebaseAnalytics? = null
+
+    private fun getSplashScreenDuration() = 2000L
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.requestWindowFeature(Window.FEATURE_NO_TITLE)
         try {
             setContentView(R.layout.activity_splash)
             MobileAds.initialize(this) {}
-            //mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
             scheduleSplashScreen()
+            firebaseAnalytics = Firebase.analytics
         } catch (e: Exception) {
             splashImv.setImageResource(R.mipmap.ic_quran)
             scheduleSplashScreen()
@@ -36,7 +42,5 @@ class SplashActivity : AppCompatActivity() {
             splashScreenDuration
         )
     }
-
-    private fun getSplashScreenDuration() = 2000L
 
 }
