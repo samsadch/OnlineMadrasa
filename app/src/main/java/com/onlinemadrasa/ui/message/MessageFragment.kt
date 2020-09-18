@@ -23,8 +23,10 @@ class MessageFragment : Fragment() {
     var submitText: TextView? = null
     var comments_edit: EditText? = null
     var name_edit: EditText? = null
+    var contact_edit: EditText? = null
     var messageText: String? = null
     var nameText: String? = null
+    var contactText: String? = null
 
     private lateinit var viewModel: MessageViewModel
 
@@ -45,6 +47,7 @@ class MessageFragment : Fragment() {
         submitText = view.findViewById(R.id.submit_text)
         comments_edit = view.findViewById(R.id.comments_edit)
         name_edit = view.findViewById(R.id.name_edit)
+        contact_edit = view.findViewById(R.id.contact_edit)
 
         MobileAds.initialize(requireContext()) {}
         mInterstitialAd = InterstitialAd(requireContext())
@@ -55,11 +58,16 @@ class MessageFragment : Fragment() {
         submitText?.setOnClickListener {
             clicked = true
             messageText = comments_edit?.text.toString()
+            contactText = contact_edit?.text.toString()
             nameText = name_edit?.text.toString()
-            messageText?.let {
-                nameText?.let {
-                    sendMessage(messageText!!, nameText!!)
+            if (!messageText.isNullOrEmpty()) {
+                messageText?.let {
+                    nameText?.let {
+                        sendMessage(messageText!!, nameText!!, contactText!!)
+                    }
                 }
+            }else{
+                Utils.showIosDialog(requireContext(),"Please enter your feedback")
             }
             //findNavController().popBackStack()
         }
@@ -98,14 +106,15 @@ class MessageFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(MessageViewModel::class.java)
     }
 
-    fun sendMessage(message: String, nameText: String) {
+    fun sendMessage(message: String, nameText: String, contact: String) {
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("message")
-        var postComment = PostComment(nameText, message)
+        var postComment = PostComment(nameText, message, contact)
         myRef.push().setValue(postComment)
         Utils.showToast(requireContext(), getString(R.string.thanks_for_your_feedback))
         comments_edit?.setText("")
         name_edit?.setText("")
+        contact_edit?.setText("")
         if (mInterstitialAd.isLoaded) {
             mInterstitialAd.show()
         } else {

@@ -29,21 +29,22 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@id/comments_edit"
+                app:layout_constraintBottom_toTopOf="@id/name_edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <EditText
-                android:id="@+id/comments_edit"
+                android:id="@+id/name_edit"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/square_background"
                 android:gravity="start"
-                android:hint="Type here..."
+                android:hint="Name"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:padding="8dp"
@@ -53,7 +54,7 @@
                 app:layout_constraintTop_toBottomOf="@id/message_text" />
 
             <EditText
-                android:id="@+id/name_edit"
+                android:id="@+id/contact_edit"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
@@ -61,25 +62,43 @@
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/square_background"
                 android:gravity="start"
-                android:hint="Name"
+                android:hint="Contact"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:padding="8dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name_edit" />
+
+            <EditText
+                android:id="@+id/comments_edit"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/square_background"
+                android:gravity="start"
+                android:hint="Type here..."
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:padding="8dp"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/comments_edit" />
+                app:layout_constraintTop_toBottomOf="@id/contact_edit" />
 
 
             <TextView
                 android:id="@+id/submit_text"
+                style="@style/AppTheme.BoldFont"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="16dp"
-                style="@style/AppTheme.BoldFont"
                 android:layout_marginRight="16dp"
                 android:background="@drawable/round_background"
                 android:clickable="true"
@@ -91,7 +110,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name_edit"
+                app:layout_constraintTop_toBottomOf="@+id/comments_edit"
                 app:layout_constraintVertical_bias="0.0" />
 
 

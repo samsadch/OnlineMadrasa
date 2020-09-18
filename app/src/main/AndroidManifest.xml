@@ -21,6 +21,7 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,7 +45,6 @@
         </activity>
         <activity android:name=".PdfViewActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name="com.flipkart.youtubeview.activity.YouTubeActivity" />
         <activity android:name=".ui.sylabus.SylabusItemActivity" />
 
         <service

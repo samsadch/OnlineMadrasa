@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.util.Pair
@@ -28,6 +29,7 @@ import com.onlinemadrasa.adapter.PlaylistCardAdapter
 import com.onlinemadrasa.model.OnVideoSelect
 import com.onlinemadrasa.model.PlaylistVideos
 import com.onlinemadrasa.network.GetTask
+import com.onlinemadrasa.utils.OnAlertHide
 import com.onlinemadrasa.utils.Utils
 import kotlinx.android.synthetic.main.activity_video_listing.*
 import java.util.*
@@ -202,7 +204,23 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
                             object : GetTask(context, mYouTubeDataApi) {
                                 override fun onPostExecute(result: Pair<String, List<Video>>?) {
                                     Utils.hideProgress()
-                                    handleGetPlaylistResult(playlistVideos, result)
+                                    if (result != null) {
+                                        handleGetPlaylistResult(playlistVideos, result)
+                                    } else {
+                                        var onAlertHide = OnAlertHide {
+                                            val intent = Intent(Intent.ACTION_VIEW)
+                                            intent.data =
+                                                Uri.parse(context.getString(R.string.youtube_playlist_append) + youtubePlayListItem)
+                                            intent.setPackage("com.google.android.youtube")
+                                            context.startActivity(intent)
+                                        }
+                                        Utils.showIosDialog(
+                                            context,
+                                            "Alert",
+                                            "Updating Latest Videos. Do you want to watch in Youtube?",
+                                            onAlertHide
+                                        )
+                                    }
                                 }
                             }.execute(playlistVideos.playlistId, playlistVideos.nextPageToken)
                         }
@@ -222,10 +240,12 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         playlistVideos.nextPageToken = result.first
         result?.let {
             playlistVideos?.let { it2 ->
-                it2.addAll(it.second)
+                if (it.second != null) {
+                    it2.addAll(it.second)
+                }
             }
         }
-        mPlaylistCardAdapter!!.notifyItemRangeInserted(positionStart, result.second.size)
+        mPlaylistCardAdapter?.notifyItemRangeInserted(positionStart, result.second.size)
 
         if (isFirstTime == 1 || isFirstTime == 7) {
             isFirstTime += 1

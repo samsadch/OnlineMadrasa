@@ -7,4 +7,10 @@
         android:orderInCategory="100"
         android:title="@string/rate_app"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_smart"
+        android:orderInCategory="101"
+        android:title="@string/smart_school"
+        app:showAsAction="never" />
 </menu>

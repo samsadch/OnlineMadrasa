@@ -11,7 +11,6 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayer.OnFullscreenListener
 import com.google.android.youtube.player.YouTubePlayerView
-import com.onlinemadrasa.utils.Utils
 import kotlinx.android.synthetic.main.activity_player.*
 
 class PlayerActivity : YouTubeFailureRecoveryActivity(), OnFullscreenListener,
@@ -38,8 +37,6 @@ class PlayerActivity : YouTubeFailureRecoveryActivity(), OnFullscreenListener,
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
 
-
-
         videoID = intent.getStringExtra("VIDEO_ID")
         title = intent.getStringExtra("TITLE")
         description = intent.getStringExtra("DESC")
@@ -49,6 +46,9 @@ class PlayerActivity : YouTubeFailureRecoveryActivity(), OnFullscreenListener,
             // In landscape
         } else {
             // In portrait
+            backImv.setOnClickListener {
+                finish()
+            }
             title_text.text = title
             desc_text.text = description
             pip_image.setOnClickListener {
@@ -107,8 +107,8 @@ class PlayerActivity : YouTubeFailureRecoveryActivity(), OnFullscreenListener,
     }
 
     override fun onSeekTo(p0: Int) {
-        seekCount+=1
-        if(seekCount==2||seekCount==5||seekCount==8){
+        seekCount += 1
+        if (seekCount == 2 || seekCount == 5 || seekCount == 8) {
             showIntesAd()
         }
     }
@@ -123,7 +123,7 @@ class PlayerActivity : YouTubeFailureRecoveryActivity(), OnFullscreenListener,
 
     override fun onStopped() {
         stopCount += 1
-        if (stopCount==1 || stopCount==3) {
+        if (stopCount == 1 || stopCount == 3) {
             showIntesAd()
         }
     }
@@ -141,7 +141,7 @@ class PlayerActivity : YouTubeFailureRecoveryActivity(), OnFullscreenListener,
         }
     }
 
-    fun isDevidedBy2(value :Int):Boolean{
-        return value % 2 ==0 && value!=0
+    fun isDevidedBy2(value: Int): Boolean {
+        return value % 2 == 0 && value != 0
     }
 }

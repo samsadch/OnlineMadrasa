@@ -65,5 +65,9 @@
         android:name="com.onlinemadrasa.ui.notes.NotesFragment"
         android:label="@string/notes"
         tools:layout="@layout/notes_fragment" />
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.onlinemadrasa.ui.about.AboutFragment"
+        android:label="@string/menu_about" />
 
 </navigation>

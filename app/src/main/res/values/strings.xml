@@ -10,7 +10,7 @@
     <!--banner_id-->
     <string name="banner_unit_id">ca-app-pub-3884484176623181/9520092830</string>
     <!--test-id-->
-    <!--<string name="banner_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
+   <!-- <string name="banner_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
     <!--interstitial-->
     <string name="inters_ad_id">ca-app-pub-3884484176623181/4695991624</string>
     <!--test interstitial-->
@@ -35,13 +35,17 @@
     <string name="menu_message">Share your Feedback</string>
     <string name="message_text">ആപ്പിനെ കുറിച്ച് നിങ്ങളുടെ വിലയേറിയ അഭിപ്രായങ്ങളും നിർദേശങ്ങളും ഞങ്ങളെ അറിയിക്കുക</string>
     <string name="share">Share</string>
-    <string name="thanks_for_your_feedback">Thanks for your feedback</string>
+    <string name="thanks_for_your_feedback">Thank you for your feedback</string>
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
     <string name="share_text">Share the app with your friends and Family</string>
     <string name="diffrently_abled">ആംഗ്യ ഭാഷാ </string>
+    <string name="thilava">തിലാവ</string>
     <string name="announcement">Announcement</string>
     <string name="menu_quran">Quran</string>
     <string name="syllabus">Syllabus</string>
     <string name="notes">Thadreebath</string>
     <string name="public_exam">പൊതുപരീക്ഷ</string>
+    <string name="menu_about">About</string>
+    <string name="smartschool_link">http://play.google.com/store/apps/details?id=com.smartschools</string>
+    <string name="smart_school">Smart School</string>
 </resources>

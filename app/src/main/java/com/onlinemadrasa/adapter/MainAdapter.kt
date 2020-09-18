@@ -44,7 +44,7 @@ class MainAdapter(
         try {
             val item = list[position]
             val clas = position + 1
-            holder.itemTxv.text = "Class ${clas - 2}"
+            holder.itemTxv.text = "Class ${clas - 3}"
 
             holder.containerRlay.setOnClickListener {
                 val item = list[position]
@@ -59,7 +59,8 @@ class MainAdapter(
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
-                } /*else if (position in 1..13)*/ else {
+                }
+                /*else if (position in 1..13)*/ else {
                     try {
                         if (!isOnline(context)) {
                             isOnline = false
@@ -83,9 +84,7 @@ class MainAdapter(
                         ).show()
                         e.printStackTrace()
                     }
-                } /*else if (position == 13) {
-                    context.startActivity(Intent(context, PdfViewActivity::class.java))
-                }*/
+                }
             }
             when (position) {
                 0 -> {
@@ -95,8 +94,8 @@ class MainAdapter(
                 }
                 1 -> {
                     try {
-                        holder.itemTxv.text = context.getString(R.string.diffrently_abled)
-                        Glide.with(context).load(R.drawable.image_one).into(holder.itemImv);
+                        holder.itemTxv.text = context.getString(R.string.thilava)
+                        Glide.with(context).load(R.drawable.thilava).into(holder.itemImv);
                         //holder.itemImv.setBackgroundResource(R.drawable.image_one)
                     } catch (e: Exception) {
                         e.printStackTrace()
@@ -104,8 +103,8 @@ class MainAdapter(
                 }
                 2 -> {
                     try {
-
-                        Glide.with(context).load(R.drawable.image_two).into(holder.itemImv);
+                        holder.itemTxv.text = context.getString(R.string.diffrently_abled)
+                        Glide.with(context).load(R.drawable.image_one).into(holder.itemImv);
                         //holder.itemImv.setBackgroundResource(R.drawable.image_two)
                     } catch (e: Exception) {
                         e.printStackTrace()
@@ -201,7 +200,17 @@ class MainAdapter(
                 }
                 14 -> {
                     try {
-                        Glide.with(context).load(R.drawable.image_nine).into(holder.itemImv)
+                        Glide.with(context).load(R.drawable.image_three).into(holder.itemImv)
+                        //holder.itemTxv.text = context.getString(R.string.announcement)
+                        //holder.itemImv.setBackgroundResource(R.drawable.image_nine)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+
+                }
+                15 -> {
+                    try {
+                        Glide.with(context).load(R.drawable.image_six).into(holder.itemImv)
                         holder.itemTxv.text = context.getString(R.string.announcement)
                         //holder.itemImv.setBackgroundResource(R.drawable.image_nine)
                     } catch (e: Exception) {

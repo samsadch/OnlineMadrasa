@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -29,6 +28,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.iid.FirebaseInstanceId
 import com.onlinemadrasa.utils.Utils
+import com.onlinemadrasa.utils.openWebPage
 
 
 class HomeActivity : AppCompatActivity() {
@@ -89,7 +89,8 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_quran,
                 R.id.nav_notes, R.id.nav_pub,
                 R.id.nav_syl, R.id.nav_message,
-                R.id.nav_slideshow
+                R.id.nav_slideshow,
+                R.id.nav_about
             ), drawerLayout
         )
         //setupActionBarWithNavController(navController, appBarConfiguration)
@@ -125,7 +126,7 @@ class HomeActivity : AppCompatActivity() {
 
     fun getShareIntent(): Intent {
         try {
-            val uri: Uri = Uri.parse("market://details?id=$packageName")
+            val uri: Uri = Uri.parse("http://play.google.com/store/apps/details?id=$packageName")
             val goToMarket = Intent(Intent.ACTION_VIEW, uri)
             goToMarket.addFlags(
                 Intent.FLAG_ACTIVITY_NO_HISTORY or
@@ -160,6 +161,10 @@ class HomeActivity : AppCompatActivity() {
             R.id.action_rate -> {
                 share()
                 //launchMarket()
+                true
+            }
+            R.id.action_smart -> {
+                openWebPage(context, getString(R.string.smartschool_link))
                 true
             }
             else -> {

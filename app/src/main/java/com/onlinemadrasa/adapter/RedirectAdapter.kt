@@ -40,7 +40,7 @@ class RedirectAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
         val clas = position + 1
-        holder.itemTxv.text = "Class ${clas - 2}"
+        holder.itemTxv.text = "Class ${clas - 3}"
 
         holder.containerRlay.setOnClickListener {
             if (position == 0) {
@@ -89,6 +89,15 @@ class RedirectAdapter(
                 holder.itemTxv.text = context.getString(R.string.submit_attendance)
             }
             1 -> {
+                try {
+                    holder.itemTxv.text = context.getString(R.string.thilava)
+                    Glide.with(context).load(R.drawable.thilava).centerInside()
+                        .into(holder.itemImv);
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+            2 -> {
                 try {
                     holder.itemTxv.text = context.getString(R.string.diffrently_abled)
                     Glide.with(context).load(R.drawable.image_one).centerInside()
@@ -195,6 +204,15 @@ class RedirectAdapter(
 
             }
             14 -> {
+                try {
+                    Glide.with(context).load(R.drawable.image_five).centerInside()
+                        .into(holder.itemImv);
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
+            }
+            15 -> {
                 try {
                     holder.itemTxv.text = context.getString(R.string.announcement)
                     Glide.with(context).load(R.drawable.image_four).centerInside()

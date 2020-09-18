@@ -3,6 +3,7 @@ package com.onlinemadrasa.network
 import android.content.Context
 import android.os.AsyncTask
 import android.text.TextUtils
+import android.util.Log
 import android.util.Pair
 import com.google.api.services.youtube.YouTube
 import com.google.api.services.youtube.model.PlaylistItemListResponse
@@ -49,12 +50,15 @@ abstract class GetTask(
 
 
         val playlistId: String = params[0].toString()
+        Log.i("SAMSAD playlistId",playlistId.toString())
 
         val nextPageToken: String? = if (params.size == 2) {
             params[1]
         } else {
             null
         }
+
+        Log.i("SAMSAD nextPageToken",nextPageToken.toString())
 
         val playlistItemListResponse: PlaylistItemListResponse?
         playlistItemListResponse = try {
@@ -66,10 +70,12 @@ abstract class GetTask(
                 .setMaxResults(YOUTUBE_PLAYLIST_MAX_RESULTS)
                 .setKey(getAPIKey())
                 .execute()
-        } catch (e: IOException) {
+        } catch (e: Exception) {
+            Log.i("SAMSAD Exc 11",e.message)
             e.printStackTrace()
             return null
         }
+        Log.i("SAMSAD ListResponse",playlistItemListResponse.toString())
 
         if (playlistItemListResponse == null) {
             return null
@@ -89,6 +95,8 @@ abstract class GetTask(
             videoIds.add(item.snippet.resourceId.videoId)
         }
 
+        Log.i("SAMSAD videoIds",videoIds.toString())
+
         var videoListResponse: VideoListResponse? = null
         try {
             videoListResponse = mYouTubeDataApi.videos()
@@ -97,8 +105,11 @@ abstract class GetTask(
                 .setKey(getAPIKey())
                 .setId(TextUtils.join(",", videoIds)).execute()
         } catch (e: IOException) {
+            Log.i("SAMSAD vidExc",e.message)
             e.printStackTrace()
         }
+
+        Log.i("SAMSAD vidListResponse",videoListResponse.toString())
 
         return Pair<String, List<Video>>(
             playlistItemListResponse.nextPageToken,
