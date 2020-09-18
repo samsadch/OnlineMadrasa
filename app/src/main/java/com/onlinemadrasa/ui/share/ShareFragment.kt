@@ -1,7 +1,5 @@
 package com.onlinemadrasa.ui.share
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +17,7 @@ import com.onlinemadrasa.utils.openWebPage
 class ShareFragment : Fragment() {
 
     private var shareButton: Button? = null
-    private lateinit var bottom_relativeLayout:RelativeLayout
+    private lateinit var bottom_relativeLayout: RelativeLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +36,7 @@ class ShareFragment : Fragment() {
         bottom_relativeLayout = root.findViewById(R.id.bottom_relativeLayout)
 
         bottom_relativeLayout.setOnClickListener {
-           openWebPage(requireContext(),getString(R.string.smartschool_link))
+            openWebPage(requireContext(), getString(R.string.smartschool_link))
         }
 
         return root
@@ -60,7 +58,5 @@ class ShareFragment : Fragment() {
         }
 
     }
-
-
 
 }
