@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.onlinemadrasa.AttendanceActivity
 import com.onlinemadrasa.R
 import com.onlinemadrasa.utils.OnAlertShow
 
@@ -44,12 +45,18 @@ class RedirectAdapter(
 
         holder.containerRlay.setOnClickListener {
             if (position == 0) {
-                val browserIntent =
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse(context.getString(R.string.attendance_url))
-                    )
-                context.startActivity(browserIntent)
+                try {
+                    context.startActivity(Intent(context, AttendanceActivity::class.java))
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    val browserIntent =
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse(context.getString(R.string.attendance_url))
+                        )
+                    context.startActivity(browserIntent)
+                }
+
             } else /*if (position in 1..12)*/ {
                 try {
                     if (!isOnline(context)) {

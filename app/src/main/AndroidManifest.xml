@@ -8,11 +8,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_quran_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.story.StorydetailActivity"></activity>
+        <activity android:name=".ui.story.StoryActivity" />
+        <activity android:name=".AttendanceActivity" />
         <activity
             android:name=".PlayerActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
-            android:supportsPictureInPicture="true"></activity>
+            android:supportsPictureInPicture="true" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

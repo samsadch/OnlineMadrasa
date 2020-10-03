@@ -69,5 +69,10 @@
         android:id="@+id/nav_about"
         android:name="com.onlinemadrasa.ui.about.AboutFragment"
         android:label="@string/menu_about" />
+    <fragment
+        android:id="@+id/nav_story"
+        android:name="com.onlinemadrasa.ui.story.StoryFragment"
+        android:label="@string/story_title"
+        tools:layout="@layout/story_fragment" />
 
 </navigation>

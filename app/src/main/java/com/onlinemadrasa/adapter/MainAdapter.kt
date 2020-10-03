@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.onlinemadrasa.AttendanceActivity
 import com.onlinemadrasa.R
 import com.onlinemadrasa.VideoListingActivity
 import com.onlinemadrasa.utils.OnAlertShow
@@ -50,13 +51,14 @@ class MainAdapter(
                 val item = list[position]
                 if (position == 0) {
                     try {
+                        context.startActivity(Intent(context,AttendanceActivity::class.java))
+                    } catch (e: Exception) {
                         val browserIntent =
                             Intent(
                                 Intent.ACTION_VIEW,
                                 Uri.parse(context.getString(R.string.attendance_url))
                             )
                         context.startActivity(browserIntent)
-                    } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }

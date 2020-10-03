@@ -87,6 +87,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_home,
                 R.id.nav_gallery,
                 R.id.nav_quran,
+                R.id.nav_story,
                 R.id.nav_notes, R.id.nav_pub,
                 R.id.nav_syl, R.id.nav_message,
                 R.id.nav_slideshow,

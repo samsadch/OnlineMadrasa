@@ -23,6 +23,10 @@
         <item name="fontFamily">@font/lewie_bold</item>
     </style>
 
+    <style name="AppTheme.Roboto">
+        <item name="fontFamily">@font/roboto</item>
+    </style>
+
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>

@@ -5,27 +5,33 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/adRlay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/square_background_primary">
-
-        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_unit_id" />
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/square_background_primary"
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/backImv"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:elevation="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             app:srcCompat="@drawable/ic_back" />
+
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_unit_id" />
 
     </RelativeLayout>
 
@@ -40,6 +46,7 @@
         android:layout_height="0dp"
         android:layout_margin="8dp"
         android:layout_weight="1"
+        android:visibility="gone"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp">
 

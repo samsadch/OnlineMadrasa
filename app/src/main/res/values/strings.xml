@@ -8,13 +8,13 @@
     <string name="default_notification_channel_id">123123</string>
     <string name="youtube_playlist_append">https://www.youtube.com/playlist?list=</string>
     <!--banner_id-->
-    <string name="banner_unit_id">ca-app-pub-3884484176623181/9520092830</string>
+     <string name="banner_unit_id">ca-app-pub-3884484176623181/9520092830</string>
     <!--test-id-->
    <!-- <string name="banner_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
     <!--interstitial-->
     <string name="inters_ad_id">ca-app-pub-3884484176623181/4695991624</string>
     <!--test interstitial-->
-    <!--<string name="inters_ad_id">ca-app-pub-3940256099942544/8691691433</string>-->
+   <!-- <string name="inters_ad_id">ca-app-pub-3940256099942544/8691691433</string>-->
 
     <string name="sample">This is a sample description of the video item that is long enough to wrap around to the next line.</string>
     <string name="ok">Ok</string>
@@ -43,9 +43,10 @@
     <string name="announcement">Announcement</string>
     <string name="menu_quran">Quran</string>
     <string name="syllabus">Syllabus</string>
-    <string name="notes">Thadreebath</string>
+    <string name="notes">Thadreebath(Notes)</string>
     <string name="public_exam">പൊതുപരീക്ഷ</string>
     <string name="menu_about">About</string>
     <string name="smartschool_link">http://play.google.com/store/apps/details?id=com.smartschools</string>
     <string name="smart_school">Smart School</string>
+    <string name="story_title">ചരിത്രകഥകൾ</string>
 </resources>
