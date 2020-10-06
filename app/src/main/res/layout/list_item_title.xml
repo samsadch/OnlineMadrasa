@@ -24,12 +24,23 @@
             style="@style/AppTheme.Roboto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/next_image"
+            android:layout_toLeftOf="@+id/next_image"
             android:gravity="center_horizontal"
             android:text="@string/story_title"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
+        <ImageView
+            android:id="@+id/next_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/ic_next" />
 
     </RelativeLayout>
 

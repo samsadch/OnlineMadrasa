@@ -10,8 +10,6 @@
         android:id="@+id/ad_rlay"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentTop="true"
-        android:layout_margin="1dp"
         android:background="@drawable/square_background_primary">
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -51,8 +49,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text=""
+                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/content_text"
@@ -60,10 +59,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title_text"
                 android:layout_margin="4dp"
+                android:textColor="@color/grey"
                 android:padding="4dp"
-                android:text=""
                 android:textSize="18sp" />
-
 
         </RelativeLayout>
 
