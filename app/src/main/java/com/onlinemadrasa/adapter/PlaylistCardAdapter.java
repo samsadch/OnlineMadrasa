@@ -9,10 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.bumptech.glide.Glide;
 import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoContentDetails;
 import com.google.api.services.youtube.model.VideoSnippet;
@@ -21,7 +20,6 @@ import com.onlinemadrasa.R;
 import com.onlinemadrasa.VideoListingActivity;
 import com.onlinemadrasa.model.OnVideoSelect;
 import com.onlinemadrasa.model.PlaylistVideos;
-import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 
@@ -110,7 +108,7 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
             });
 
             // load the video thumbnail image
-            Picasso.with(holder.mContext)
+            Glide.with(holder.mContext)
                     .load(videoSnippet.getThumbnails().getHigh().getUrl())
                     .placeholder(R.drawable.video_placeholder)
                     .into(holder.mThumbnailImage);
@@ -131,13 +129,10 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
                 sendIntent.putExtra(Intent.EXTRA_TEXT, "https://www.youtube.com/watch?v=" + video.getId());
                 sendIntent.setType("text/plain");
                 holder.mContext.startActivity(sendIntent);
-
-
             };
 
             holder.mShareIcon.setOnClickListener(shareClickListener);
             //holder.mShareText.setOnClickListener(shareClickListener);
-
             // set the video duration text
             holder.mDurationText.setText(parseDuration(videoContentDetails.getDuration()));
             // set the video statistics

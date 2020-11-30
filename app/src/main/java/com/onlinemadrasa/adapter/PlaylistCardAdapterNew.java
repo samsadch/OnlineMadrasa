@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoContentDetails;
 import com.google.api.services.youtube.model.VideoSnippet;
@@ -23,7 +24,6 @@ import com.onlinemadrasa.R;
 import com.onlinemadrasa.VideoListingActivity;
 import com.onlinemadrasa.model.OnVideoSelect;
 import com.onlinemadrasa.model.PlaylistVideos;
-import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 
@@ -75,8 +75,7 @@ public class PlaylistCardAdapterNew extends RecyclerView.Adapter<PlaylistCardAda
         // inflate a card layout
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_records, parent, false);
         // populate the viewholder
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -97,17 +96,15 @@ public class PlaylistCardAdapterNew extends RecyclerView.Adapter<PlaylistCardAda
             //holder.descTxv.setText(videoSnippet.getDescription());
             //holder.mDescriptionText.setText(videoSnippet.getDescription());
 
-
             holder.titleRlay.setOnClickListener(v -> {
                 onVideoSelect.onVideoSelect(video.getId(), videoSnippet.getTitle(), videoSnippet.getDescription());
             });
 
             // load the video thumbnail image
-            Picasso.with(holder.mContext)
+            Glide.with(holder.mContext)
                     .load(videoSnippet.getThumbnails().getHigh().getUrl())
                     .placeholder(R.drawable.video_placeholder)
                     .into(holder.videoThumbnail);
-
 
             // set the click listener to play the video
             holder.videoThumbnail.setOnClickListener(view -> {
