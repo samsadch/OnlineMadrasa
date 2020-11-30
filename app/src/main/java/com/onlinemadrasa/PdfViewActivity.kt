@@ -26,16 +26,13 @@ class PdfViewActivity : AppCompatActivity() {
             val adRequest = AdRequest.Builder().build()
             mAdView.loadAd(adRequest)
 
-
             val mAdView2: AdView = findViewById(R.id.adView2)
             val adRequest2 = AdRequest.Builder().build()
             mAdView2.loadAd(adRequest2)
-
 
         }catch (e:Exception){
             finish()
             e.printStackTrace()
         }
-
     }
 }

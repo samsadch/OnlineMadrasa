@@ -73,9 +73,7 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // inflate a card layout
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_video, parent, false);
-        // populate the viewholder
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
