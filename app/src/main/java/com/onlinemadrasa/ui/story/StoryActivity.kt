@@ -8,6 +8,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.onlinemadrasa.R
 import com.onlinemadrasa.adapter.StoryAdapter
+import com.onlinemadrasa.adapter.StoryTitlesAdapter
 import com.onlinemadrasa.model.StoryItem
 import com.onlinemadrasa.model.StoryModel
 import kotlinx.android.synthetic.main.activity_story.*
@@ -25,7 +26,7 @@ class StoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_story)
         mAdView = findViewById(R.id.adView)
         storyRcv = findViewById(R.id.story_list_rcv)
-        model = intent.getParcelableExtra("ITEM")
+        model = StoryTitlesAdapter.storyItem!!
         if (model != null) {
             title_text.text = model.storyTitle
             var list = model.storyList
