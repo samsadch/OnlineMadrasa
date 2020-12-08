@@ -20,8 +20,8 @@ android {
         applicationId "com.onlinemadrasa"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 37
-        versionName "1.6.2"
+        versionCode 39
+        versionName "1.6.3"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -92,7 +92,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.5.1'
     implementation 'com.google.firebase:firebase-messaging:21.0.0'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:17.3.0'
-    implementation 'com.google.android.gms:play-services-ads:19.5.0'
+    implementation 'com.google.android.gms:play-services-ads:19.6.0'
     implementation 'com.google.firebase:firebase-analytics-ktx:18.0.0'
     implementation 'com.google.firebase:firebase-inappmessaging-display-ktx:19.1.2'
 

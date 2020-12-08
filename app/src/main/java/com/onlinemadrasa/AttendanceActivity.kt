@@ -10,12 +10,14 @@ import android.webkit.SslErrorHandler
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
+import com.onlinemadrasa.utils.loadAdaptiveBanner
 import kotlinx.android.synthetic.main.activity_attendance.*
 
 class AttendanceActivity : AppCompatActivity() {
@@ -23,23 +25,21 @@ class AttendanceActivity : AppCompatActivity() {
     private lateinit var webView: WebView
     val mContext: Context = this@AttendanceActivity
     lateinit var progress: ProgressBar
-    lateinit var mAdView: AdView
+    lateinit var ad_rlay: RelativeLayout
 
     private lateinit var mInterstitialAd: InterstitialAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_attendance)
-        mAdView = findViewById(R.id.adView)
-        webView = findViewById(R.id.web_view);
+        webView = findViewById(R.id.web_view)
         progress = findViewById(R.id.progress)
         MobileAds.initialize(mContext) {}
         mInterstitialAd = InterstitialAd(mContext)
         mInterstitialAd.adUnitId = getString(R.string.inters_ad_id)
         mInterstitialAd.loadAd(AdRequest.Builder().build())
         startWebView(getString(R.string.attendance_url))
-
-
+        ad_rlay = findViewById(R.id.ad_rlay)
 
         backImv.setOnClickListener {
             finish()
@@ -48,8 +48,7 @@ class AttendanceActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+        loadAdaptiveBanner(this, ad_rlay)
     }
 
     private fun startWebView(url: String) {
@@ -134,14 +133,14 @@ class AttendanceActivity : AppCompatActivity() {
             alertDialog.setMessage(message)
             alertDialog.setButton(
                 DialogInterface.BUTTON_POSITIVE,
-                "OK",
-                DialogInterface.OnClickListener { dialog, which -> // Ignore SSL certificate errors
-                    handler?.proceed()
-                })
+                "OK"
+            ) { dialog, which -> // Ignore SSL certificate errors
+                handler?.proceed()
+            }
             alertDialog.setButton(
                 DialogInterface.BUTTON_NEGATIVE,
-                "Cancel",
-                DialogInterface.OnClickListener { dialog, which -> handler?.cancel() })
+                "Cancel"
+            ) { dialog, which -> handler?.cancel() }
             alertDialog.show()
         }
     }

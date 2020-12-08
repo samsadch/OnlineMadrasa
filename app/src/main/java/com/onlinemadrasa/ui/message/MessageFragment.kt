@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.onlinemadrasa.R
 import com.onlinemadrasa.model.PostComment
 import com.onlinemadrasa.utils.Utils
+import com.onlinemadrasa.utils.loadAdaptiveBanner
 
 class MessageFragment : Fragment() {
 
@@ -27,9 +29,7 @@ class MessageFragment : Fragment() {
     var messageText: String? = null
     var nameText: String? = null
     var contactText: String? = null
-
-    private lateinit var viewModel: MessageViewModel
-
+    lateinit var ad_rlay: RelativeLayout
     private lateinit var mInterstitialAd: InterstitialAd
 
     private var clicked = false
@@ -48,11 +48,11 @@ class MessageFragment : Fragment() {
         comments_edit = view.findViewById(R.id.comments_edit)
         name_edit = view.findViewById(R.id.name_edit)
         contact_edit = view.findViewById(R.id.contact_edit)
-
+        ad_rlay = view.findViewById(R.id.ad_rlay)
         MobileAds.initialize(requireContext()) {}
         mInterstitialAd = InterstitialAd(requireContext())
         mInterstitialAd.adUnitId = getString(R.string.inters_ad_id)
-
+        loadAdaptiveBanner(requireContext(), ad_rlay)
         mInterstitialAd.loadAd(AdRequest.Builder().build())
 
         submitText?.setOnClickListener {
@@ -66,8 +66,8 @@ class MessageFragment : Fragment() {
                         sendMessage(messageText!!, nameText!!, contactText!!)
                     }
                 }
-            }else{
-                Utils.showIosDialog(requireContext(),"Please enter your feedback")
+            } else {
+                Utils.showIosDialog(requireContext(), "Please enter your feedback")
             }
             //findNavController().popBackStack()
         }
@@ -99,11 +99,6 @@ class MessageFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MessageViewModel::class.java)
     }
 
     fun sendMessage(message: String, nameText: String, contact: String) {

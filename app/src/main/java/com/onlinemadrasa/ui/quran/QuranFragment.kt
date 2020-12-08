@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.RelativeLayout
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import com.github.barteksc.pdfviewer.PDFView
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
 import com.onlinemadrasa.R
 import com.onlinemadrasa.adapter.SurahAdapter
 import com.onlinemadrasa.utils.PrefManager
+import com.onlinemadrasa.utils.loadAdaptiveBanner
 
 
 class QuranFragment : Fragment() {
@@ -22,6 +22,7 @@ class QuranFragment : Fragment() {
     lateinit var pdfView: PDFView
     lateinit var prefM: PrefManager
     lateinit var juzSpinner: Spinner
+    lateinit var second_rlay: RelativeLayout
 
     val pagenum = intArrayOf(
         0, 1, 44, 68, 94, 114, 135, 159, 168, 186,
@@ -184,6 +185,7 @@ class QuranFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         try {
+            second_rlay = view.findViewById(R.id.second_rlay)
             stringBuilder = StringBuilder()
             stringBuilder.append("pdf/quran_ar_full.pdf")
             prefM = PrefManager(requireContext())
@@ -196,9 +198,7 @@ class QuranFragment : Fragment() {
                 list.add(i)
             }
 
-            val mAdView: AdView = view.findViewById(R.id.adView)
-            val adRequest = AdRequest.Builder().build()
-            mAdView.loadAd(adRequest)
+            loadAdaptiveBanner(requireContext(), second_rlay)
 
 
             val adapter =

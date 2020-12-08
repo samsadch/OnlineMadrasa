@@ -31,9 +31,9 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:tint="@color/white"
             android:visibility="gone"
-            app:srcCompat="@drawable/ic_more" />
+            app:srcCompat="@drawable/ic_more"
+            app:tint="@color/white" />
 
 
         <ImageView
@@ -45,8 +45,8 @@
             android:layout_marginRight="10dp"
             android:layout_toStartOf="@+id/listImv"
             android:layout_toLeftOf="@+id/listImv"
-            android:tint="@color/white"
-            app:srcCompat="@drawable/ic_view_card" />
+            app:srcCompat="@drawable/ic_view_card"
+            app:tint="@color/white" />
 
 
         <ImageView
@@ -58,9 +58,9 @@
             android:layout_marginRight="10dp"
             android:layout_toStartOf="@+id/gridImv"
             android:layout_toLeftOf="@+id/gridImv"
-            android:tint="@color/white"
             android:visibility="visible"
-            app:srcCompat="@drawable/ic_view_list" />
+            app:srcCompat="@drawable/ic_view_list"
+            app:tint="@color/white" />
 
 
         <ImageView
@@ -72,8 +72,8 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:tint="@color/white"
-            app:srcCompat="@drawable/ic_grid" />
+            app:srcCompat="@drawable/ic_grid"
+            app:tint="@color/white" />
 
     </RelativeLayout>
 
@@ -84,7 +84,6 @@
         android:layout_above="@+id/adRlay"
         android:layout_below="@+id/actionbar"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         tools:listitem="@layout/list_item_records" />
@@ -97,7 +96,6 @@
         android:layout_above="@+id/adRlay"
         android:layout_below="@+id/actionbar"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:visibility="gone"
@@ -110,7 +108,6 @@
         android:layout_above="@+id/adRlay"
         android:layout_below="@+id/actionbar"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:visibility="gone"
@@ -119,21 +116,9 @@
     <RelativeLayout
         android:id="@+id/adRlay"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/ad_height"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="4dp"
-        android:background="@drawable/square_background"
-        android:visibility="visible">
-
-        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_unit_id" />
-
-    </RelativeLayout>
+        android:visibility="visible" />
 
 </RelativeLayout>

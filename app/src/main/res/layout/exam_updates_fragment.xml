@@ -8,8 +8,8 @@
         android:id="@+id/selector_rlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
         android:gravity="center">
 
         <TextView
@@ -24,10 +24,10 @@
             android:id="@+id/juz_spinner"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:spinnerMode="dialog"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/text_juz"
-            android:layout_toRightOf="@+id/text_juz" />
+            android:layout_toRightOf="@+id/text_juz"
+            android:spinnerMode="dialog" />
 
     </RelativeLayout>
 
@@ -41,18 +41,9 @@
     <RelativeLayout
         android:id="@+id/second_rlay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/ad_height"
         android:layout_alignParentBottom="true"
-        android:layout_margin="4dp"
         android:background="@drawable/square_background">
-
-        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_unit_id" />
 
     </RelativeLayout>
 

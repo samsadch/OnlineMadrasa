@@ -11,17 +11,19 @@ import android.webkit.SslErrorHandler
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.onlinemadrasa.R
+import com.onlinemadrasa.utils.loadAdaptiveBanner
 
 
 class AboutFragment : Fragment() {
 
     private lateinit var webView: WebView
     lateinit var mContext: Context
-    private lateinit var viewModel: AboutViewModel
+    private lateinit var ad_rlay: RelativeLayout
     lateinit var progress: ProgressBar
 
     override fun onCreateView(
@@ -31,8 +33,9 @@ class AboutFragment : Fragment() {
         val view = inflater.inflate(R.layout.about_fragment, container, false)
         webView = view.findViewById(R.id.web_view);
         progress = view.findViewById(R.id.progress)
+        ad_rlay = view.findViewById(R.id.ad_rlay)
         mContext = requireContext()
-        startWebView("https://online-madrasa-118e7.web.app/");
+        startWebView("https://online-madrasa-118e7.web.app/")
         return view
     }
 
@@ -92,9 +95,9 @@ class AboutFragment : Fragment() {
     }
 
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(AboutViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loadAdaptiveBanner(requireContext(), ad_rlay)
     }
 
     private class SSLTolerentWebViewClient(var context: Context) : WebViewClient() {

@@ -2,23 +2,24 @@ package com.onlinemadrasa.ui.story
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.onlinemadrasa.BuildConfig
 import com.onlinemadrasa.R
 import com.onlinemadrasa.model.StoryItem
+import com.onlinemadrasa.utils.loadAdaptiveBanner
 import kotlinx.android.synthetic.main.activity_storydetail.*
 
 
 class StorydetailActivity : AppCompatActivity() {
-    lateinit var mAdView: AdView
+    lateinit var bottom_ad: RelativeLayout
     lateinit var storyItem: StoryItem
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_storydetail)
-        mAdView = findViewById(R.id.adView)
-
+        bottom_ad = findViewById(R.id.bottom_ad)
         storyItem = intent.getParcelableExtra("ITEM")
         if (storyItem != null) {
             content_text.text = storyItem.content
@@ -44,7 +45,6 @@ class StorydetailActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+        loadAdaptiveBanner(this, bottom_ad)
     }
 }

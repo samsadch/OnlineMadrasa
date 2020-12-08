@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,22 +14,22 @@ import com.onlinemadrasa.R
 import com.onlinemadrasa.adapter.NotesAdapter
 import com.onlinemadrasa.utils.OnAlertShow
 import com.onlinemadrasa.utils.Utils
+import com.onlinemadrasa.utils.loadAdaptiveBanner
 
 class NotesFragment : Fragment(), OnAlertShow {
 
-    lateinit var adView: AdView
     lateinit var notesRcv: RecyclerView
     lateinit var notesAdapter: NotesAdapter
     lateinit var onAlertShow: OnAlertShow
     var list = ArrayList<String>()
-
+    lateinit var second_rlay: RelativeLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.notes_fragment, container, false)
-        adView = view.findViewById(R.id.adView)
+        second_rlay = view.findViewById(R.id.second_rlay)
         notesRcv = view.findViewById(R.id.notesRcv)
         onAlertShow = this
         notesRcv.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -39,8 +40,7 @@ class NotesFragment : Fragment(), OnAlertShow {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adReqest = AdRequest.Builder().build()
-        adView.loadAd(adReqest)
+        loadAdaptiveBanner(requireContext(), second_rlay)
         list.add("PL5kzoTlCQzkGLCKMpbIDddYeT03OrCPEY")
         list.add("PL5kzoTlCQzkEE52V2pMOvwJ6YjOuTPxwO")
         list.add("PL5kzoTlCQzkGwRP75MqEi28cI841LXo3P")

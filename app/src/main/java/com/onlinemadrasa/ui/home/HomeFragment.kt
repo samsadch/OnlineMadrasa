@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -19,6 +20,7 @@ import com.onlinemadrasa.R
 import com.onlinemadrasa.adapter.MainAdapter
 import com.onlinemadrasa.utils.OnAlertShow
 import com.onlinemadrasa.utils.Utils
+import com.onlinemadrasa.utils.loadAdaptiveBanner
 
 class HomeFragment : Fragment(), OnAlertShow {
 
@@ -27,17 +29,14 @@ class HomeFragment : Fragment(), OnAlertShow {
     private var mYoutubeDataApi: YouTube? = null
     private val mJsonFactory = GsonFactory()
     private val mTransport = AndroidHttp.newCompatibleTransport()
-
+    private lateinit var ad_rlay: RelativeLayout
     private var onAlertShow: OnAlertShow = this
-    lateinit var mAdView: AdView
 
-    private lateinit var homeViewModel: HomeViewModel
 
     external fun getArrayIDS(): String
 
-    companion object{
+    companion object {
         init {
-            //System.load("keys")
             System.loadLibrary("native-lib")
         }
     }
@@ -47,16 +46,9 @@ class HomeFragment : Fragment(), OnAlertShow {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        mAdView = root.findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+        ad_rlay = root.findViewById(R.id.ad_rlay)
+        loadAdaptiveBanner(requireContext(), ad_rlay)
         return root
     }
 

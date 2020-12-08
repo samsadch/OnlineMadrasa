@@ -7,13 +7,20 @@
     <WebView
         android:id="@+id/web_view"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/ad_rlay" />
 
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:visibility="gone"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/ad_rlay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ad_height"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

@@ -10,7 +10,7 @@
     <!--banner_id-->
     <string name="banner_unit_id">ca-app-pub-3884484176623181/9520092830</string>
     <!--test-id-->
-    <!-- <string name="banner_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
+     <!--<string name="banner_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
     <!--interstitial-->
     <string name="inters_ad_id">ca-app-pub-3884484176623181/4695991624</string>
     <!--test interstitial-->

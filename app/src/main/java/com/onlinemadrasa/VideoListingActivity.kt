@@ -31,6 +31,7 @@ import com.onlinemadrasa.model.OnVideoSelect
 import com.onlinemadrasa.model.PlaylistVideos
 import com.onlinemadrasa.network.GetTask
 import com.onlinemadrasa.utils.Utils
+import com.onlinemadrasa.utils.loadAdaptiveBanner
 import kotlinx.android.synthetic.main.activity_video_listing.*
 import java.util.*
 
@@ -51,9 +52,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     private var mPlaylistVideos: PlaylistVideos? = null
     private var mPlaylistCardAdapter: PlaylistCardAdapterNew? = null
     private var mPlaylistCardAdapterOld: PlaylistCardAdapter? = null
-    private var adRlay: RelativeLayout? = null
-
-    private var adView: AdColonyAdView? = null
+    private lateinit var adRlay: RelativeLayout
 
     private lateinit var mInterstitialAd: InterstitialAd
 
@@ -77,6 +76,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         gridRcv = findViewById(R.id.gridRcv)
         tileRcv = findViewById(R.id.tileRcv)
         adRlay = findViewById(R.id.adRlay)
+        adRlay = findViewById(R.id.adRlay)
         youtubePlayListItem = intent.getStringExtra("ITEM")
 
         MobileAds.initialize(context) {}
@@ -85,14 +85,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
         mInterstitialAd.loadAd(AdRequest.Builder().build())
 
-        val mAdView: AdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
-
-
-        if (adRlay?.childCount!! > 0) {
-            adRlay?.removeView(adView)
-        }
+        loadAdaptiveBanner(this, adRlay)
 
         //card
         //listRcv.layoutManager = LinearLayoutManager(context)
@@ -140,7 +133,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
             gridRcv.visibility = View.VISIBLE
             tileRcv.visibility = View.GONE
             listRcv.visibility = View.GONE
-            
+
             mInterstitialAd.loadAd(AdRequest.Builder().build())
             if (mInterstitialAd.isLoaded) {
                 mInterstitialAd.show()

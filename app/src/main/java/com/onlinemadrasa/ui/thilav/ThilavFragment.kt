@@ -10,7 +10,6 @@ import com.onlinemadrasa.R
 
 class ThilavFragment : Fragment() {
 
-    private lateinit var viewModel: ThilavViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,7 +21,6 @@ class ThilavFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ThilavViewModel::class.java)
     }
 
 }

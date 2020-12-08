@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import com.onlinemadrasa.R
 import com.onlinemadrasa.adapter.RedirectAdapter
 import com.onlinemadrasa.utils.OnAlertShow
 import com.onlinemadrasa.utils.Utils
+import com.onlinemadrasa.utils.loadAdaptiveBanner
 
 class DirectFragment : Fragment(), OnAlertShow {
 
@@ -24,10 +26,8 @@ class DirectFragment : Fragment(), OnAlertShow {
     private var mYoutubeDataApi: YouTube? = null
     private val mJsonFactory = GsonFactory()
     private val mTransport = AndroidHttp.newCompatibleTransport()
-
+    private lateinit var ad_rlay: RelativeLayout
     private var onAlertShow: OnAlertShow = this
-
-    lateinit var mAdView: AdView
 
     external fun getArrayIDS(): String
 
@@ -43,19 +43,15 @@ class DirectFragment : Fragment(), OnAlertShow {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_gallery, container, false)
-        mAdView = root.findViewById(R.id.adView)
+        ad_rlay = root.findViewById(R.id.ad_rlay)
+        loadAdaptiveBanner(requireContext(), ad_rlay)
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         mainRcv = view.findViewById(R.id.mainRcv)
         mainRcv.layoutManager = GridLayoutManager(context, 2)
-
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
-
         var list: ArrayList<String> = ArrayList()
         val array = getArrayIDS()
         val splitValues = array.split(",")
