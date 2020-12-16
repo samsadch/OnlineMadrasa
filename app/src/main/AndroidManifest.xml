@@ -22,7 +22,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/ad_app_id_kul" />
+            android:value="ca-app-pub-3884484176623181~4953403697" />
 
         <activity
             android:name=".HomeActivity"
