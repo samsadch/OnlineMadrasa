@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide
 import com.onlinemadrasa.AttendanceActivity
 import com.onlinemadrasa.R
 import com.onlinemadrasa.utils.OnAlertShow
+import com.onlinemadrasa.utils.loadFromGlide
+import com.onlinemadrasa.utils.loadImage
 
 
 class RedirectAdapter(
@@ -41,7 +43,7 @@ class RedirectAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
         val clas = position + 1
-        holder.itemTxv.text = "Class ${clas - 3}"
+        holder.itemTxv.text = "Class ${clas - 4}"
 
         holder.containerRlay.setOnClickListener {
             if (position == 0) {
@@ -96,140 +98,36 @@ class RedirectAdapter(
                 holder.itemTxv.text = context.getString(R.string.submit_attendance)
             }
             1 -> {
-                try {
-                    holder.itemTxv.text = context.getString(R.string.thilava)
-                    Glide.with(context).load(R.drawable.thilava).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+                holder.itemTxv.text = context.getString(R.string.thilava)
+                holder.itemImv.loadFromGlide(context, R.drawable.thilava)
             }
             2 -> {
-                try {
-                    holder.itemTxv.text = context.getString(R.string.diffrently_abled)
-                    Glide.with(context).load(R.drawable.image_one).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+                holder.itemTxv.text = context.getString(R.string.diffrently_abled)
+                holder.itemImv.loadFromGlide(context, R.drawable.image_one)
             }
-            2 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_two).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
+
             3 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_three).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            4 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_four).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            5 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_five).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            6 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_six).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            7 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_seven).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            8 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_eight).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            9 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_nine).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            10 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_ten).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            11 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_one).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            12 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_two).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            13 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_three).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
-            }
-            14 -> {
-                try {
-                    Glide.with(context).load(R.drawable.image_five).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
-            }
-            15 -> {
-                try {
-                    holder.itemTxv.text = context.getString(R.string.announcement)
-                    Glide.with(context).load(R.drawable.image_four).centerInside()
-                        .into(holder.itemImv);
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
+                holder.itemTxv.text = context.getString(R.string.general_programs)
+                holder.itemImv.loadFromGlide(context, R.drawable.image_seven)
             }
 
+            in 4..15 -> {
+                loadImage(context, position, holder.itemImv)
+            }
+
+            16 -> {
+                holder.itemTxv.text = context.getString(R.string.urdu)
+                holder.itemImv.loadFromGlide(context, R.drawable.image_six)
+            }
+            17 -> {
+                holder.itemTxv.text = context.getString(R.string.hanafi_fiqh)
+                holder.itemImv.loadFromGlide(context, R.drawable.image_one)
+            }
+
+            18 -> {
+                holder.itemTxv.text = context.getString(R.string.announcement)
+                holder.itemImv.loadFromGlide(context, R.drawable.image_four)
+            }
         }
     }
 
@@ -239,7 +137,7 @@ class RedirectAdapter(
         val containerRlay: RelativeLayout = itemView.findViewById(R.id.containerRlay)
     }
 
-    fun isOnline(context: Context): Boolean {
+    private fun isOnline(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo

@@ -147,7 +147,7 @@ class AttendanceActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        webView?.onPause()
+        webView.onPause()
     }
 
 }

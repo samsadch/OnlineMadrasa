@@ -13,12 +13,13 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.onlinemadrasa.AttendanceActivity
 import com.onlinemadrasa.R
 import com.onlinemadrasa.VideoListingActivity
 import com.onlinemadrasa.utils.OnAlertShow
 import com.onlinemadrasa.utils.Utils
+import com.onlinemadrasa.utils.loadFromGlide
+import com.onlinemadrasa.utils.loadImage
 
 class MainAdapter(
     var context: Context,
@@ -45,13 +46,13 @@ class MainAdapter(
         try {
             val item = list[position]
             val clas = position + 1
-            holder.itemTxv.text = "Class ${clas - 3}"
+            holder.itemTxv.text = "Class ${clas - 4}"
 
             holder.containerRlay.setOnClickListener {
                 val item = list[position]
                 if (position == 0) {
                     try {
-                        context.startActivity(Intent(context,AttendanceActivity::class.java))
+                        context.startActivity(Intent(context, AttendanceActivity::class.java))
                     } catch (e: Exception) {
                         val browserIntent =
                             Intent(
@@ -90,135 +91,40 @@ class MainAdapter(
             }
             when (position) {
                 0 -> {
-                    Glide.with(context).load(R.drawable.image_ten).into(holder.itemImv);
-                    //holder.itemImv.setBackgroundResource(R.drawable.image_ten)
                     holder.itemTxv.text = context.getString(R.string.submit_attendance)
+                    holder.itemImv.loadFromGlide(context, R.drawable.image_ten)
                 }
                 1 -> {
-                    try {
-                        holder.itemTxv.text = context.getString(R.string.thilava)
-                        Glide.with(context).load(R.drawable.thilava).into(holder.itemImv);
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_one)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
+                    holder.itemTxv.text = context.getString(R.string.thilava)
+                    holder.itemImv.loadFromGlide(context, R.drawable.thilava)
                 }
                 2 -> {
-                    try {
-                        holder.itemTxv.text = context.getString(R.string.diffrently_abled)
-                        Glide.with(context).load(R.drawable.image_one).into(holder.itemImv);
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_two)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
+                    holder.itemTxv.text = context.getString(R.string.diffrently_abled)
+                    holder.itemImv.loadFromGlide(context, R.drawable.image_one)
                 }
+
                 3 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_three).centerInside()
-                            .into(holder.itemImv);
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_three)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
+                    holder.itemTxv.text = context.getString(R.string.general_programs)
+                    holder.itemImv.loadFromGlide(context, R.drawable.image_seven)
                 }
-                4 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_four).into(holder.itemImv);
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_four)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-                5 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_five).into(holder.itemImv);
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_five)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-                6 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_six).into(holder.itemImv);
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_six)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-                7 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_seven).into(holder.itemImv);
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_seven)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-                8 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_eight).into(holder.itemImv);
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_eight)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-                9 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_three).into(holder.itemImv);
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_three)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-                10 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_nine).into(holder.itemImv);
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_nine)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-                11 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_ten).into(holder.itemImv);
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_ten)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-                12 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_one).into(holder.itemImv);
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_one)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-                13 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_two).into(holder.itemImv)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-                14 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_three).into(holder.itemImv)
-                        //holder.itemTxv.text = context.getString(R.string.announcement)
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_nine)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
 
+                in 4..15 -> {
+                    loadImage(context, position, holder.itemImv)
                 }
-                15 -> {
-                    try {
-                        Glide.with(context).load(R.drawable.image_six).into(holder.itemImv)
-                        holder.itemTxv.text = context.getString(R.string.announcement)
-                        //holder.itemImv.setBackgroundResource(R.drawable.image_nine)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
 
+                16 -> {
+                    holder.itemTxv.text = context.getString(R.string.urdu)
+                    holder.itemImv.loadFromGlide(context, R.drawable.image_three)
+                }
+
+                17 -> {
+                    holder.itemTxv.text = context.getString(R.string.hanafi_fiqh)
+                    holder.itemImv.loadFromGlide(context, R.drawable.image_one)
+                }
+
+                18 -> {
+                    holder.itemTxv.text = context.getString(R.string.announcement)
+                    holder.itemImv.loadFromGlide(context, R.drawable.image_six)
                 }
             }
         } catch (e: Exception) {

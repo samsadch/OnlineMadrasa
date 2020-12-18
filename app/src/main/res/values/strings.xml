@@ -2,7 +2,7 @@
     <string name="app_name">Online Madrasa</string>
     <string name="circular">Circular</string>
     <string name="submit_attendance">Attendance</string>
-    <string name="attendance_url">http://www.onlineclass.samastha.info/report</string>
+    <string name="attendance_url">http://onlineclass.samastha.info/report</string>
     <string name="youtube_pacakage">com.google.android.youtube</string>
     <string name="ad_attribution">Ad</string>
     <string name="default_notification_channel_id">123123</string>
@@ -49,4 +49,7 @@
     <string name="smartschool_link">http://play.google.com/store/apps/details?id=com.smartschools</string>
     <string name="smart_school">Smart School</string>
     <string name="story_title">ചരിത്രകഥകൾ</string>
+    <string name="urdu">Urdu Class</string>
+    <string name="hanafi_fiqh">Hanafi Fiqh</string>
+    <string name="general_programs">PROGRAMS</string>
 </resources>

@@ -59,7 +59,7 @@ class PlayerActivity : YouTubeFailureRecoveryActivity(), OnFullscreenListener,
             }
         }
 
-        val youTubeView = findViewById(R.id.youtube_view) as YouTubePlayerView
+        val youTubeView = findViewById<YouTubePlayerView>(R.id.youtube_view)
         youTubeView.initialize(apiKey, this)
 
         MobileAds.initialize(this) {}
