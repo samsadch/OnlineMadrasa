@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.google.android.gms.ads.*
 import com.onlinemadrasa.R
+import java.util.*
 
 
 internal inline fun getAdSize(activity: Activity, container: View): AdSize {
@@ -49,17 +50,25 @@ internal inline fun loadAdaptiveBanner(
             super.onAdLoaded()
             container.visibility = View.VISIBLE
         }
+
+        override fun onAdFailedToLoad(p0: LoadAdError?) {
+            super.onAdFailedToLoad(p0)
+            Log.d("ADS", p0?.message)
+        }
     }
+
 }
 
 internal inline fun loadAdaptiveBanner(
     context: Context,
     container: FrameLayout
 ) {
+
     val adView = AdView(context)
     container.addView(adView)
     adView.adUnitId = context.getString(R.string.banner_unit_id)
     adView.adSize = getAdSize(context as Activity, container)
+
     val adRequest = AdRequest
         .Builder().build()
     adView.loadAd(adRequest)

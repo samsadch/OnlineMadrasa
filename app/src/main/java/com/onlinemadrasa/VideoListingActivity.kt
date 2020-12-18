@@ -259,8 +259,11 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
                 }
             }
         }
-        mPlaylistCardAdapter?.notifyItemRangeInserted(positionStart, result.second.size)
-        mPlaylistCardAdapterOld?.notifyItemRangeInserted(positionStart, result.second.size)
+
+        result.second?.let {
+            mPlaylistCardAdapter?.notifyItemRangeInserted(positionStart, result.second.size)
+            mPlaylistCardAdapterOld?.notifyItemRangeInserted(positionStart, result.second.size)
+        }
 
         if (isFirstTime == 1 || isFirstTime == 7) {
             isFirstTime += 1

@@ -55,7 +55,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         MobileAds.initialize(this) {}
-        val testDeviceIds = listOf("37646F557B07826A794A8F1B5552F9A6")
+        val testDeviceIds = listOf("E2E9731DE05D993168487E339C06DF13")
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
         MobileAds.setRequestConfiguration(configuration)
 
