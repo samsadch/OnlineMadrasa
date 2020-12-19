@@ -164,10 +164,6 @@ class HomeActivity : AppCompatActivity() {
                 //launchMarket()
                 true
             }
-            R.id.action_smart -> {
-                openWebPage(context, getString(R.string.smartschool_link))
-                true
-            }
             else -> {
                 super.onOptionsItemSelected(item)
             }
