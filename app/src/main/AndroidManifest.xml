@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3884484176623181~4953403697" />
+
+
         <activity android:name=".ui.story.StorydetailActivity"></activity>
         <activity android:name=".ui.story.StoryActivity" />
         <activity android:name=".AttendanceActivity" />
@@ -19,11 +25,7 @@
             android:name=".PlayerActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:supportsPictureInPicture="true" />
-
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3884484176623181~4953403697" />
-
+        
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"

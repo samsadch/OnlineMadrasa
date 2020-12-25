@@ -48,6 +48,7 @@ class StoryFragment : Fragment() {
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("stories")
         mDatabase = FirebaseDatabase.getInstance().reference.child("stories")
+        mDatabase?.keepSynced(true)
         showProgress()
 
         mDatabase!!.addValueEventListener(object : ValueEventListener {

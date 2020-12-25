@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">Online Madrasa</string>
 
-    <string name="ad_app_id_sam">ca-app-pub-3884484176623181~4953403697</string>
-    <string name="ad_app_id_kul">ca-app-pub-4541415846068679~4616387925</string>
-
     <string name="circular">Circular</string>
     <string name="submit_attendance">Attendance</string>
     <string name="attendance_url">http://onlineclass.samastha.info/report</string>
@@ -14,21 +11,17 @@
 
     <!--banner_id-->
     <string name="banner_unit_id">ca-app-pub-3884484176623181/9520092830</string>
-    <!--banner_id-kulsu-->
-    <!--<string name="banner_unit_id">ca-app-pub-4541415846068679/5905774082</string>-->
     <!--test-banner-id-->
     <!--<string name="banner_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
 
     <!--interstitial-->
     <string name="inters_ad_id">ca-app-pub-3884484176623181/4695991624</string>
-    <!--interstitial-kulsu-->
-    <!--<string name="inters_ad_id">ca-app-pub-4541415846068679/7187884405</string>-->
     <!--test interstitial-->
     <!-- <string name="inters_ad_id">ca-app-pub-3940256099942544/8691691433</string>-->
 
 
-    <string name="native_ad_id">ca-app-pub-4541415846068679/8974790555</string>
-    <string name="app_open_ad_id">ca-app-pub-4541415846068679/3053198271</string>
+    <string name="native_ad_id">ca-app-pub-3884484176623181/1752525280</string>
+    <string name="app_open_ad_id">ca-app-pub-3884484176623181/9698399618</string>
 
     <string name="sample">This is a sample description of the video item that is long enough to wrap around to the next line.</string>
     <string name="ok">Ok</string>

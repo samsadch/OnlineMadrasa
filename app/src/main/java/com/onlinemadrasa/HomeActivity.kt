@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.iid.FirebaseInstanceId
 import com.onlinemadrasa.utils.Utils
 import com.onlinemadrasa.utils.openWebPage
@@ -55,6 +56,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         MobileAds.initialize(this) {}
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         val testDeviceIds = listOf("E2E9731DE05D993168487E339C06DF13")
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
         MobileAds.setRequestConfiguration(configuration)
