@@ -34,6 +34,11 @@
             android:title="@string/public_exam" />
 
         <item
+            android:id="@+id/nav_samajam"
+            android:icon="@drawable/ic_public_new"
+            android:title="@string/samajam" />
+
+        <item
             android:id="@+id/nav_syl"
             android:icon="@drawable/ic_syllabus"
             android:title="@string/syllabus" />

@@ -91,7 +91,9 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_quran,
                 R.id.nav_story,
                 R.id.nav_notes, R.id.nav_pub,
-                R.id.nav_syl, R.id.nav_message,
+                R.id.nav_syl,
+                R.id.nav_samajam,
+                R.id.nav_message,
                 R.id.nav_slideshow,
                 R.id.nav_about
             ), drawerLayout

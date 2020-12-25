@@ -74,5 +74,10 @@
         android:name="com.onlinemadrasa.ui.story.StoryFragment"
         android:label="@string/story_title"
         tools:layout="@layout/story_fragment" />
+    <fragment
+        android:id="@+id/nav_samajam"
+        android:name="com.onlinemadrasa.ui.samajam.SamajamFragment"
+        android:label="@string/samajam"
+        tools:layout="@layout/samajam_fragment" />
 
 </navigation>
