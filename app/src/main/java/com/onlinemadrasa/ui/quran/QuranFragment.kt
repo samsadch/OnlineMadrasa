@@ -17,11 +17,11 @@ import com.onlinemadrasa.utils.PrefManager
 class QuranFragment : Fragment() {
 
     private lateinit var stringBuilder: StringBuilder
-    lateinit var pdfView: PDFView
-    lateinit var prefM: PrefManager
-    lateinit var juzSpinner: Spinner
+    private lateinit var pdfView: PDFView
+    private lateinit var prefM: PrefManager
+    private lateinit var juzSpinner: Spinner
 
-    val pagenum = intArrayOf(
+    val pageNum = intArrayOf(
         0, 1, 44, 68, 94, 114, 135, 159, 168, 186,
         198, 211, 224, 230, 236, 241, 254, 265, 276, 283,
         293, 301, 310, 318, 328, 334, 344, 353, 363, 370,
@@ -36,7 +36,7 @@ class QuranFragment : Fragment() {
         567, 568, 568, 568
     )
 
-    val names = listOf(
+    private val names = listOf(
         "Al Fathiha",
         "Al Baqara",
         "Aalu Imran",
@@ -154,7 +154,7 @@ class QuranFragment : Fragment() {
     )
 
 
-    var pagenm = 0
+    private var pagenm = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -174,10 +174,6 @@ class QuranFragment : Fragment() {
         return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -189,7 +185,7 @@ class QuranFragment : Fragment() {
             this.pdfView = view.findViewById(R.id.pdfview)
             this.pdfView.fromAsset(stringBuilder.toString()).defaultPage(pagenm).load()
 
-            var list = ArrayList<Int>()
+            val list = ArrayList<Int>()
             for (i in 1..30) {
                 list.add(i)
             }
@@ -209,7 +205,7 @@ class QuranFragment : Fragment() {
                     position: Int,
                     id: Long
                 ) {
-                    goToPage(pagenum[position])
+                    goToPage(pageNum[position])
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
