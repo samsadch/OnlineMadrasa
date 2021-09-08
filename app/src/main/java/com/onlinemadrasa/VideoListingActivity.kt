@@ -131,10 +131,10 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
                                         handleGetPlaylistResult(playlistVideos, result)
                                     } else {
                                         val intent = Intent(Intent.ACTION_VIEW)
-                                        intent.data =
-                                            Uri.parse(getString(R.string.youtube_playlist_append) + youtubePlayListItem)
+                                        intent.data = Uri.parse(getString(R.string.youtube_playlist_append) + youtubePlayListItem)
                                         intent.setPackage("com.google.android.youtube")
                                         startActivity(intent)
+                                        finish()
                                     }
                                     Utils.hideProgress()
                                 }

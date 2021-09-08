@@ -70,8 +70,7 @@ class RedirectAdapter(
                         intent.putExtra("ITEM", item)
                         context.startActivity(intent)*/
                         val intent = Intent(Intent.ACTION_VIEW)
-                        intent.data =
-                            Uri.parse(context.getString(R.string.youtube_playlist_append) + item)
+                        intent.data = Uri.parse(context.getString(R.string.youtube_playlist_append) + item)
                         intent.setPackage("com.google.android.youtube")
                         context.startActivity(intent)
                     }
