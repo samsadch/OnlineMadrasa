@@ -1,6 +1,26 @@
 #include <jni.h>
 #include <string>
 
+std::string thilva = "PL42zYQiifYHB-jTB1bXKhryhUI_4J3g8D";
+std::string signLanguage = "PL42zYQiifYHDAIvYVmDtn4axkaYK84UBE";
+std::string generalPrograms = "PL42zYQiifYHAW0ZqVDJrcCnbvIFGOCwOh";
+
+std::string generalAnnounce = "PL42zYQiifYHC6PaZUC-6NoWQVAYclJRio";
+
+
+std::string stdOne = "PL42zYQiifYHB6RbtVuLuUF-LEnnoVq5ZQ";
+std::string stdTwo = "PL42zYQiifYHBnFwBviGc5YAf85kZ6wyVw";
+std::string stdThree = "PL42zYQiifYHCKdSpA6acdxu0I1Dj8BKeF";
+std::string stdFour = "L42zYQiifYHAFfF2MzzLuZ3VR2u0dQ25-";
+std::string stdFive = "PL42zYQiifYHDaaLTegGigKkAtX-na4mc-";
+std::string stdSix = "PL42zYQiifYHDyxATndSVaMauBAXlDmgE0";
+std::string stdSeven = "PL42zYQiifYHB8Xjh7UCH_5mYtoiAV5ycy";
+std::string stdEight = "PL42zYQiifYHCcqpBnsCvPLX8sxCixn7jV";
+std::string stdNine = "PL42zYQiifYHCvsnV9Jfq3xaXPXZEBKBFE";
+std::string stdTen = "PL42zYQiifYHAQWDVd5FuxtypAnX9UJb0q";
+std::string stdEleven = "PL42zYQiifYHDouZq9peR2ig_S78UIV7u6";
+std::string stdTwelve = "PL42zYQiifYHBVHMcNDqC3EQajuVQNAKyW";
+
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_onlinemadrasa_VideoListingActivity_getAPIKey(
         JNIEnv *env,
@@ -32,7 +52,13 @@ extern "C" JNIEXPORT jstring JNICALL
 Java_com_onlinemadrasa_ui_home_HomeFragment_getArrayIDS(
         JNIEnv *env,
         jobject /* this */) {
-    std::string hello = "Attendance,PL42zYQiifYHB-jTB1bXKhryhUI_4J3g8D,PL42zYQiifYHDAIvYVmDtn4axkaYK84UBE,PL42zYQiifYHAW0ZqVDJrcCnbvIFGOCwOh,PL42zYQiifYHBVnxyWEf9IEkvUfFM37dMc,PL42zYQiifYHCNPEzImPqPqmSpxrQf2Kdt,PL42zYQiifYHCvyUUGRZwZ0_MBXxG-lhcS,PL42zYQiifYHDeVy6jmIapGD1ElcdAEgll,PL42zYQiifYHCqc0jbrPvpdMuzpFLHGF5_,PL42zYQiifYHBhD7_Pvelpe90GrO243fZ_,PL42zYQiifYHApFb0-vfPjwNGtb7S8tAb8,PL42zYQiifYHDNn2PcZrc4LuLyiTAp7kxF,PL42zYQiifYHBcYtQdIG9ro_I7FqEiLQIg,PL42zYQiifYHCMc8sF6m5dzkkrG9drKAAC,PL42zYQiifYHBu1gdGHrYNdwoSd9SFhTnk,PL42zYQiifYHDy7FLW4-Og6RmLo1qM10q_,PL42zYQiifYHDbyNA3aXyvivF2z-D5B6QQ,PL42zYQiifYHDbH0GX3EFJUtvmcviiBbe9,PL42zYQiifYHC6PaZUC-6NoWQVAYclJRio";
+    std::string hello =
+            "Attendance," + thilva + "," + signLanguage + "," + generalPrograms + "," + stdOne +
+            "," + stdTwo + "," + stdThree + "," + stdFour + "," + stdFive + "," + stdSix + "," +
+            stdSeven + "," + stdEight + "," + stdNine +
+            "," + stdTen + "," + stdEleven + "," + stdTwelve +
+            ",PL42zYQiifYHDbyNA3aXyvivF2z-D5B6QQ,PL42zYQiifYHDbH0GX3EFJUtvmcviiBbe9," +
+            generalAnnounce + "";
     return env->NewStringUTF(hello.c_str());
 }
 
@@ -40,6 +66,12 @@ extern "C" JNIEXPORT jstring JNICALL
 Java_com_onlinemadrasa_ui_direct_DirectFragment_getArrayIDS(
         JNIEnv *env,
         jobject /* this */) {
-    std::string hello = "Submit Attendance,PL42zYQiifYHB-jTB1bXKhryhUI_4J3g8D,PL42zYQiifYHDAIvYVmDtn4axkaYK84UBE,PL42zYQiifYHAW0ZqVDJrcCnbvIFGOCwOh,PL42zYQiifYHBVnxyWEf9IEkvUfFM37dMc,PL42zYQiifYHCNPEzImPqPqmSpxrQf2Kdt,PL42zYQiifYHCvyUUGRZwZ0_MBXxG-lhcS,PL42zYQiifYHDeVy6jmIapGD1ElcdAEgll,PL42zYQiifYHCqc0jbrPvpdMuzpFLHGF5_,PL42zYQiifYHBhD7_Pvelpe90GrO243fZ_,PL42zYQiifYHApFb0-vfPjwNGtb7S8tAb8,PL42zYQiifYHDNn2PcZrc4LuLyiTAp7kxF,PL42zYQiifYHBcYtQdIG9ro_I7FqEiLQIg,PL42zYQiifYHCMc8sF6m5dzkkrG9drKAAC,PL42zYQiifYHBu1gdGHrYNdwoSd9SFhTnk,PL42zYQiifYHDy7FLW4-Og6RmLo1qM10q_,PL42zYQiifYHDbyNA3aXyvivF2z-D5B6QQ,PL42zYQiifYHDbH0GX3EFJUtvmcviiBbe9,PL42zYQiifYHC6PaZUC-6NoWQVAYclJRio";
+    std::string hello =
+            "Submit Attendance," + thilva + "," + signLanguage + "," + generalPrograms + "," +
+            stdOne + "," + stdTwo + "," + stdThree + "," + stdFour + "," + stdFive + "," + stdSix +
+            "," + stdSeven + "," + stdEight + "," + stdNine +
+            "," + stdTen + "," + stdEleven + "," + stdTwelve +
+            ",PL42zYQiifYHDbyNA3aXyvivF2z-D5B6QQ,PL42zYQiifYHDbH0GX3EFJUtvmcviiBbe9," +
+            generalAnnounce + "";
     return env->NewStringUTF(hello.c_str());
 }

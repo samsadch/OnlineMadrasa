@@ -4,20 +4,14 @@ import android.content.Context
 import android.content.DialogInterface
 import android.net.http.SslError
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.webkit.SslErrorHandler
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
-import android.widget.RelativeLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
-import com.onlinemadrasa.utils.loadAdaptiveBanner
 import kotlinx.android.synthetic.main.activity_attendance.*
 
 class AttendanceActivity : AppCompatActivity() {
@@ -25,9 +19,6 @@ class AttendanceActivity : AppCompatActivity() {
     private lateinit var webView: WebView
     val mContext: Context = this@AttendanceActivity
     lateinit var progress: ProgressBar
-    lateinit var ad_rlay: RelativeLayout
-
-    private lateinit var mInterstitialAd: InterstitialAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,20 +26,10 @@ class AttendanceActivity : AppCompatActivity() {
         webView = findViewById(R.id.web_view)
         progress = findViewById(R.id.progress)
         MobileAds.initialize(mContext) {}
-        mInterstitialAd = InterstitialAd(mContext)
-        mInterstitialAd.adUnitId = getString(R.string.inters_ad_id)
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
         startWebView(getString(R.string.attendance_url))
-        ad_rlay = findViewById(R.id.ad_rlay)
-
         backImv.setOnClickListener {
             finish()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        loadAdaptiveBanner(this, ad_rlay)
     }
 
     private fun startWebView(url: String) {
@@ -104,12 +85,6 @@ class AttendanceActivity : AppCompatActivity() {
         webView.webViewClient = SSLTolerentWebViewClient(mContext)
         webView.loadUrl(url)
 
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
-        if (mInterstitialAd.isLoaded) {
-            mInterstitialAd.show()
-        } else {
-            Log.d("TAG", "The interstitial wasn't loaded yet.")
-        }
     }
 
 

@@ -3,7 +3,7 @@
 
     <string name="circular">Circular</string>
     <string name="submit_attendance">Attendance</string>
-    <string name="attendance_url">http://onlineclass.samastha.info/report</string>
+    <string name="attendance_url">https://onlineclass.samastha.info/report</string>
     <string name="youtube_pacakage">com.google.android.youtube</string>
     <string name="ad_attribution">Ad</string>
     <string name="default_notification_channel_id">123123</string>
