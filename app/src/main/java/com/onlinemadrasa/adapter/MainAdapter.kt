@@ -139,7 +139,7 @@ class MainAdapter(
         val containerRlay: RelativeLayout = itemView.findViewById(R.id.containerRlay)
     }
 
-    fun isOnline(context: Context): Boolean {
+    private fun isOnline(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo

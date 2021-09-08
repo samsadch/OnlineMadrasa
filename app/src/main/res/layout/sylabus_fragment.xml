@@ -7,17 +7,7 @@
         android:id="@+id/sylRcv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/second_rlay"
         android:layout_alignParentTop="true"
         android:layout_margin="16dp" />
-
-    <RelativeLayout
-        android:id="@+id/second_rlay"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/ad_height"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/square_background">
-
-    </RelativeLayout>
 
 </RelativeLayout>

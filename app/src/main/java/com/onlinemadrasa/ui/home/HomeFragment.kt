@@ -4,15 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
 import com.google.api.client.extensions.android.http.AndroidHttp
 import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.youtube.YouTube
@@ -20,7 +14,6 @@ import com.onlinemadrasa.R
 import com.onlinemadrasa.adapter.MainAdapter
 import com.onlinemadrasa.utils.OnAlertShow
 import com.onlinemadrasa.utils.Utils
-import com.onlinemadrasa.utils.loadAdaptiveBanner
 
 class HomeFragment : Fragment(), OnAlertShow {
 
@@ -29,7 +22,6 @@ class HomeFragment : Fragment(), OnAlertShow {
     private var mYoutubeDataApi: YouTube? = null
     private val mJsonFactory = GsonFactory()
     private val mTransport = AndroidHttp.newCompatibleTransport()
-    private lateinit var ad_rlay: RelativeLayout
     private var onAlertShow: OnAlertShow = this
 
 
@@ -46,10 +38,7 @@ class HomeFragment : Fragment(), OnAlertShow {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        ad_rlay = root.findViewById(R.id.ad_rlay)
-        loadAdaptiveBanner(requireContext(), ad_rlay)
-        return root
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,9 +47,9 @@ class HomeFragment : Fragment(), OnAlertShow {
         mainRcv = view.findViewById(R.id.mainRcv)
         mainRcv.layoutManager = GridLayoutManager(context, 2)
 
-        var list: ArrayList<String> = ArrayList()
-        var arrayString = getArrayIDS()
-        var splitValues = arrayString.split(",")
+        val list: ArrayList<String> = ArrayList()
+        val arrayString = getArrayIDS()
+        val splitValues = arrayString.split(",")
         for (value in splitValues) {
             list.add(value)
         }

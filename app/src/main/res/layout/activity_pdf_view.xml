@@ -4,48 +4,9 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <RelativeLayout
-        android:id="@+id/first_rlay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:background="@drawable/square_background">
-
-        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_unit_id" />
-
-    </RelativeLayout>
-
-
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/second_rlay"
-        android:layout_below="@id/first_rlay" />
-
-    <RelativeLayout
-        android:id="@+id/second_rlay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="4dp"
-        android:background="@drawable/square_background">
-
-        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_unit_id" />
-
-    </RelativeLayout>
-
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

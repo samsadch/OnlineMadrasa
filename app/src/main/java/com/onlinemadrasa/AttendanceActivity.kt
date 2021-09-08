@@ -11,7 +11,6 @@ import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_attendance.*
 
 class AttendanceActivity : AppCompatActivity() {
@@ -25,7 +24,6 @@ class AttendanceActivity : AppCompatActivity() {
         setContentView(R.layout.activity_attendance)
         webView = findViewById(R.id.web_view)
         progress = findViewById(R.id.progress)
-        MobileAds.initialize(mContext) {}
         startWebView(getString(R.string.attendance_url))
         backImv.setOnClickListener {
             finish()

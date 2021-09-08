@@ -6,20 +6,13 @@ import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.util.Pair
 import android.view.View
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.adcolony.sdk.AdColonyAdView
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import com.google.api.client.extensions.android.http.AndroidHttp
 import com.google.api.client.json.gson.GsonFactory
@@ -31,7 +24,6 @@ import com.onlinemadrasa.model.OnVideoSelect
 import com.onlinemadrasa.model.PlaylistVideos
 import com.onlinemadrasa.network.GetTask
 import com.onlinemadrasa.utils.Utils
-import com.onlinemadrasa.utils.loadAdaptiveBanner
 import kotlinx.android.synthetic.main.activity_video_listing.*
 import java.util.*
 
@@ -52,9 +44,6 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
     private var mPlaylistVideos: PlaylistVideos? = null
     private var mPlaylistCardAdapter: PlaylistCardAdapterNew? = null
     private var mPlaylistCardAdapterOld: PlaylistCardAdapter? = null
-    private lateinit var adRlay: RelativeLayout
-
-    private lateinit var mInterstitialAd: InterstitialAd
 
     private var isFirstTime = 0
 
@@ -62,7 +51,6 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
     companion object {
         init {
-            //System.load("keys")
             System.loadLibrary("native-lib")
         }
     }
@@ -75,18 +63,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         listRcv = findViewById(R.id.listRcv)
         gridRcv = findViewById(R.id.gridRcv)
         tileRcv = findViewById(R.id.tileRcv)
-        adRlay = findViewById(R.id.adRlay)
-        adRlay = findViewById(R.id.adRlay)
         youtubePlayListItem = intent.getStringExtra("ITEM")
-
-        MobileAds.initialize(context) {}
-        mInterstitialAd = InterstitialAd(context)
-        mInterstitialAd.adUnitId = getString(R.string.inters_ad_id)
-
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
-
-        loadAdaptiveBanner(this, adRlay)
-
         //card
         //listRcv.layoutManager = LinearLayoutManager(context)
         //gid
@@ -119,12 +96,6 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
             listRcv.visibility = View.GONE
             isFirstTimeList = false
             reloadUi(mPlaylistVideos!!, false)
-            mInterstitialAd.loadAd(AdRequest.Builder().build())
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
-            } else {
-                Log.d("TAG", "The interstitial wasn't loaded yet.")
-            }
         }
 
         gridImv.setOnClickListener {
@@ -133,13 +104,6 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
             gridRcv.visibility = View.VISIBLE
             tileRcv.visibility = View.GONE
             listRcv.visibility = View.GONE
-
-            mInterstitialAd.loadAd(AdRequest.Builder().build())
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
-            } else {
-                Log.d("TAG", "The interstitial wasn't loaded yet.")
-            }
         }
 
         listImv.setOnClickListener {
@@ -160,24 +124,21 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
             mYouTubeDataApi?.let {
                 this.context.let {
                     if (playlistVideos.playlistId != null) {
-                        if (context != null) {
-                            if (mYouTubeDataApi != null) {
-                                object : GetTask(context, mYouTubeDataApi) {
-                                    override fun onPostExecute(result: Pair<String, List<Video>>?) {
-                                        if (result != null) {
-                                            handleGetPlaylistResult(playlistVideos, result)
-                                            Utils.hideProgress()
-                                        } else {
-                                            val intent = Intent(Intent.ACTION_VIEW)
-                                            intent.data =
-                                                Uri.parse(getString(R.string.youtube_playlist_append) + youtubePlayListItem)
-                                            intent.setPackage("com.google.android.youtube")
-                                            startActivity(intent)
-                                        }
-
+                        if (mYouTubeDataApi != null) {
+                            object : GetTask(context, mYouTubeDataApi) {
+                                override fun onPostExecute(result: Pair<String, List<Video>>?) {
+                                    if (result != null) {
+                                        handleGetPlaylistResult(playlistVideos, result)
+                                    } else {
+                                        val intent = Intent(Intent.ACTION_VIEW)
+                                        intent.data =
+                                            Uri.parse(getString(R.string.youtube_playlist_append) + youtubePlayListItem)
+                                        intent.setPackage("com.google.android.youtube")
+                                        startActivity(intent)
                                     }
-                                }.execute(playlistVideos.playlistId, playlistVideos.nextPageToken)
-                            }
+                                    Utils.hideProgress()
+                                }
+                            }.execute(playlistVideos.playlistId, playlistVideos.nextPageToken)
                         }
                     }
                 }
@@ -200,11 +161,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
                                         if (result != null) {
                                             handleGetPlaylistResult(playlistVideos, result)
                                         } else {
-                                            val intent = Intent(Intent.ACTION_VIEW)
-                                            intent.data =
-                                                Uri.parse(context.getString(R.string.youtube_playlist_append) + youtubePlayListItem)
-                                            intent.setPackage("com.google.android.youtube")
-                                            context.startActivity(intent)
+                                            startInYoutubeApp()
                                         }
                                     }
                                 }.execute(playlistVideos.playlistId, playlistVideos.nextPageToken)
@@ -226,11 +183,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
                                         if (result != null) {
                                             handleGetPlaylistResult(playlistVideos, result)
                                         } else {
-                                            val intent = Intent(Intent.ACTION_VIEW)
-                                            intent.data =
-                                                Uri.parse(context.getString(R.string.youtube_playlist_append) + youtubePlayListItem)
-                                            intent.setPackage("com.google.android.youtube")
-                                            context.startActivity(intent)
+                                            startInYoutubeApp()
                                         }
                                     }
                                 }.execute(playlistVideos.playlistId, playlistVideos.nextPageToken)
@@ -245,6 +198,15 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         tileRcv.adapter = mPlaylistCardAdapterOld
     }
 
+    private fun startInYoutubeApp() {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data =
+            Uri.parse(context.getString(R.string.youtube_playlist_append) + youtubePlayListItem)
+        intent.setPackage("com.google.android.youtube")
+        finish()
+        context.startActivity(intent)
+    }
+
     private fun handleGetPlaylistResult(
         playlistVideos: PlaylistVideos,
         result: Pair<String, List<Video>>?
@@ -252,7 +214,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         if (result == null) return
         val positionStart: Int = playlistVideos.size
         playlistVideos.nextPageToken = result.first
-        result?.let {
+        result.let {
             playlistVideos?.let { it2 ->
                 if (it.second != null) {
                     it2.addAll(it.second)
@@ -267,11 +229,6 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
 
         if (isFirstTime == 1 || isFirstTime == 7) {
             isFirstTime += 1
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
-            } else {
-                Log.d("TAG", "The interstitial wasn't loaded yet.")
-            }
         } else {
             isFirstTime += 1
         }

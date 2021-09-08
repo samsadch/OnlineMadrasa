@@ -5,23 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.story.StoryFragment">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/story_rcv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/ad_rlay"
         android:padding="4dp"
         tools:listitem="@layout/list_item_title" />
-
-    <RelativeLayout
-        android:id="@+id/ad_rlay"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/ad_height"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/square_background">
-
-    </RelativeLayout>
 
     <ProgressBar
         android:id="@+id/progress"

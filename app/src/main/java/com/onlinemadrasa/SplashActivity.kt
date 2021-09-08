@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.MobileAds
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
@@ -22,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE)
         try {
             setContentView(R.layout.activity_splash)
-            MobileAds.initialize(this) {}
+
             scheduleSplashScreen()
             firebaseAnalytics = Firebase.analytics
         } catch (e: Exception) {

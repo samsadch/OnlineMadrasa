@@ -118,11 +118,4 @@
 
     </ScrollView>
 
-    <RelativeLayout
-        android:id="@+id/ad_rlay"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/ad_height"
-        android:layout_alignParentBottom="true" />
-
-
 </RelativeLayout>

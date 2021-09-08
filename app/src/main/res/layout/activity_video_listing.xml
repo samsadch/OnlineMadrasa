@@ -81,7 +81,6 @@
         android:id="@+id/listRcv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/adRlay"
         android:layout_below="@+id/actionbar"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -93,7 +92,6 @@
         android:id="@+id/tileRcv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/adRlay"
         android:layout_below="@+id/actionbar"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -105,20 +103,11 @@
         android:id="@+id/gridRcv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/adRlay"
         android:layout_below="@+id/actionbar"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:visibility="gone"
         tools:listitem="@layout/youtube_video_card" />
-
-    <RelativeLayout
-        android:id="@+id/adRlay"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/ad_height"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="visible" />
 
 </RelativeLayout>

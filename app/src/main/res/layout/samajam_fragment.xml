@@ -8,14 +8,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""/>
+        android:text="" />
 
     <TextView
         android:id="@+id/title_text"
         style="@style/AppTheme.BoldFont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/top_raly"
         android:layout_centerInParent="true"
         android:gravity="center_horizontal"
         android:padding="4dp"
@@ -24,11 +23,5 @@
 നിങ്ങളുടെ പേരും സ്ഥലവും ഉൾപ്പെടുത്തുക. തിരഞ്ഞെടുക്കപ്പെടുന്നവ ആപ്പിൽ പ്രസിദ്ധീകരിക്കുകയും മികച്ചു നിൽക്കുന്നവയ്ക്ക് ആകർഷകമായ സമ്മാനങ്ങൾ നൽകുകയും ചെയ്യുന്നതാണ്."
         android:textAlignment="center"
         android:textSize="18sp" />
-
-    <RelativeLayout
-        android:id="@+id/ad_rlay"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/ad_height"
-        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

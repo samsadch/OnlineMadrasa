@@ -18,10 +18,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -29,7 +25,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.iid.FirebaseInstanceId
 import com.onlinemadrasa.utils.Utils
-import com.onlinemadrasa.utils.openWebPage
 
 
 class HomeActivity : AppCompatActivity() {
@@ -40,7 +35,6 @@ class HomeActivity : AppCompatActivity() {
     var title: String? = null
     var body: String? = null
     val context: Context = this@HomeActivity
-    private lateinit var mInterstitialAd: InterstitialAd
 
     /*override fun getTheme(): Resources.Theme {
         val theme = super.getTheme()
@@ -55,11 +49,10 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        MobileAds.initialize(this) {}
+
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         val testDeviceIds = listOf("E2E9731DE05D993168487E339C06DF13")
-        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
-        MobileAds.setRequestConfiguration(configuration)
+
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -103,12 +96,6 @@ class HomeActivity : AppCompatActivity() {
 
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(navView, navController)
-
-        MobileAds.initialize(this@HomeActivity) {}
-        mInterstitialAd = InterstitialAd(this@HomeActivity)
-        mInterstitialAd.adUnitId = getString(R.string.inters_ad_id)
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
-
         initFirebase()
     }
 
@@ -174,13 +161,6 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun showIntAd() {
-        if (mInterstitialAd.isLoaded) {
-            mInterstitialAd.show()
-        } else {
-            Log.d("TAG", "The interstitial wasn't loaded yet.")
-        }
-    }
 
     private fun launchMarket() {
         val uri: Uri = Uri.parse("market://details?id=$packageName")

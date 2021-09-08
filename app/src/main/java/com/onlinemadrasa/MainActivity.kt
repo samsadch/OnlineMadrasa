@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import com.google.api.client.extensions.android.http.AndroidHttp
 import com.google.api.client.json.gson.GsonFactory
@@ -16,7 +15,7 @@ import com.google.api.services.youtube.YouTube
 import com.onlinemadrasa.adapter.MainAdapter
 import com.onlinemadrasa.utils.OnAlertShow
 
-class MainActivity : AppCompatActivity(),OnAlertShow{
+class MainActivity : AppCompatActivity(), OnAlertShow {
 
     private lateinit var mainRcv: RecyclerView
     var context = this@MainActivity
@@ -25,24 +24,20 @@ class MainActivity : AppCompatActivity(),OnAlertShow{
     private val mJsonFactory = GsonFactory()
     private val mTransport = AndroidHttp.newCompatibleTransport()
 
-    private var onAlertShow:OnAlertShow = this
+    private var onAlertShow: OnAlertShow = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mainRcv = findViewById(R.id.mainRcv)
-        MobileAds.initialize(
-            this
-        ) {
 
-        }
         mainRcv.layoutManager = GridLayoutManager(context, 2)
         var list: ArrayList<String> = ArrayList()
-        val array = arrayListOf("test","test")
+        val array = arrayListOf("test", "test")
         for (value in array) {
             list.add(value)
         }
-        mainRcv.adapter = MainAdapter(context, list,onAlertShow)
+        mainRcv.adapter = MainAdapter(context, list, onAlertShow)
 
 
         mYoutubeDataApi = YouTube.Builder(mTransport, mJsonFactory, null)
@@ -57,7 +52,8 @@ class MainActivity : AppCompatActivity(),OnAlertShow{
     }
 
     private fun showSnackBar(message: String) {
-        val sb = Snackbar.make(findViewById(android.R.id.content),
+        val sb = Snackbar.make(
+            findViewById(android.R.id.content),
             message,
             Snackbar.LENGTH_INDEFINITE
         )
