@@ -9,14 +9,14 @@ import com.onlinemadrasa.model.StoryItem
 import kotlinx.android.synthetic.main.activity_storydetail.*
 
 class StorydetailActivity : AppCompatActivity() {
-    lateinit var storyItem: StoryItem
+    private var storyItem: StoryItem? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_storydetail)
         storyItem = intent.getParcelableExtra("ITEM")
         if (storyItem != null) {
-            content_text.text = storyItem.content
-            title_text.text = storyItem.title
+            content_text.text = storyItem?.content
+            title_text.text = storyItem?.title
         }
 
         back_image.setOnClickListener {
@@ -29,7 +29,7 @@ class StorydetailActivity : AppCompatActivity() {
             sendIntent.action = Intent.ACTION_SEND
             sendIntent.putExtra(
                 Intent.EXTRA_TEXT,
-                storyItem.title + " I found this Amazing story  on Online Madrasa Application " + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n" + storyItem.content
+                storyItem?.title + " I found this Amazing story  on Online Madrasa Application " + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n" + storyItem?.content
             )
             sendIntent.type = "text/plain"
             startActivity(sendIntent)

@@ -63,7 +63,7 @@ class VideoListingActivity : AppCompatActivity(), OnVideoSelect {
         listRcv = findViewById(R.id.listRcv)
         gridRcv = findViewById(R.id.gridRcv)
         tileRcv = findViewById(R.id.tileRcv)
-        youtubePlayListItem = intent.getStringExtra("ITEM")
+        youtubePlayListItem = intent.getStringExtra("ITEM") as String
         //card
         //listRcv.layoutManager = LinearLayoutManager(context)
         //gid

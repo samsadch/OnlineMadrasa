@@ -71,7 +71,7 @@ abstract class GetTask(
                 .setKey(getAPIKey())
                 .execute()
         } catch (e: Exception) {
-            Log.i("SAMSAD Exc 11",e.message)
+            Log.i("SAMSAD Exc 11",e.localizedMessage)
             e.printStackTrace()
             return null
         }
@@ -105,7 +105,7 @@ abstract class GetTask(
                 .setKey(getAPIKey())
                 .setId(TextUtils.join(",", videoIds)).execute()
         } catch (e: IOException) {
-            Log.i("SAMSAD vidExc",e.message)
+            Log.i("SAMSAD vidExc",e.localizedMessage)
             e.printStackTrace()
         }
 

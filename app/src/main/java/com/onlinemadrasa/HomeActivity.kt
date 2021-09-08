@@ -180,7 +180,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 // Get new Instance ID token
                 val token = task.result?.token
-                Log.d("TOKEN", token)
+                Log.d("TOKEN", token.toString())
             })
     }
 
