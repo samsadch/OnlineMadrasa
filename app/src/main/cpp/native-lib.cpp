@@ -22,7 +22,7 @@ std::string stdEleven = "PL42zYQiifYHDouZq9peR2ig_S78UIV7u6";
 std::string stdTwelve = "PL42zYQiifYHBVHMcNDqC3EQajuVQNAKyW";
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_onlinemadrasa_VideoListingActivity_getAPIKey(
+Java_com_onlinemadrasa_features_video_VideoListingActivity_getAPIKey(
         JNIEnv *env,
         jobject /* this */) {
     std::string hello = "AIzaSyDZX72a6O7Zs-CXfecn7bHLGgjdtpU6YSU";
@@ -30,7 +30,7 @@ Java_com_onlinemadrasa_VideoListingActivity_getAPIKey(
 }
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_onlinemadrasa_YouTubeFailureRecoveryActivity_getAPIKey(
+Java_com_onlinemadrasa_features_video_YouTubeFailureRecoveryActivity_getAPIKey(
         JNIEnv *env,
         jobject /* this */) {
     std::string hello = "AIzaSyDZX72a6O7Zs-CXfecn7bHLGgjdtpU6YSU";
@@ -49,7 +49,7 @@ Java_com_onlinemadrasa_network_GetTask_getAPIKey(
 
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_onlinemadrasa_ui_home_HomeFragment_getArrayIDS(
+Java_com_onlinemadrasa_features_home_HomeFragment_getArrayIDS(
         JNIEnv *env,
         jobject /* this */) {
     std::string hello =
@@ -62,7 +62,7 @@ Java_com_onlinemadrasa_ui_home_HomeFragment_getArrayIDS(
 }
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_onlinemadrasa_ui_direct_DirectFragment_getArrayIDS(
+Java_com_onlinemadrasa_features_direct_DirectFragment_getArrayIDS(
         JNIEnv *env,
         jobject /* this */) {
     std::string hello =

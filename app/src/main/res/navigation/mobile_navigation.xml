@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_gallery">
 
-    <fragment
+    <!--<fragment
         android:id="@+id/nav_home"
-        android:name="com.onlinemadrasa.ui.home.HomeFragment"
+        android:name="com.onlinemadrasa.features.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
 
@@ -15,33 +15,33 @@
             android:id="@+id/action_nav_home_to_messageFragment"
             app:destination="@id/nav_message" />
 
-    </fragment>
+    </fragment>-->
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.onlinemadrasa.ui.direct.DirectFragment"
-        android:label="@string/menu_gallery"
+        android:name="com.onlinemadrasa.features.direct.DirectFragment"
+        android:label="@string/menu_home"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.onlinemadrasa.ui.share.ShareFragment"
+        android:name="com.onlinemadrasa.features.share.ShareFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_share" />
 
     <fragment
         android:id="@+id/nav_message"
-        android:name="com.onlinemadrasa.ui.message.MessageFragment"
+        android:name="com.onlinemadrasa.features.message.MessageFragment"
         android:label="@string/menu_message"
         tools:layout="@layout/message_fragment" />
     <fragment
         android:id="@+id/nav_quran"
-        android:name="com.onlinemadrasa.ui.quran.QuranFragment"
+        android:name="com.onlinemadrasa.quran.QuranFragment"
         tools:layout="@layout/exam_updates_fragment"
         android:label="Quran" />
     <fragment
         android:id="@+id/nav_syl"
-        android:name="com.onlinemadrasa.ui.sylabus.SylabusFragment"
+        android:name="com.onlinemadrasa.features.sylabus.SylabusFragment"
         android:label="@string/syllabus"
         tools:layout="@layout/sylabus_fragment">
         <action
@@ -50,33 +50,33 @@
     </fragment>
     <fragment
         android:id="@+id/sylabusItemFragment"
-        android:name="com.onlinemadrasa.ui.sylabus.SylabusItemActivity"
+        android:name="com.onlinemadrasa.features.sylabus.SylabusItemActivity"
         android:label="sylabus_item_fragment"
         tools:layout="@layout/sylabus_item_fragment">
         <argument android:name="image_id" />
     </fragment>
     <fragment
         android:id="@+id/nav_pub"
-        android:name="com.onlinemadrasa.ui.exam.PublicExamFragment"
+        android:name="com.onlinemadrasa.features.exam.PublicExamFragment"
         android:label="@string/public_exam"
         tools:layout="@layout/fragment_public_exam" />
     <fragment
         android:id="@+id/nav_notes"
-        android:name="com.onlinemadrasa.ui.notes.NotesFragment"
+        android:name="com.onlinemadrasa.features.notes.NotesFragment"
         android:label="@string/notes"
         tools:layout="@layout/notes_fragment" />
     <fragment
         android:id="@+id/nav_about"
-        android:name="com.onlinemadrasa.ui.about.AboutFragment"
+        android:name="com.onlinemadrasa.features.about.AboutFragment"
         android:label="@string/menu_about" />
     <fragment
         android:id="@+id/nav_story"
-        android:name="com.onlinemadrasa.ui.story.StoryFragment"
+        android:name="com.onlinemadrasa.features.story.StoryFragment"
         android:label="@string/story_title"
         tools:layout="@layout/story_fragment" />
     <fragment
         android:id="@+id/nav_samajam"
-        android:name="com.onlinemadrasa.ui.samajam.SamajamFragment"
+        android:name="com.onlinemadrasa.features.samajam.SamajamFragment"
         android:label="@string/samajam"
         tools:layout="@layout/samajam_fragment" />
 

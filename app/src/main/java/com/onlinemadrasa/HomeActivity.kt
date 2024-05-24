@@ -18,12 +18,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.FirebaseApp
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import com.onlinemadrasa.utils.Utils
 
 
@@ -49,8 +49,9 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        FirebaseApp.initializeApp(this)
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
         val testDeviceIds = listOf("E2E9731DE05D993168487E339C06DF13")
 
 
@@ -79,11 +80,12 @@ class HomeActivity : AppCompatActivity() {
         navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home,
+               /* R.id.nav_home,*/
                 R.id.nav_gallery,
                 R.id.nav_quran,
                 R.id.nav_story,
-                R.id.nav_notes, R.id.nav_pub,
+                R.id.nav_notes,
+                R.id.nav_pub,
                 R.id.nav_syl,
                 R.id.nav_samajam,
                 R.id.nav_message,
@@ -121,9 +123,7 @@ class HomeActivity : AppCompatActivity() {
             val uri: Uri = Uri.parse("http://play.google.com/store/apps/details?id=$packageName")
             val goToMarket = Intent(Intent.ACTION_VIEW, uri)
             goToMarket.addFlags(
-                Intent.FLAG_ACTIVITY_NO_HISTORY or
-                        Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
-                        Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+                Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_NEW_DOCUMENT or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
             )
 
             return goToMarket
@@ -155,6 +155,7 @@ class HomeActivity : AppCompatActivity() {
                 //launchMarket()
                 true
             }
+
             else -> {
                 super.onOptionsItemSelected(item)
             }
@@ -173,15 +174,13 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initFirebase() {
-        FirebaseInstanceId.getInstance().instanceId
-            .addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    return@OnCompleteListener
-                }
-                // Get new Instance ID token
-                val token = task.result?.token
-                Log.d("TOKEN", token.toString())
-            })
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                return@addOnCompleteListener
+            }
+            val token = task.result
+            Log.d("TOKEN", token.toString())
+        }
     }
 
 }

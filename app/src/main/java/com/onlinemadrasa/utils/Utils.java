@@ -41,49 +41,31 @@ public class Utils {
     }
 
     public static void showIosDialog(Context context, String title, String message) {
-        new iOSDialogBuilder(context)
-                .setTitle(title)
-                .setSubtitle(message)
-                .setBoldPositiveLabel(true)
-                .setCancelable(false)
-                .setPositiveListener(context.getResources().getString(R.string.ok), new iOSDialogClickListener() {
-                    @Override
-                    public void onClick(iOSDialog dialog) {
-                        dialog.dismiss();
-                    }
-                })
-                .build().show();
+        new iOSDialogBuilder(context).setTitle(title).setSubtitle(message).setBoldPositiveLabel(true).setCancelable(false).setPositiveListener(context.getResources().getString(R.string.ok), new iOSDialogClickListener() {
+            @Override
+            public void onClick(iOSDialog dialog) {
+                dialog.dismiss();
+            }
+        }).build().show();
     }
 
     public static void showIosDialog(Context context, String message) {
-        new iOSDialogBuilder(context)
-                .setTitle(context.getResources().getString(R.string.alert))
-                .setSubtitle(message)
-                .setBoldPositiveLabel(true)
-                .setCancelable(false)
-                .setPositiveListener(context.getResources().getString(R.string.ok), new iOSDialogClickListener() {
-                    @Override
-                    public void onClick(iOSDialog dialog) {
-                        dialog.dismiss();
-                    }
-                })
-                .build().show();
+        new iOSDialogBuilder(context).setTitle(context.getResources().getString(R.string.alert)).setSubtitle(message).setBoldPositiveLabel(true).setCancelable(false).setPositiveListener(context.getResources().getString(R.string.ok), new iOSDialogClickListener() {
+            @Override
+            public void onClick(iOSDialog dialog) {
+                dialog.dismiss();
+            }
+        }).build().show();
     }
 
     public static void showIosDialog(Context context, String title, String message, final OnAlertHide onAlertHide) {
-        new iOSDialogBuilder(context)
-                .setTitle(title)
-                .setSubtitle(message)
-                .setBoldPositiveLabel(true)
-                .setCancelable(false)
-                .setPositiveListener(context.getResources().getString(R.string.ok), new iOSDialogClickListener() {
-                    @Override
-                    public void onClick(iOSDialog dialog) {
-                        dialog.dismiss();
-                        onAlertHide.onAlertHide();
-                    }
-                })
-                .build().show();
+        new iOSDialogBuilder(context).setTitle(title).setSubtitle(message).setBoldPositiveLabel(true).setCancelable(false).setPositiveListener(context.getResources().getString(R.string.ok), new iOSDialogClickListener() {
+            @Override
+            public void onClick(iOSDialog dialog) {
+                dialog.dismiss();
+                onAlertHide.onAlertHide();
+            }
+        }).build().show();
     }
 
     public static String getDisplayFormattedDate(String inputDate) {
@@ -118,28 +100,22 @@ public class Utils {
 
     public static void setLoading(Context context) {
         hideProgress();
-        if (isValid(hud_progress))
-            hud_progress = null;
-        hud_progress = KProgressHUD.create(context).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).
-                setAnimationSpeed(2).setCancellable(true).setMaxProgress(100).setDimAmount(0.2f).setBackgroundColor(Color.TRANSPARENT);
+        if (isValid(hud_progress)) hud_progress = null;
+        hud_progress = KProgressHUD.create(context).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setAnimationSpeed(2).setCancellable(true).setMaxProgress(100).setDimAmount(0.2f).setBackgroundColor(Color.TRANSPARENT);
 
     }
 
     public static void setLoadingWait(Context context) {
         hideProgress();
-        if (isValid(hud_progress))
-            hud_progress = null;
-        hud_progress = KProgressHUD.create(context).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).
-                setLabel("Please wait").setAnimationSpeed(2).setCancellable(true).setMaxProgress(100).setDimAmount(0.5f);
+        if (isValid(hud_progress)) hud_progress = null;
+        hud_progress = KProgressHUD.create(context).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setLabel("Please wait").setAnimationSpeed(2).setCancellable(true).setMaxProgress(100).setDimAmount(0.5f);
 
     }
 
     public static void setLoading(Context context, String message) {
         hideProgress();
-        if (isValid(hud_progress))
-            hud_progress = null;
-        hud_progress = KProgressHUD.create(context).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).
-                setLabel("" + message).setAnimationSpeed(2).setCancellable(true).setMaxProgress(100).setDimAmount(0.5f).setBackgroundColor(R.color.black_transparent);
+        if (isValid(hud_progress)) hud_progress = null;
+        hud_progress = KProgressHUD.create(context).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setLabel("" + message).setAnimationSpeed(2).setCancellable(true).setMaxProgress(100).setDimAmount(0.5f).setBackgroundColor(R.color.black_transparent);
 
     }
 

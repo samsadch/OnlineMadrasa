@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.sylabus.SylabusItemActivity">
+    tools:context=".features.sylabus.SylabusItemActivity">
 
 
     <androidx.cardview.widget.CardView

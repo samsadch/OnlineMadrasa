@@ -45,31 +45,28 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
             Log.d(TAG, "onMessageReceived: " + remoteMessage.getData().get("message"));
-            Log.d(TAG,"Title  : "+remoteMessage.getNotification().getTitle());
+            Log.d(TAG, "Title  : " + remoteMessage.getNotification().getTitle());
 
 
             Handler handler = new Handler(Looper.getMainLooper());
             handler.post(new Runnable() {
                 public void run() {
-                    Intent i = new  Intent(context, HomeActivity.class);
-                    i.putExtra("TITLE",remoteMessage.getNotification().getTitle());
-                    i.putExtra("MESSAGE",remoteMessage.getNotification().getBody());
+                    Intent i = new Intent(context, HomeActivity.class);
+                    i.putExtra("TITLE", remoteMessage.getNotification().getTitle());
+                    i.putExtra("MESSAGE", remoteMessage.getNotification().getBody());
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                 }
             });
 
-            if(intent!=null) {
-                intent = new  Intent(context, HomeActivity.class);
-                intent.putExtra("TITLE",remoteMessage.getNotification().getTitle());
-                intent.putExtra("MESSAGE",remoteMessage.getNotification().getBody());
+            if (intent != null) {
+                intent = new Intent(context, HomeActivity.class);
+                intent.putExtra("TITLE", remoteMessage.getNotification().getTitle());
+                intent.putExtra("MESSAGE", remoteMessage.getNotification().getBody());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
                 //String channelId = "Default";
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                        .setSmallIcon(R.mipmap.ic_quran)
-                        .setContentTitle(remoteMessage.getNotification().getTitle())
-                        .setContentText(remoteMessage.getNotification().getBody()).setAutoCancel(true).setContentIntent(pendingIntent);
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID).setSmallIcon(R.mipmap.ic_quran).setContentTitle(remoteMessage.getNotification().getTitle()).setContentText(remoteMessage.getNotification().getBody()).setAutoCancel(true).setContentIntent(pendingIntent);
                 NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_HIGH);
