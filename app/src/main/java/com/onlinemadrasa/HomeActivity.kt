@@ -49,7 +49,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        FirebaseApp.initializeApp(this)
 
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
         val testDeviceIds = listOf("E2E9731DE05D993168487E339C06DF13")
